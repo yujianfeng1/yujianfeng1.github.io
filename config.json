@@ -1,6 +1,12 @@
 {
-    "title":"love life",
-    "subTitle":"Blog description",
+    "title":"Love life love code",
+    "subTitle":"Love life love code",
     "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
-    "GMEEK_VERSION":"last"
+    "GMEEK_VERSION":"last"，
+    "startSite":"06/09/2014",
+    "singlePage":["about"],
+    "onePageListNum":15,
+    "yearColorList":["#bc4c00", "#0969da", "#1f883d", "#A333D0"],
+    "needComment":0
+
 }
