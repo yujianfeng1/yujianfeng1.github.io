@@ -8,6 +8,7 @@
     "onePageListNum":15,
     "yearColorList":["#bc4c00", "#0969da", "#1f883d", "#A333D0"],
     "needComment":0,
-    "homeUrl": "https://hacker4257.github.io/"
+    "homeUrl": "https://hacker4257.github.io/",
+    "allHead":"<script src='https://hacker4257.github.io/Gmeek/plugins/GmeekVercount.js'></script>",
 
 }
