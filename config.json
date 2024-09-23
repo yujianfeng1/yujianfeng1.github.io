@@ -8,6 +8,12 @@
     "singlePage": [
         "about"
     ],
+    "yearColorList": [
+        "#bc4c00",
+        "#0969da",
+        "#1f883d",
+        "#A333D0"
+    ],
     "onePageListNum": 15,
     "needComment": 1,
     "homeUrl": "https://hacker4257.github.io/",
