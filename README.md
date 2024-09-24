@@ -1,2 +1,2 @@
-# base blog
+# Blog base
 ## 🎉
