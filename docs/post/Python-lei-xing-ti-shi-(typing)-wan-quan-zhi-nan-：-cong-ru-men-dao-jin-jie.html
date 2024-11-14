@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://hacker4257.github.io/assets/GmeekVercount.js'></script>
+    <link rel="icon" href="https://hacker4257.github.io/avat.jpg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## 引言
+
+Python 作为一门动态类型语言，在灵活性方面有着显著优势。">
+<meta property="og:title" content="Python类型提示(typing)完全指南：从入门到进阶">
+<meta property="og:description" content="## 引言
+
+Python 作为一门动态类型语言，在灵活性方面有着显著优势。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hacker4257.github.io//post/Python-lei-xing-ti-shi-%28typing%29-wan-quan-zhi-nan-%EF%BC%9A-cong-ru-men-dao-jin-jie.html">
+<meta property="og:image" content="https://hacker4257.github.io/ava.jpeg">
+<title>Python类型提示(typing)完全指南：从入门到进阶</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Python类型提示(typing)完全指南：从入门到进阶</h1>
+<div class="title-right">
+    <a href="https://hacker4257.github.io/" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>引言</h2>
+<p>Python 作为一门动态类型语言，在灵活性方面有着显著优势。但在大型项目开发中，类型提示的缺失可能导致代码可维护性降低、bug难以发现。Python 3.5+ 引入的类型提示（Type Hints）系统，让我们能够在保持Python灵活性的同时，获得静态类型检查的优势。</p>
+<h2>为什么需要类型提示？</h2>
+<ol>
+<li>
+<p><strong>提升代码可读性</strong>：</p>
+<ul>
+<li>清晰地表达函数参数和返回值的期望类型</li>
+<li>使代码自文档化</li>
+<li>降低维护成本</li>
+</ul>
+</li>
+<li>
+<p><strong>及早发现bug</strong>：</p>
+<ul>
+<li>通过静态类型检查工具(如mypy)在运行前发现类型错误</li>
+<li>减少运行时错误</li>
+</ul>
+</li>
+<li>
+<p><strong>更好的IDE支持</strong>：</p>
+<ul>
+<li>代码补全更准确</li>
+<li>重构更可靠</li>
+<li>实时错误提示</li>
+</ul>
+</li>
+</ol>
+<h2>基础类型提示</h2>
+<h3>1. 变量类型注解</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 基础类型注解</span>
+<span class="pl-s1">name</span>: <span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-s">"张三"</span>
+<span class="pl-s1">age</span>: <span class="pl-s1">int</span> <span class="pl-c1">=</span> <span class="pl-c1">25</span>
+<span class="pl-s1">height</span>: <span class="pl-s1">float</span> <span class="pl-c1">=</span> <span class="pl-c1">1.75</span>
+<span class="pl-s1">is_student</span>: <span class="pl-s1">bool</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>
+
+<span class="pl-c"># 如果不立即赋值，也可以只做类型声明</span>
+<span class="pl-s1">country</span>: <span class="pl-s1">str</span></pre></div>
+<h3>2. 函数注解</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">greet</span>(<span class="pl-s1">name</span>: <span class="pl-s1">str</span>) <span class="pl-c1">-&gt;</span> <span class="pl-s1">str</span>:
+    <span class="pl-k">return</span> <span class="pl-s">f"Hello, <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">name</span><span class="pl-kos">}</span></span>!"</span>
+
+<span class="pl-k">def</span> <span class="pl-en">calculate_bmi</span>(<span class="pl-s1">weight</span>: <span class="pl-s1">float</span>, <span class="pl-s1">height</span>: <span class="pl-s1">float</span>) <span class="pl-c1">-&gt;</span> <span class="pl-s1">float</span>:
+    <span class="pl-k">return</span> <span class="pl-s1">weight</span> <span class="pl-c1">/</span> (<span class="pl-s1">height</span> <span class="pl-c1">**</span> <span class="pl-c1">2</span>)</pre></div>
+<h3>3. 基本集合类型</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">List</span>, <span class="pl-v">Set</span>, <span class="pl-v">Dict</span>, <span class="pl-v">Tuple</span>
+
+<span class="pl-c"># 列表</span>
+<span class="pl-s1">numbers</span>: <span class="pl-v">List</span>[<span class="pl-s1">int</span>] <span class="pl-c1">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>]
+
+<span class="pl-c"># 集合</span>
+<span class="pl-s1">unique_numbers</span>: <span class="pl-v">Set</span>[<span class="pl-s1">int</span>] <span class="pl-c1">=</span> {<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>}
+
+<span class="pl-c"># 字典</span>
+<span class="pl-s1">user_scores</span>: <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-s1">int</span>] <span class="pl-c1">=</span> {<span class="pl-s">"张三"</span>: <span class="pl-c1">95</span>, <span class="pl-s">"李四"</span>: <span class="pl-c1">88</span>}
+
+<span class="pl-c"># 元组</span>
+<span class="pl-s1">coordinates</span>: <span class="pl-v">Tuple</span>[<span class="pl-s1">float</span>, <span class="pl-s1">float</span>] <span class="pl-c1">=</span> (<span class="pl-c1">12.5</span>, <span class="pl-c1">34.8</span>)</pre></div>
+<h2>进阶类型提示</h2>
+<h3>1. Optional和Union类型</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Optional</span>, <span class="pl-v">Union</span>
+
+<span class="pl-c"># Optional类型 - 值可以是指定类型或None</span>
+<span class="pl-k">def</span> <span class="pl-en">get_user_name</span>(<span class="pl-s1">user_id</span>: <span class="pl-s1">int</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Optional</span>[<span class="pl-s1">str</span>]:
+    <span class="pl-c"># 模拟数据库查询</span>
+    <span class="pl-k">if</span> <span class="pl-s1">user_id</span> <span class="pl-c1">==</span> <span class="pl-c1">1</span>:
+        <span class="pl-k">return</span> <span class="pl-s">"张三"</span>
+    <span class="pl-k">return</span> <span class="pl-c1">None</span>
+
+<span class="pl-c"># Union类型 - 值可以是多种类型之一</span>
+<span class="pl-k">def</span> <span class="pl-en">process_data</span>(<span class="pl-s1">data</span>: <span class="pl-v">Union</span>[<span class="pl-s1">str</span>, <span class="pl-s1">bytes</span>]) <span class="pl-c1">-&gt;</span> <span class="pl-s1">str</span>:
+    <span class="pl-k">if</span> <span class="pl-en">isinstance</span>(<span class="pl-s1">data</span>, <span class="pl-s1">bytes</span>):
+        <span class="pl-k">return</span> <span class="pl-s1">data</span>.<span class="pl-en">decode</span>(<span class="pl-s">'utf-8'</span>)
+    <span class="pl-k">return</span> <span class="pl-s1">data</span></pre></div>
+<h3>2. 泛型</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TypeVar</span>, <span class="pl-v">Generic</span>
+
+<span class="pl-v">T</span> <span class="pl-c1">=</span> <span class="pl-v">TypeVar</span>(<span class="pl-s">'T'</span>)
+
+<span class="pl-k">class</span> <span class="pl-v">Stack</span>(<span class="pl-v">Generic</span>[<span class="pl-v">T</span>]):
+    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+        <span class="pl-s1">self</span>.<span class="pl-s1">items</span>: <span class="pl-v">List</span>[<span class="pl-v">T</span>] <span class="pl-c1">=</span> []
+    
+    <span class="pl-k">def</span> <span class="pl-en">push</span>(<span class="pl-s1">self</span>, <span class="pl-s1">item</span>: <span class="pl-v">T</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+        <span class="pl-s1">self</span>.<span class="pl-s1">items</span>.<span class="pl-en">append</span>(<span class="pl-s1">item</span>)
+    
+    <span class="pl-k">def</span> <span class="pl-en">pop</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Optional</span>[<span class="pl-v">T</span>]:
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">items</span>.<span class="pl-en">pop</span>() <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">items</span> <span class="pl-k">else</span> <span class="pl-c1">None</span>
+
+<span class="pl-c"># 使用泛型类</span>
+<span class="pl-s1">int_stack</span>: <span class="pl-v">Stack</span>[<span class="pl-s1">int</span>] <span class="pl-c1">=</span> <span class="pl-v">Stack</span>()
+<span class="pl-s1">str_stack</span>: <span class="pl-v">Stack</span>[<span class="pl-s1">str</span>] <span class="pl-c1">=</span> <span class="pl-v">Stack</span>()</pre></div>
+<h3>3. 类型别名</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Dict</span>, <span class="pl-v">List</span>, <span class="pl-v">Union</span>
+
+<span class="pl-c"># 定义复杂类型的别名</span>
+<span class="pl-v">JSON</span> <span class="pl-c1">=</span> <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-v">Union</span>[<span class="pl-s1">str</span>, <span class="pl-s1">int</span>, <span class="pl-s1">float</span>, <span class="pl-s1">bool</span>, <span class="pl-c1">None</span>, <span class="pl-v">List</span>[<span class="pl-v">Any</span>], <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-v">Any</span>]]]
+
+<span class="pl-k">def</span> <span class="pl-en">process_json</span>(<span class="pl-s1">data</span>: <span class="pl-v">JSON</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+    <span class="pl-k">pass</span></pre></div>
+<h3>4. Callable类型</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Callable</span>
+
+<span class="pl-c"># 函数类型</span>
+<span class="pl-v">Handler</span> <span class="pl-c1">=</span> <span class="pl-v">Callable</span>[[<span class="pl-s1">str</span>, <span class="pl-s1">int</span>], <span class="pl-s1">bool</span>]
+
+<span class="pl-k">def</span> <span class="pl-en">process_with_handler</span>(<span class="pl-s1">value</span>: <span class="pl-s1">str</span>, <span class="pl-s1">handler</span>: <span class="pl-v">Handler</span>) <span class="pl-c1">-&gt;</span> <span class="pl-s1">bool</span>:
+    <span class="pl-k">return</span> <span class="pl-en">handler</span>(<span class="pl-s1">value</span>, <span class="pl-en">len</span>(<span class="pl-s1">value</span>))
+
+<span class="pl-c"># 使用示例</span>
+<span class="pl-k">def</span> <span class="pl-en">check_string</span>(<span class="pl-s1">s</span>: <span class="pl-s1">str</span>, <span class="pl-s1">length</span>: <span class="pl-s1">int</span>) <span class="pl-c1">-&gt;</span> <span class="pl-s1">bool</span>:
+    <span class="pl-k">return</span> <span class="pl-en">len</span>(<span class="pl-s1">s</span>) <span class="pl-c1">==</span> <span class="pl-s1">length</span>
+
+<span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-en">process_with_handler</span>(<span class="pl-s">"hello"</span>, <span class="pl-s1">check_string</span>)</pre></div>
+<h3>5. Literal类型</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Literal</span>
+
+<span class="pl-c"># 限定取值范围</span>
+<span class="pl-v">Direction</span> <span class="pl-c1">=</span> <span class="pl-v">Literal</span>[<span class="pl-s">'north'</span>, <span class="pl-s">'south'</span>, <span class="pl-s">'east'</span>, <span class="pl-s">'west'</span>]
+
+<span class="pl-k">def</span> <span class="pl-en">move</span>(<span class="pl-s1">direction</span>: <span class="pl-v">Direction</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+    <span class="pl-en">print</span>(<span class="pl-s">f"Moving <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">direction</span><span class="pl-kos">}</span></span>"</span>)
+
+<span class="pl-c"># 这样是合法的</span>
+<span class="pl-en">move</span>(<span class="pl-s">'north'</span>)  
+<span class="pl-c"># 这样会被类型检查器标记为错误</span>
+<span class="pl-c"># move('northwest')  </span></pre></div>
+<h2>高级特性</h2>
+<h3>1. Protocol（结构化子类型）</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Protocol</span>
+
+<span class="pl-k">class</span> <span class="pl-v">Drawable</span>(<span class="pl-v">Protocol</span>):
+    <span class="pl-k">def</span> <span class="pl-en">draw</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>: ...
+
+<span class="pl-k">class</span> <span class="pl-v">Circle</span>:
+    <span class="pl-k">def</span> <span class="pl-en">draw</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+        <span class="pl-en">print</span>(<span class="pl-s">"Drawing a circle"</span>)
+
+<span class="pl-k">class</span> <span class="pl-v">Square</span>:
+    <span class="pl-k">def</span> <span class="pl-en">draw</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+        <span class="pl-en">print</span>(<span class="pl-s">"Drawing a square"</span>)
+
+<span class="pl-k">def</span> <span class="pl-en">render</span>(<span class="pl-s1">shape</span>: <span class="pl-v">Drawable</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+    <span class="pl-s1">shape</span>.<span class="pl-en">draw</span>()
+
+<span class="pl-c"># 两个类都实现了draw方法，因此都可以用作Drawable</span>
+<span class="pl-en">render</span>(<span class="pl-v">Circle</span>())  <span class="pl-c"># OK</span>
+<span class="pl-en">render</span>(<span class="pl-v">Square</span>())  <span class="pl-c"># OK</span></pre></div>
+<h3>2. TypedDict（类型化字典）</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TypedDict</span>
+
+<span class="pl-k">class</span> <span class="pl-v">UserDict</span>(<span class="pl-v">TypedDict</span>):
+    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-s1">int</span>
+    <span class="pl-s1">email</span>: <span class="pl-s1">str</span>
+
+<span class="pl-c"># 创建符合类型的字典</span>
+<span class="pl-s1">user</span>: <span class="pl-v">UserDict</span> <span class="pl-c1">=</span> {
+    <span class="pl-s">"name"</span>: <span class="pl-s">"张三"</span>,
+    <span class="pl-s">"age"</span>: <span class="pl-c1">25</span>,
+    <span class="pl-s">"email"</span>: <span class="pl-s">"zhangsan@example.com"</span>
+}</pre></div>
+<h3>3. Final（禁止重新赋值）</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Final</span>
+
+<span class="pl-v">MAX_CONNECTIONS</span>: <span class="pl-v">Final</span> <span class="pl-c1">=</span> <span class="pl-c1">100</span>
+
+<span class="pl-c"># 这样会被类型检查器标记为错误</span>
+<span class="pl-c"># MAX_CONNECTIONS = 200</span></pre></div>
+<h2>最佳实践</h2>
+<h3>1. 渐进式类型提示</h3>
+<p>在大型项目中逐步添加类型提示：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 第一阶段：关键函数和接口</span>
+<span class="pl-k">def</span> <span class="pl-en">critical_function</span>(<span class="pl-s1">data</span>: <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-v">Any</span>]) <span class="pl-c1">-&gt;</span> <span class="pl-s1">bool</span>:
+    <span class="pl-k">pass</span>
+
+<span class="pl-c"># 第二阶段：扩展到更多模块</span>
+<span class="pl-c"># 第三阶段：完整的类型覆盖</span></pre></div>
+<h3>2. 类型检查器配置</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># mypy.ini</span>
+[<span class="pl-s1">mypy</span>]
+<span class="pl-s1">python_version</span> <span class="pl-c1">=</span> <span class="pl-c1">3.9</span>
+<span class="pl-s1">disallow_untyped_defs</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>
+<span class="pl-s1">check_untyped_defs</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>
+<span class="pl-s1">warn_redundant_casts</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>
+<span class="pl-s1">warn_unused_ignores</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>
+<span class="pl-s1">warn_return_any</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>
+<span class="pl-s1">strict_optional</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span></pre></div>
+<h3>3. 类型注释的例外情况</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 1. 运行时导入的类型</span>
+<span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TYPE_CHECKING</span>
+
+<span class="pl-k">if</span> <span class="pl-v">TYPE_CHECKING</span>:
+    <span class="pl-k">from</span> <span class="pl-s1">heavy_module</span> <span class="pl-k">import</span> <span class="pl-v">HeavyClass</span>
+
+<span class="pl-c"># 2. 动态生成的属性</span>
+<span class="pl-k">class</span> <span class="pl-v">Dynamic</span>:
+    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+        <span class="pl-s1">self</span>.<span class="pl-s1">__dict__</span>[<span class="pl-s">'dynamic_attr'</span>] <span class="pl-c1">=</span> <span class="pl-c1">1</span>  <span class="pl-c"># type: ignore</span>
+
+<span class="pl-c"># 3. 装饰器处理</span>
+<span class="pl-k">from</span> <span class="pl-s1">functools</span> <span class="pl-k">import</span> <span class="pl-s1">wraps</span>
+<span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TypeVar</span>, <span class="pl-v">Callable</span>, <span class="pl-v">Any</span>
+
+<span class="pl-v">F</span> <span class="pl-c1">=</span> <span class="pl-v">TypeVar</span>(<span class="pl-s">'F'</span>, <span class="pl-s1">bound</span><span class="pl-c1">=</span><span class="pl-v">Callable</span>[..., <span class="pl-v">Any</span>])
+
+<span class="pl-k">def</span> <span class="pl-en">my_decorator</span>(<span class="pl-s1">func</span>: <span class="pl-v">F</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">F</span>:
+    <span class="pl-en">@<span class="pl-en">wraps</span>(<span class="pl-s1">func</span>)</span>
+    <span class="pl-k">def</span> <span class="pl-en">wrapper</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>: <span class="pl-v">Any</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>: <span class="pl-v">Any</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Any</span>:
+        <span class="pl-k">return</span> <span class="pl-en">func</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>)
+    <span class="pl-k">return</span> <span class="pl-s1">wrapper</span>  <span class="pl-c"># type: ignore</span></pre></div>
+<h2>实际应用示例</h2>
+<h3>1. Web API响应类型</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TypedDict</span>, <span class="pl-v">List</span>
+
+<span class="pl-k">class</span> <span class="pl-v">UserProfile</span>(<span class="pl-v">TypedDict</span>):
+    <span class="pl-s1">id</span>: <span class="pl-s1">int</span>
+    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
+    <span class="pl-s1">email</span>: <span class="pl-s1">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-v">Optional</span>[<span class="pl-s1">int</span>]
+
+<span class="pl-k">class</span> <span class="pl-v">APIResponse</span>(<span class="pl-v">TypedDict</span>):
+    <span class="pl-s1">status</span>: <span class="pl-v">Literal</span>[<span class="pl-s">'success'</span>, <span class="pl-s">'error'</span>]
+    <span class="pl-s1">data</span>: <span class="pl-v">Optional</span>[<span class="pl-v">List</span>[<span class="pl-v">UserProfile</span>]]
+    <span class="pl-s1">message</span>: <span class="pl-s1">str</span>
+
+<span class="pl-k">def</span> <span class="pl-en">get_users</span>() <span class="pl-c1">-&gt;</span> <span class="pl-v">APIResponse</span>:
+    <span class="pl-s1">users</span>: <span class="pl-v">List</span>[<span class="pl-v">UserProfile</span>] <span class="pl-c1">=</span> [
+        {<span class="pl-s">"id"</span>: <span class="pl-c1">1</span>, <span class="pl-s">"name"</span>: <span class="pl-s">"张三"</span>, <span class="pl-s">"email"</span>: <span class="pl-s">"zhangsan@example.com"</span>, <span class="pl-s">"age"</span>: <span class="pl-c1">25</span>}
+    ]
+    <span class="pl-k">return</span> {
+        <span class="pl-s">"status"</span>: <span class="pl-s">"success"</span>,
+        <span class="pl-s">"data"</span>: <span class="pl-s1">users</span>,
+        <span class="pl-s">"message"</span>: <span class="pl-s">"Successfully retrieved users"</span>
+    }</pre></div>
+<h3>2. 数据处理管道</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Protocol</span>, <span class="pl-v">List</span>, <span class="pl-v">Any</span>
+
+<span class="pl-k">class</span> <span class="pl-v">DataProcessor</span>(<span class="pl-v">Protocol</span>):
+    <span class="pl-k">def</span> <span class="pl-en">process</span>(<span class="pl-s1">self</span>, <span class="pl-s1">data</span>: <span class="pl-v">Any</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Any</span>: ...
+
+<span class="pl-k">class</span> <span class="pl-v">Pipeline</span>:
+    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">processors</span>: <span class="pl-v">List</span>[<span class="pl-v">DataProcessor</span>]) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+        <span class="pl-s1">self</span>.<span class="pl-s1">processors</span> <span class="pl-c1">=</span> <span class="pl-s1">processors</span>
+
+    <span class="pl-k">def</span> <span class="pl-en">execute</span>(<span class="pl-s1">self</span>, <span class="pl-s1">data</span>: <span class="pl-v">Any</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Any</span>:
+        <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">data</span>
+        <span class="pl-k">for</span> <span class="pl-s1">processor</span> <span class="pl-c1">in</span> <span class="pl-s1">self</span>.<span class="pl-s1">processors</span>:
+            <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">processor</span>.<span class="pl-en">process</span>(<span class="pl-s1">result</span>)
+        <span class="pl-k">return</span> <span class="pl-s1">result</span></pre></div>
+<h2>结论</h2>
+<p>类型提示是Python代码质量提升的重要工具。合理使用类型提示可以：</p>
+<ol>
+<li>提高代码可读性和可维护性</li>
+<li>减少潜在bug</li>
+<li>提升开发效率</li>
+</ol>
+<p>但需要注意：</p>
+<ol>
+<li>不要过度使用复杂的类型注解</li>
+<li>在需要灵活性的地方保持简单</li>
+<li>配合类型检查器使用效果更好</li>
+</ol>
+<h2>参考资源</h2>
+<ul>
+<li><a href="https://docs.python.org/3/library/typing.html" rel="nofollow">Python typing 官方文档</a></li>
+<li><a href="https://mypy.readthedocs.io/" rel="nofollow">mypy 文档</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0484/" rel="nofollow">Python Type Hints - PEP 484</a></li>
+</ul></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://hacker4257.github.io/">Love life Love code</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://hacker4257.github.io/" target="_blank">Hacker4257</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("06/09/2014"!=""){
+    var startSite=new Date("06/09/2014");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","hacker4257/hacker4257.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+
+
+</html>
