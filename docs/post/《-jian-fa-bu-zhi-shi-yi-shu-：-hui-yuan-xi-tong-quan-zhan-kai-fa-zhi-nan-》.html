@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://hacker4257.github.io/assets/GmeekVercount.js'></script>
+    <link rel="icon" href="https://hacker4257.github.io/avat.jpg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+### 故事背景
+
+最近总觉得有点偷懒，工作和学习都没有太大的进展。">
+<meta property="og:title" content="《剪发不只是艺术：会员系统全栈开发指南》">
+<meta property="og:description" content="
+
+### 故事背景
+
+最近总觉得有点偷懒，工作和学习都没有太大的进展。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hacker4257.github.io//post/%E3%80%8A-jian-fa-bu-zhi-shi-yi-shu-%EF%BC%9A-hui-yuan-xi-tong-quan-zhan-kai-fa-zhi-nan-%E3%80%8B.html">
+<meta property="og:image" content="https://hacker4257.github.io/ava.jpeg">
+<title>《剪发不只是艺术：会员系统全栈开发指南》</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">《剪发不只是艺术：会员系统全栈开发指南》</h1>
+<div class="title-right">
+    <a href="https://hacker4257.github.io/" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h3>故事背景</h3>
+<p>最近总觉得有点偷懒，工作和学习都没有太大的进展。想着接下来得用点心，更新一个实战项目来提升下状态。恰巧，最近天气降温，感觉需要去理发整理一下自己。结果到了理发店，却发现这些店面的管理方式还停留在非常传统的阶段：</p>
+<ul>
+<li><strong>预约</strong>只能打电话或者排队登记，等待时间不确定；</li>
+<li>店员还得<strong>翻阅本子</strong>来查顾客的消费记录，手写内容不清晰，效率低；</li>
+<li><strong>活动优惠</strong>总是靠店门口的小黑板写着，没有推送到顾客手里；</li>
+<li><strong>支付方式</strong>单一，要么现金，要么扫码，却没办法记录到个人账户中，影响了整体体验。</li>
+</ul>
+<p>于是一个想法蹦了出来：<strong>为什么不开发一套理发会员系统？</strong> 不仅能提升管理效率，还能让顾客体验更加流畅。接下来，我将以此为灵感，设计并实现一个面向理发店的现代化会员管理系统，用实践来驱散懒散的状态，同时希望这能为更多人提供灵感！</p>
+<p>欢迎一起跟随这个系列，看看这套系统是如何从零搭建到上线的！</p>
+<h3>分析需求</h3>
+<p>理发店的客户服务逐渐从传统的线下管理模式转向数字化服务，以提升用户体验和管理效率。为了帮助理发店更好地维护顾客关系、增加客户回访率、并实现精准营销，本系统旨在开发一套全面的<strong>理发会员管理系统</strong>。该系统集成了活动推送、顾客管理、支付模块、预约管理、以及数据分析功能，帮助理发店实现以下目标：</p>
+<ol>
+<li><strong>提高客户粘性</strong>：通过定期推送优惠活动及个性化推荐，吸引顾客多次光顾。</li>
+<li><strong>提升管理效率</strong>：统一管理会员信息、预约记录及支付数据。</li>
+<li><strong>优化用户体验</strong>：提供便捷的在线预约及支付方式，提升服务满意度。</li>
+<li><strong>支持经营决策</strong>：通过数据分析模块，提供清晰的客户和财务数据报告。</li>
+</ol>
+<hr>
+<h3>功能模块设计</h3>
+<p>以下是系统的核心模块设计及其功能概述：</p>
+<h4>1. <strong>活动推送模块</strong></h4>
+<ul>
+<li><strong>功能</strong>：
+<ul>
+<li>支持创建、编辑和管理活动。</li>
+<li>向特定会员群体推送优惠信息（如打折、充值赠送活动）。</li>
+<li>基于客户消费习惯，自动生成个性化推荐活动。</li>
+<li>支持短信、微信、App 通知推送。</li>
+</ul>
+</li>
+<li><strong>补充功能</strong>：
+<ul>
+<li>活动效果分析：记录活动的参与人数及销售额提升。</li>
+<li>自动提醒功能：活动即将结束时发送提醒通知。</li>
+</ul>
+</li>
+</ul>
+<h4>2. <strong>顾客管理模块</strong></h4>
+<ul>
+<li><strong>功能</strong>：
+<ul>
+<li>管理会员信息（姓名、联系方式、会员等级、生日等）。</li>
+<li>记录客户消费和服务历史（如消费金额、服务内容）。</li>
+<li>会员等级体系（如普通会员、VIP会员、SVIP），并提供升级策略。</li>
+<li>支持顾客标签分类（如高消费、稀客、新顾客）。</li>
+</ul>
+</li>
+<li><strong>补充功能</strong>：
+<ul>
+<li>生日提醒功能：为顾客生日赠送优惠券。</li>
+<li>客户回访管理：设置回访计划，对长时间未到店客户进行提醒。</li>
+<li>黑名单管理：记录违约客户并限制服务。</li>
+</ul>
+</li>
+</ul>
+<h4>3. <strong>支付模块</strong></h4>
+<ul>
+<li><strong>功能</strong>：
+<ul>
+<li>集成主流支付方式（微信、支付宝、信用卡、余额支付）。</li>
+<li>支持余额充值与消费记录查询。</li>
+<li>实现分期付款（如大额理发套餐）。</li>
+<li>支持电子发票的申请与开具。</li>
+</ul>
+</li>
+<li><strong>补充功能</strong>：
+<ul>
+<li>支付异常处理：提供退款、支付失败的异常处理流程。</li>
+<li>会员积分支付功能：允许客户使用积分部分抵扣消费金额。</li>
+</ul>
+</li>
+</ul>
+<h4>4. <strong>预约管理模块</strong></h4>
+<ul>
+<li><strong>功能</strong>：
+<ul>
+<li>在线预约：顾客可查看可用时间段并进行预约。</li>
+<li>预约提醒：在预约时间前发送提醒短信/通知。</li>
+<li>理发师管理：按理发师分配预约，避免时间冲突。</li>
+</ul>
+</li>
+<li><strong>补充功能</strong>：
+<ul>
+<li>实时排队查询：顾客可以查看当前等候人数。</li>
+<li>预约评价功能：完成服务后顾客可以给出评价。</li>
+</ul>
+</li>
+</ul>
+<h4>5. <strong>数据分析模块</strong></h4>
+<ul>
+<li><strong>功能</strong>：
+<ul>
+<li>销售数据分析：按日、周、月生成营收报表。</li>
+<li>客户行为分析：分析顾客消费频率、偏好等。</li>
+<li>员工绩效分析：统计理发师的预约量及评价分数。</li>
+</ul>
+</li>
+<li><strong>补充功能</strong>：
+<ul>
+<li>客户流失预测：基于消费数据预测流失风险。</li>
+<li>活动 ROI 分析：评估每次活动的投入与产出比。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3>技术选型</h3>
+<h4><strong>前端</strong>：</h4>
+<ul>
+<li><strong>框架</strong>：React 或 Vue.js</li>
+<li><strong>工具</strong>：Ant Design 或 Element UI（用户界面设计）</li>
+</ul>
+<h4><strong>后端</strong>：</h4>
+<ul>
+<li><strong>框架</strong>：微服务 （go) 或 fastapi（Python）</li>
+<li><strong>数据库</strong>：MySQL（关系型数据存储）+ Redis（缓存）</li>
+</ul>
+<h4><strong>支付</strong>：</h4>
+<ul>
+<li>微信支付和支付宝的官方 SDK 集成。</li>
+</ul>
+<h4><strong>部署</strong>：</h4>
+<ul>
+<li>使用 docker 容器化，支持快速部署和扩展。</li>
+<li>部署在云平台（如 AWS、阿里云）以提高稳定性和性能。</li>
+</ul>
+<h4><strong>安全</strong>：</h4>
+<ul>
+<li>数据加密（使用 HTTPS 和 AES 加密用户数据）。</li>
+<li>权限管理（基于 JWT 的认证与权限控制）。</li>
+</ul>
+<hr></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://hacker4257.github.io/">Love life Love code</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://hacker4257.github.io/" target="_blank">Hacker4257</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("06/09/2014"!=""){
+    var startSite=new Date("06/09/2014");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","hacker4257/hacker4257.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+
+
+</html>
