@@ -10,10 +10,12 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="
+<meta name="description" content="# Python 装饰器：让代码更优雅
+
 在 Python 中，装饰器是一个非常强大且常用的功能。">
 <meta property="og:title" content="Python 装饰器：让代码更优雅">
-<meta property="og:description" content="
+<meta property="og:description" content="# Python 装饰器：让代码更优雅
+
 在 Python 中，装饰器是一个非常强大且常用的功能。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://hacker4257.github.io//post/Python%20-zhuang-shi-qi-%EF%BC%9A-rang-dai-ma-geng-you-ya.html">
@@ -85,7 +87,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p>在 Python 中，装饰器是一个非常强大且常用的功能。它可以帮助我们在不修改函数代码的前提下，动态地扩展函数的功能。说起来有点抽象，我们一步步来解读，确保你能轻松理解。</p>
+<div class="markdown-body" id="postBody"><h1>Python 装饰器：让代码更优雅</h1>
+<p>在 Python 中，装饰器是一个非常强大且常用的功能。它可以帮助我们在不修改函数代码的前提下，动态地扩展函数的功能。本文将介绍什么是装饰器、如何使用装饰器以及 <code class="notranslate">@</code> 语法的工作原理。</p>
 <h2>什么是装饰器？</h2>
 <p>装饰器本质上是一个函数，它接收另一个函数作为参数，并返回一个新的函数。新的函数通常在原有函数的基础上，增加了某些功能。简单来说，装饰器就是对现有函数进行“装饰”或“包装”的工具。</p>
 <h3>装饰器的基本形式</h3>
@@ -117,6 +120,33 @@ Hello, world!
 函数执行后
 </code></pre>
 <p>通过装饰器，我们成功地在不修改 <code class="notranslate">hello</code> 函数代码的情况下，增加了额外的功能。</p>
+<h2>为什么可以使用 <code class="notranslate">@</code> 语法？</h2>
+<p>在 Python 中，函数是第一类对象（first-class objects），这意味着函数可以像数据一样进行操作。函数不仅可以赋值给变量，还可以作为参数传递给其他函数，甚至作为返回值从其他函数中返回。</p>
+<p>装饰器本质上是一个接收一个函数作为参数并返回一个新的函数的函数。因此，装饰器可以通过函数作为参数来扩展或修改原函数的功能。</p>
+<h3>使用 <code class="notranslate">@</code> 语法的原理</h3>
+<p>Python 提供了 <code class="notranslate">@</code> 符号作为<strong>装饰器语法糖</strong>，使得我们可以简洁地应用装饰器，而无需手动进行函数赋值。具体来说，<code class="notranslate">@decorator</code> 语法等同于以下操作：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">foo</span> <span class="pl-c1">=</span> <span class="pl-en">decorator</span>(<span class="pl-s1">foo</span>)</pre></div>
+<p>也就是说，<code class="notranslate">@decorator</code> 语法会将被装饰的函数传递给 <code class="notranslate">decorator</code>，并返回一个新的函数，这个新的函数会替代原函数。</p>
+<h4>例子</h4>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">decorator</span>(<span class="pl-s1">func</span>):
+    <span class="pl-k">def</span> <span class="pl-en">wrapper</span>():
+        <span class="pl-en">print</span>(<span class="pl-s">"装饰器添加的功能"</span>)
+        <span class="pl-en">func</span>()
+    <span class="pl-k">return</span> <span class="pl-s1">wrapper</span>
+
+<span class="pl-en">@<span class="pl-s1">decorator</span>  <span class="pl-c"># 使用 @ 语法应用装饰器</span></span>
+<span class="pl-k">def</span> <span class="pl-en">foo</span>():
+    <span class="pl-en">print</span>(<span class="pl-s">"原始函数"</span>)
+
+<span class="pl-en">foo</span>()  <span class="pl-c"># 调用 foo</span></pre></div>
+<h3>装饰器的执行流程</h3>
+<ul>
+<li>Python 会先执行 <code class="notranslate">decorator(func)</code>，即 <code class="notranslate">decorator</code> 函数会接收 <code class="notranslate">foo</code> 作为参数。</li>
+<li><code class="notranslate">decorator</code> 函数返回一个包装函数 <code class="notranslate">wrapper</code>，并将它赋值给 <code class="notranslate">foo</code>。</li>
+<li>当我们调用 <code class="notranslate">foo()</code> 时，实际上是调用 <code class="notranslate">wrapper()</code>，而 <code class="notranslate">wrapper</code> 内部会执行 <code class="notranslate">foo()</code>。</li>
+</ul>
+<h3>总结</h3>
+<p>通过 <code class="notranslate">@</code> 语法，我们可以更加简洁地为函数添加额外的功能，同时保持代码的清晰和易读性。</p>
 <h2>装饰器的使用场景</h2>
 <h3>1. <strong>日志记录</strong></h3>
 <p>一个常见的应用场景是对函数调用进行日志记录。通过装饰器，我们可以轻松地为每个函数调用添加日志功能。</p>
@@ -230,8 +260,8 @@ Hello, world!
 <li><strong>装饰器的基本形式</strong>：一个函数返回一个新的函数，包装了原始函数的功能。</li>
 <li><strong>应用场景</strong>：日志记录、性能计时、权限检查等。</li>
 <li><strong>嵌套装饰器</strong>：多个装饰器可以组合使用，按顺序执行。</li>
-</ol>
-<p>希望这篇文章能帮助你更好地理解 Python 装饰器的原理和使用方法！</p></div>
+<li><strong><code class="notranslate">@</code> 语法</strong>：使得装饰器的应用更加简洁，等同于 <code class="notranslate">foo = decorator(foo)</code>。</li>
+</ol></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
