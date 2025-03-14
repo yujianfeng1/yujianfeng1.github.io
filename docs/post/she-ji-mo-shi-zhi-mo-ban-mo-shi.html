@@ -108,15 +108,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ul>
 <h3>示例</h3>
 <p>以下是一个简单的示例，展示如何使用模板方法模式：</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">abc</span> <span class="pl-k">import</span> <span class="pl-v">ABC</span>, <span class="pl-s1">abstractmethod</span>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">abc</span> <span class="pl-k">import</span> <span class="pl-c1">ABC</span>, <span class="pl-s1">abstractmethod</span>
 
 <span class="pl-c"># 抽象类</span>
-<span class="pl-k">class</span> <span class="pl-v">DataProcessor</span>(<span class="pl-v">ABC</span>):
+<span class="pl-k">class</span> <span class="pl-v">DataProcessor</span>(<span class="pl-c1">ABC</span>):
     <span class="pl-k">def</span> <span class="pl-en">process_data</span>(<span class="pl-s1">self</span>):
-        <span class="pl-s1">self</span>.<span class="pl-en">read_data</span>()
-        <span class="pl-s1">self</span>.<span class="pl-en">clean_data</span>()
-        <span class="pl-s1">self</span>.<span class="pl-en">analyze_data</span>()
-        <span class="pl-s1">self</span>.<span class="pl-en">visualize_data</span>()
+        <span class="pl-s1">self</span>.<span class="pl-c1">read_data</span>()
+        <span class="pl-s1">self</span>.<span class="pl-c1">clean_data</span>()
+        <span class="pl-s1">self</span>.<span class="pl-c1">analyze_data</span>()
+        <span class="pl-s1">self</span>.<span class="pl-c1">visualize_data</span>()
 
     <span class="pl-en">@<span class="pl-s1">abstractmethod</span></span>
     <span class="pl-k">def</span> <span class="pl-en">read_data</span>(<span class="pl-s1">self</span>):
@@ -162,11 +162,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         <span class="pl-en">print</span>(<span class="pl-s">"Visualizing JSON data."</span>)
 
 <span class="pl-c"># 使用模板方法</span>
-<span class="pl-s1">csv_processor</span> <span class="pl-c1">=</span> <span class="pl-v">CSVDataProcessor</span>()
-<span class="pl-s1">csv_processor</span>.<span class="pl-en">process_data</span>()
+<span class="pl-s1">csv_processor</span> <span class="pl-c1">=</span> <span class="pl-en">CSVDataProcessor</span>()
+<span class="pl-s1">csv_processor</span>.<span class="pl-c1">process_data</span>()
 
-<span class="pl-s1">json_processor</span> <span class="pl-c1">=</span> <span class="pl-v">JSONDataProcessor</span>()
-<span class="pl-s1">json_processor</span>.<span class="pl-en">process_data</span>()</pre></div>
+<span class="pl-s1">json_processor</span> <span class="pl-c1">=</span> <span class="pl-en">JSONDataProcessor</span>()
+<span class="pl-s1">json_processor</span>.<span class="pl-c1">process_data</span>()</pre></div>
 <h3>总结</h3>
 <p>模板方法模式非常适合于有多个相似算法的场景，可以帮助我们保持代码的整洁和可维护性。通过将算法的变动部分抽象出来，子类可以轻松实现特定需求，而不必重复实现整个算法。<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/1627147b-4b77-47f0-8cd2-7de6eaca2661"><img src="https://github.com/user-attachments/assets/1627147b-4b77-47f0-8cd2-7de6eaca2661" alt="1c30ca2b-0a3a-4bc1-b252-47edf3b00eac_1724488839469994110~tplv-a9rns2rl98-web-image" style="max-width: 100%;"></a></p>

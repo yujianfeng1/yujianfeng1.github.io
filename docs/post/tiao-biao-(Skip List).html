@@ -137,9 +137,9 @@ Level 0:     1 -&gt; 3 -&gt; 7 -&gt; 8 -&gt; 12 -&gt; 15 -&gt; 18 -&gt; 20 -&gt;
 <li>以固定概率p（通常为1/4或1/2）决定是否向上增加一层</li>
 <li>直到随机到0或达到最大层数为止</li>
 </ul>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-en">randomLevel</span>() <span class="pl-smi">int</span> {
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-s1">randomLevel</span>() <span class="pl-smi">int</span> {
     <span class="pl-s1">level</span> <span class="pl-c1">:=</span> <span class="pl-c1">1</span>
-    <span class="pl-k">for</span> <span class="pl-s1">rand</span>.<span class="pl-en">Float64</span>() <span class="pl-c1">&lt;</span> <span class="pl-s1">probability</span> <span class="pl-c1">&amp;&amp;</span> <span class="pl-s1">level</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">maxLevel</span> {
+    <span class="pl-k">for</span> <span class="pl-s1">rand</span>.<span class="pl-c1">Float64</span>() <span class="pl-c1">&lt;</span> <span class="pl-s1">probability</span> <span class="pl-c1">&amp;&amp;</span> <span class="pl-s1">level</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">maxLevel</span> {
         <span class="pl-s1">level</span><span class="pl-c1">++</span>
     }
     <span class="pl-k">return</span> <span class="pl-s1">level</span>

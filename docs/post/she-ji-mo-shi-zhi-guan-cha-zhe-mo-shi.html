@@ -204,12 +204,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// RegisterObserver 注册观察者</span>
-<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-en">RegisterObserver</span>(<span class="pl-s1">o</span> <span class="pl-smi">Observer</span>) {
-	<span class="pl-s1">cs</span>.<span class="pl-c1">observers</span> <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">cs</span>.<span class="pl-c1">observers</span>, <span class="pl-s1">o</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-c1">RegisterObserver</span>(<span class="pl-s1">o</span> <span class="pl-smi">Observer</span>) {
+	<span class="pl-s1">cs</span>.<span class="pl-c1">observers</span> <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">cs</span>.<span class="pl-c1">observers</span>, <span class="pl-s1">o</span>)
 }
 
 <span class="pl-c">// RemoveObserver 移除观察者</span>
-<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-en">RemoveObserver</span>(<span class="pl-s1">o</span> <span class="pl-smi">Observer</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-c1">RemoveObserver</span>(<span class="pl-s1">o</span> <span class="pl-smi">Observer</span>) {
 	<span class="pl-k">var</span> <span class="pl-s1">indexToRemove</span> <span class="pl-smi">int</span>
 	<span class="pl-k">for</span> <span class="pl-s1">i</span>, <span class="pl-s1">observer</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">cs</span>.<span class="pl-c1">observers</span> {
 		<span class="pl-k">if</span> <span class="pl-s1">observer</span> <span class="pl-c1">==</span> <span class="pl-s1">o</span> {
@@ -217,24 +217,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 			<span class="pl-k">break</span>
 		}
 	}
-	<span class="pl-s1">cs</span>.<span class="pl-c1">observers</span> <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">cs</span>.<span class="pl-c1">observers</span>[:<span class="pl-s1">indexToRemove</span>], <span class="pl-s1">cs</span>.<span class="pl-c1">observers</span>[<span class="pl-s1">indexToRemove</span><span class="pl-c1">+</span><span class="pl-c1">1</span>:]<span class="pl-c1">...</span>)
+	<span class="pl-s1">cs</span>.<span class="pl-c1">observers</span> <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">cs</span>.<span class="pl-c1">observers</span>[:<span class="pl-s1">indexToRemove</span>], <span class="pl-s1">cs</span>.<span class="pl-c1">observers</span>[<span class="pl-s1">indexToRemove</span><span class="pl-c1">+</span><span class="pl-c1">1</span>:]<span class="pl-c1">...</span>)
 }
 
 <span class="pl-c">// NotifyObservers 通知所有观察者</span>
-<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-en">NotifyObservers</span>() {
+<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-c1">NotifyObservers</span>() {
 	<span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">observer</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">cs</span>.<span class="pl-c1">observers</span> {
-		<span class="pl-s1">observer</span>.<span class="pl-en">Update</span>(<span class="pl-s1">cs</span>)
+		<span class="pl-s1">observer</span>.<span class="pl-c1">Update</span>(<span class="pl-s1">cs</span>)
 	}
 }
 
 <span class="pl-c">// SetState 设置状态</span>
-<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-en">SetState</span>(<span class="pl-s1">state</span> <span class="pl-smi">int</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-c1">SetState</span>(<span class="pl-s1">state</span> <span class="pl-smi">int</span>) {
 	<span class="pl-s1">cs</span>.<span class="pl-c1">state</span> <span class="pl-c1">=</span> <span class="pl-s1">state</span>
-	<span class="pl-s1">cs</span>.<span class="pl-en">NotifyObservers</span>()
+	<span class="pl-s1">cs</span>.<span class="pl-c1">NotifyObservers</span>()
 }
 
 <span class="pl-c">// GetState 获取状态</span>
-<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-en">GetState</span>() <span class="pl-smi">int</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">cs</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>) <span class="pl-c1">GetState</span>() <span class="pl-smi">int</span> {
 	<span class="pl-k">return</span> <span class="pl-s1">cs</span>.<span class="pl-c1">state</span>
 }</pre></div>
 <p>然后，实现一个具体的观察者：</p>
@@ -244,21 +244,21 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// Update 观察者的更新方法</span>
-<span class="pl-k">func</span> (<span class="pl-s1">co</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteObserver</span>) <span class="pl-en">Update</span>(<span class="pl-s1">subject</span> <span class="pl-smi">Subject</span>) {
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"Observer %d: Subject's state changed to %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">co</span>.<span class="pl-c1">id</span>, <span class="pl-s1">subject</span>.(<span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>).<span class="pl-en">GetState</span>())
+<span class="pl-k">func</span> (<span class="pl-s1">co</span> <span class="pl-c1">*</span><span class="pl-smi">ConcreteObserver</span>) <span class="pl-c1">Update</span>(<span class="pl-s1">subject</span> <span class="pl-smi">Subject</span>) {
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"Observer %d: Subject's state changed to %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">co</span>.<span class="pl-c1">id</span>, <span class="pl-s1">subject</span>.(<span class="pl-c1">*</span><span class="pl-smi">ConcreteSubject</span>).<span class="pl-c1">GetState</span>())
 }</pre></div>
 <p>最后，我们可以在主函数中创建主题和观察者，并看到观察者如何响应状态变化：</p>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-s1">main</span>() {
 	<span class="pl-s1">subject</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">ConcreteSubject</span>{}
 
 	<span class="pl-s1">observer1</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">ConcreteObserver</span>{<span class="pl-s1">id</span>: <span class="pl-c1">1</span>}
 	<span class="pl-s1">observer2</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">ConcreteObserver</span>{<span class="pl-s1">id</span>: <span class="pl-c1">2</span>}
 
-	<span class="pl-s1">subject</span>.<span class="pl-en">RegisterObserver</span>(<span class="pl-s1">observer1</span>)
-	<span class="pl-s1">subject</span>.<span class="pl-en">RegisterObserver</span>(<span class="pl-s1">observer2</span>)
+	<span class="pl-s1">subject</span>.<span class="pl-c1">RegisterObserver</span>(<span class="pl-s1">observer1</span>)
+	<span class="pl-s1">subject</span>.<span class="pl-c1">RegisterObserver</span>(<span class="pl-s1">observer2</span>)
 
-	<span class="pl-s1">subject</span>.<span class="pl-en">SetState</span>(<span class="pl-c1">10</span>)
-	<span class="pl-s1">subject</span>.<span class="pl-en">SetState</span>(<span class="pl-c1">20</span>)
+	<span class="pl-s1">subject</span>.<span class="pl-c1">SetState</span>(<span class="pl-c1">10</span>)
+	<span class="pl-s1">subject</span>.<span class="pl-c1">SetState</span>(<span class="pl-c1">20</span>)
 }</pre></div>
 <p>在这个例子中，当我们修改主题的状态时，所有注册的观察者都会收到通知，并打印出新的状态信息。这就是观察者模式的基本实现。</p>
 <h3>总结</h3>

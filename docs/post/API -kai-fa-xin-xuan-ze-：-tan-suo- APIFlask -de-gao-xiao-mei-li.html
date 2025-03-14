@@ -139,25 +139,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">from</span> <span class="pl-s1">apiflask</span>.<span class="pl-s1">fields</span> <span class="pl-k">import</span> <span class="pl-v">Integer</span>, <span class="pl-v">String</span>
 
 <span class="pl-c"># 初始化 APIFlask 应用</span>
-<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-v">APIFlask</span>(<span class="pl-s1">__name__</span>)
+<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-en">APIFlask</span>(<span class="pl-s1">__name__</span>)
 
 <span class="pl-c"># 定义请求和响应的模式</span>
 <span class="pl-k">class</span> <span class="pl-v">HelloInputSchema</span>(<span class="pl-v">Schema</span>):
-    <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-v">String</span>(<span class="pl-s1">required</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">description</span><span class="pl-c1">=</span><span class="pl-s">"Your name"</span>)
+    <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-en">String</span>(<span class="pl-s1">required</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">description</span><span class="pl-c1">=</span><span class="pl-s">"Your name"</span>)
 
 <span class="pl-k">class</span> <span class="pl-v">HelloOutputSchema</span>(<span class="pl-v">Schema</span>):
-    <span class="pl-s1">message</span> <span class="pl-c1">=</span> <span class="pl-v">String</span>()
+    <span class="pl-s1">message</span> <span class="pl-c1">=</span> <span class="pl-en">String</span>()
 
 <span class="pl-c"># 定义 API 路由</span>
-<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">post</span>(<span class="pl-s">'/hello'</span>)</span>
-<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">input</span>(<span class="pl-v">HelloInputSchema</span>)</span>
-<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">output</span>(<span class="pl-v">HelloOutputSchema</span>)</span>
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-c1">post</span>(<span class="pl-s">'/hello'</span>)</span>
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-c1">input</span>(<span class="pl-v">HelloInputSchema</span>)</span>
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-c1">output</span>(<span class="pl-v">HelloOutputSchema</span>)</span>
 <span class="pl-k">def</span> <span class="pl-en">say_hello</span>(<span class="pl-s1">data</span>):
     <span class="pl-k">return</span> {<span class="pl-s">"message"</span>: <span class="pl-s">f"Hello, <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">data</span>[<span class="pl-s">'name'</span>]<span class="pl-kos">}</span></span>!"</span>}
 
 <span class="pl-c"># 启动应用</span>
 <span class="pl-k">if</span> <span class="pl-s1">__name__</span> <span class="pl-c1">==</span> <span class="pl-s">'__main__'</span>:
-    <span class="pl-s1">app</span>.<span class="pl-en">run</span>()</pre></div>
+    <span class="pl-s1">app</span>.<span class="pl-c1">run</span>()</pre></div>
 <p>运行应用后，可以通过访问 <code class="notranslate">/docs</code> 生成的交互式 API 文档（由 Swagger UI 提供）查看和测试 API。</p>
 <hr>
 <h3>APIFlask 的优点</h3>

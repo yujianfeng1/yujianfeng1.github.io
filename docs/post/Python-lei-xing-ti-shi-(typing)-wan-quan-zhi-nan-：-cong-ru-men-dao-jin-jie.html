@@ -118,74 +118,74 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>基础类型提示</h2>
 <h3>1. 变量类型注解</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 基础类型注解</span>
-<span class="pl-s1">name</span>: <span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-s">"张三"</span>
-<span class="pl-s1">age</span>: <span class="pl-s1">int</span> <span class="pl-c1">=</span> <span class="pl-c1">25</span>
-<span class="pl-s1">height</span>: <span class="pl-s1">float</span> <span class="pl-c1">=</span> <span class="pl-c1">1.75</span>
-<span class="pl-s1">is_student</span>: <span class="pl-s1">bool</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>
+<span class="pl-s1">name</span>: <span class="pl-smi">str</span> <span class="pl-c1">=</span> <span class="pl-s">"张三"</span>
+<span class="pl-s1">age</span>: <span class="pl-smi">int</span> <span class="pl-c1">=</span> <span class="pl-c1">25</span>
+<span class="pl-s1">height</span>: <span class="pl-smi">float</span> <span class="pl-c1">=</span> <span class="pl-c1">1.75</span>
+<span class="pl-s1">is_student</span>: <span class="pl-smi">bool</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>
 
 <span class="pl-c"># 如果不立即赋值，也可以只做类型声明</span>
-<span class="pl-s1">country</span>: <span class="pl-s1">str</span></pre></div>
+<span class="pl-s1">country</span>: <span class="pl-smi">str</span></pre></div>
 <h3>2. 函数注解</h3>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">greet</span>(<span class="pl-s1">name</span>: <span class="pl-s1">str</span>) <span class="pl-c1">-&gt;</span> <span class="pl-s1">str</span>:
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">greet</span>(<span class="pl-s1">name</span>: <span class="pl-smi">str</span>) <span class="pl-c1">-&gt;</span> <span class="pl-smi">str</span>:
     <span class="pl-k">return</span> <span class="pl-s">f"Hello, <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">name</span><span class="pl-kos">}</span></span>!"</span>
 
-<span class="pl-k">def</span> <span class="pl-en">calculate_bmi</span>(<span class="pl-s1">weight</span>: <span class="pl-s1">float</span>, <span class="pl-s1">height</span>: <span class="pl-s1">float</span>) <span class="pl-c1">-&gt;</span> <span class="pl-s1">float</span>:
+<span class="pl-k">def</span> <span class="pl-en">calculate_bmi</span>(<span class="pl-s1">weight</span>: <span class="pl-smi">float</span>, <span class="pl-s1">height</span>: <span class="pl-smi">float</span>) <span class="pl-c1">-&gt;</span> <span class="pl-smi">float</span>:
     <span class="pl-k">return</span> <span class="pl-s1">weight</span> <span class="pl-c1">/</span> (<span class="pl-s1">height</span> <span class="pl-c1">**</span> <span class="pl-c1">2</span>)</pre></div>
 <h3>3. 基本集合类型</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">List</span>, <span class="pl-v">Set</span>, <span class="pl-v">Dict</span>, <span class="pl-v">Tuple</span>
 
 <span class="pl-c"># 列表</span>
-<span class="pl-s1">numbers</span>: <span class="pl-v">List</span>[<span class="pl-s1">int</span>] <span class="pl-c1">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>]
+<span class="pl-s1">numbers</span>: <span class="pl-v">List</span>[<span class="pl-smi">int</span>] <span class="pl-c1">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>]
 
 <span class="pl-c"># 集合</span>
-<span class="pl-s1">unique_numbers</span>: <span class="pl-v">Set</span>[<span class="pl-s1">int</span>] <span class="pl-c1">=</span> {<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>}
+<span class="pl-s1">unique_numbers</span>: <span class="pl-v">Set</span>[<span class="pl-smi">int</span>] <span class="pl-c1">=</span> {<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>}
 
 <span class="pl-c"># 字典</span>
-<span class="pl-s1">user_scores</span>: <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-s1">int</span>] <span class="pl-c1">=</span> {<span class="pl-s">"张三"</span>: <span class="pl-c1">95</span>, <span class="pl-s">"李四"</span>: <span class="pl-c1">88</span>}
+<span class="pl-s1">user_scores</span>: <span class="pl-v">Dict</span>[<span class="pl-smi">str</span>, <span class="pl-smi">int</span>] <span class="pl-c1">=</span> {<span class="pl-s">"张三"</span>: <span class="pl-c1">95</span>, <span class="pl-s">"李四"</span>: <span class="pl-c1">88</span>}
 
 <span class="pl-c"># 元组</span>
-<span class="pl-s1">coordinates</span>: <span class="pl-v">Tuple</span>[<span class="pl-s1">float</span>, <span class="pl-s1">float</span>] <span class="pl-c1">=</span> (<span class="pl-c1">12.5</span>, <span class="pl-c1">34.8</span>)</pre></div>
+<span class="pl-s1">coordinates</span>: <span class="pl-v">Tuple</span>[<span class="pl-smi">float</span>, <span class="pl-smi">float</span>] <span class="pl-c1">=</span> (<span class="pl-c1">12.5</span>, <span class="pl-c1">34.8</span>)</pre></div>
 <h2>进阶类型提示</h2>
 <h3>1. Optional和Union类型</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Optional</span>, <span class="pl-v">Union</span>
 
 <span class="pl-c"># Optional类型 - 值可以是指定类型或None</span>
-<span class="pl-k">def</span> <span class="pl-en">get_user_name</span>(<span class="pl-s1">user_id</span>: <span class="pl-s1">int</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Optional</span>[<span class="pl-s1">str</span>]:
+<span class="pl-k">def</span> <span class="pl-en">get_user_name</span>(<span class="pl-s1">user_id</span>: <span class="pl-smi">int</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Optional</span>[<span class="pl-smi">str</span>]:
     <span class="pl-c"># 模拟数据库查询</span>
     <span class="pl-k">if</span> <span class="pl-s1">user_id</span> <span class="pl-c1">==</span> <span class="pl-c1">1</span>:
         <span class="pl-k">return</span> <span class="pl-s">"张三"</span>
     <span class="pl-k">return</span> <span class="pl-c1">None</span>
 
 <span class="pl-c"># Union类型 - 值可以是多种类型之一</span>
-<span class="pl-k">def</span> <span class="pl-en">process_data</span>(<span class="pl-s1">data</span>: <span class="pl-v">Union</span>[<span class="pl-s1">str</span>, <span class="pl-s1">bytes</span>]) <span class="pl-c1">-&gt;</span> <span class="pl-s1">str</span>:
+<span class="pl-k">def</span> <span class="pl-en">process_data</span>(<span class="pl-s1">data</span>: <span class="pl-v">Union</span>[<span class="pl-smi">str</span>, <span class="pl-smi">bytes</span>]) <span class="pl-c1">-&gt;</span> <span class="pl-smi">str</span>:
     <span class="pl-k">if</span> <span class="pl-en">isinstance</span>(<span class="pl-s1">data</span>, <span class="pl-s1">bytes</span>):
-        <span class="pl-k">return</span> <span class="pl-s1">data</span>.<span class="pl-en">decode</span>(<span class="pl-s">'utf-8'</span>)
+        <span class="pl-k">return</span> <span class="pl-s1">data</span>.<span class="pl-c1">decode</span>(<span class="pl-s">'utf-8'</span>)
     <span class="pl-k">return</span> <span class="pl-s1">data</span></pre></div>
 <h3>2. 泛型</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TypeVar</span>, <span class="pl-v">Generic</span>
 
-<span class="pl-v">T</span> <span class="pl-c1">=</span> <span class="pl-v">TypeVar</span>(<span class="pl-s">'T'</span>)
+<span class="pl-c1">T</span> <span class="pl-c1">=</span> <span class="pl-en">TypeVar</span>(<span class="pl-s">'T'</span>)
 
-<span class="pl-k">class</span> <span class="pl-v">Stack</span>(<span class="pl-v">Generic</span>[<span class="pl-v">T</span>]):
+<span class="pl-k">class</span> <span class="pl-v">Stack</span>(<span class="pl-v">Generic</span>[<span class="pl-c1">T</span>]):
     <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
-        <span class="pl-s1">self</span>.<span class="pl-s1">items</span>: <span class="pl-v">List</span>[<span class="pl-v">T</span>] <span class="pl-c1">=</span> []
+        <span class="pl-s1">self</span>.<span class="pl-c1">items</span>: <span class="pl-v">List</span>[<span class="pl-smi">T</span>] <span class="pl-c1">=</span> []
     
-    <span class="pl-k">def</span> <span class="pl-en">push</span>(<span class="pl-s1">self</span>, <span class="pl-s1">item</span>: <span class="pl-v">T</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
-        <span class="pl-s1">self</span>.<span class="pl-s1">items</span>.<span class="pl-en">append</span>(<span class="pl-s1">item</span>)
+    <span class="pl-k">def</span> <span class="pl-en">push</span>(<span class="pl-s1">self</span>, <span class="pl-s1">item</span>: <span class="pl-smi">T</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+        <span class="pl-s1">self</span>.<span class="pl-c1">items</span>.<span class="pl-c1">append</span>(<span class="pl-s1">item</span>)
     
-    <span class="pl-k">def</span> <span class="pl-en">pop</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Optional</span>[<span class="pl-v">T</span>]:
-        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">items</span>.<span class="pl-en">pop</span>() <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">items</span> <span class="pl-k">else</span> <span class="pl-c1">None</span>
+    <span class="pl-k">def</span> <span class="pl-en">pop</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Optional</span>[<span class="pl-smi">T</span>]:
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-c1">items</span>.<span class="pl-c1">pop</span>() <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-c1">items</span> <span class="pl-k">else</span> <span class="pl-c1">None</span>
 
 <span class="pl-c"># 使用泛型类</span>
-<span class="pl-s1">int_stack</span>: <span class="pl-v">Stack</span>[<span class="pl-s1">int</span>] <span class="pl-c1">=</span> <span class="pl-v">Stack</span>()
-<span class="pl-s1">str_stack</span>: <span class="pl-v">Stack</span>[<span class="pl-s1">str</span>] <span class="pl-c1">=</span> <span class="pl-v">Stack</span>()</pre></div>
+<span class="pl-s1">int_stack</span>: <span class="pl-v">Stack</span>[<span class="pl-smi">int</span>] <span class="pl-c1">=</span> <span class="pl-en">Stack</span>()
+<span class="pl-s1">str_stack</span>: <span class="pl-v">Stack</span>[<span class="pl-smi">str</span>] <span class="pl-c1">=</span> <span class="pl-en">Stack</span>()</pre></div>
 <h3>3. 类型别名</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Dict</span>, <span class="pl-v">List</span>, <span class="pl-v">Union</span>
 
 <span class="pl-c"># 定义复杂类型的别名</span>
-<span class="pl-v">JSON</span> <span class="pl-c1">=</span> <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-v">Union</span>[<span class="pl-s1">str</span>, <span class="pl-s1">int</span>, <span class="pl-s1">float</span>, <span class="pl-s1">bool</span>, <span class="pl-c1">None</span>, <span class="pl-v">List</span>[<span class="pl-v">Any</span>], <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-v">Any</span>]]]
+<span class="pl-c1">JSON</span> <span class="pl-c1">=</span> <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-v">Union</span>[<span class="pl-s1">str</span>, <span class="pl-s1">int</span>, <span class="pl-s1">float</span>, <span class="pl-s1">bool</span>, <span class="pl-c1">None</span>, <span class="pl-v">List</span>[<span class="pl-v">Any</span>], <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-v">Any</span>]]]
 
-<span class="pl-k">def</span> <span class="pl-en">process_json</span>(<span class="pl-s1">data</span>: <span class="pl-v">JSON</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+<span class="pl-k">def</span> <span class="pl-en">process_json</span>(<span class="pl-s1">data</span>: <span class="pl-smi">JSON</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
     <span class="pl-k">pass</span></pre></div>
 <h3>4. Callable类型</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Callable</span>
@@ -193,11 +193,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c"># 函数类型</span>
 <span class="pl-v">Handler</span> <span class="pl-c1">=</span> <span class="pl-v">Callable</span>[[<span class="pl-s1">str</span>, <span class="pl-s1">int</span>], <span class="pl-s1">bool</span>]
 
-<span class="pl-k">def</span> <span class="pl-en">process_with_handler</span>(<span class="pl-s1">value</span>: <span class="pl-s1">str</span>, <span class="pl-s1">handler</span>: <span class="pl-v">Handler</span>) <span class="pl-c1">-&gt;</span> <span class="pl-s1">bool</span>:
+<span class="pl-k">def</span> <span class="pl-en">process_with_handler</span>(<span class="pl-s1">value</span>: <span class="pl-smi">str</span>, <span class="pl-s1">handler</span>: <span class="pl-smi">Handler</span>) <span class="pl-c1">-&gt;</span> <span class="pl-smi">bool</span>:
     <span class="pl-k">return</span> <span class="pl-en">handler</span>(<span class="pl-s1">value</span>, <span class="pl-en">len</span>(<span class="pl-s1">value</span>))
 
 <span class="pl-c"># 使用示例</span>
-<span class="pl-k">def</span> <span class="pl-en">check_string</span>(<span class="pl-s1">s</span>: <span class="pl-s1">str</span>, <span class="pl-s1">length</span>: <span class="pl-s1">int</span>) <span class="pl-c1">-&gt;</span> <span class="pl-s1">bool</span>:
+<span class="pl-k">def</span> <span class="pl-en">check_string</span>(<span class="pl-s1">s</span>: <span class="pl-smi">str</span>, <span class="pl-s1">length</span>: <span class="pl-smi">int</span>) <span class="pl-c1">-&gt;</span> <span class="pl-smi">bool</span>:
     <span class="pl-k">return</span> <span class="pl-en">len</span>(<span class="pl-s1">s</span>) <span class="pl-c1">==</span> <span class="pl-s1">length</span>
 
 <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-en">process_with_handler</span>(<span class="pl-s">"hello"</span>, <span class="pl-s1">check_string</span>)</pre></div>
@@ -207,7 +207,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c"># 限定取值范围</span>
 <span class="pl-v">Direction</span> <span class="pl-c1">=</span> <span class="pl-v">Literal</span>[<span class="pl-s">'north'</span>, <span class="pl-s">'south'</span>, <span class="pl-s">'east'</span>, <span class="pl-s">'west'</span>]
 
-<span class="pl-k">def</span> <span class="pl-en">move</span>(<span class="pl-s1">direction</span>: <span class="pl-v">Direction</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+<span class="pl-k">def</span> <span class="pl-en">move</span>(<span class="pl-s1">direction</span>: <span class="pl-smi">Direction</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
     <span class="pl-en">print</span>(<span class="pl-s">f"Moving <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">direction</span><span class="pl-kos">}</span></span>"</span>)
 
 <span class="pl-c"># 这样是合法的</span>
@@ -229,22 +229,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-k">def</span> <span class="pl-en">draw</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
         <span class="pl-en">print</span>(<span class="pl-s">"Drawing a square"</span>)
 
-<span class="pl-k">def</span> <span class="pl-en">render</span>(<span class="pl-s1">shape</span>: <span class="pl-v">Drawable</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
-    <span class="pl-s1">shape</span>.<span class="pl-en">draw</span>()
+<span class="pl-k">def</span> <span class="pl-en">render</span>(<span class="pl-s1">shape</span>: <span class="pl-smi">Drawable</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+    <span class="pl-s1">shape</span>.<span class="pl-c1">draw</span>()
 
 <span class="pl-c"># 两个类都实现了draw方法，因此都可以用作Drawable</span>
-<span class="pl-en">render</span>(<span class="pl-v">Circle</span>())  <span class="pl-c"># OK</span>
-<span class="pl-en">render</span>(<span class="pl-v">Square</span>())  <span class="pl-c"># OK</span></pre></div>
+<span class="pl-en">render</span>(<span class="pl-en">Circle</span>())  <span class="pl-c"># OK</span>
+<span class="pl-en">render</span>(<span class="pl-en">Square</span>())  <span class="pl-c"># OK</span></pre></div>
 <h3>2. TypedDict（类型化字典）</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TypedDict</span>
 
 <span class="pl-k">class</span> <span class="pl-v">UserDict</span>(<span class="pl-v">TypedDict</span>):
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-s1">int</span>
-    <span class="pl-s1">email</span>: <span class="pl-s1">str</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-smi">int</span>
+    <span class="pl-s1">email</span>: <span class="pl-smi">str</span>
 
 <span class="pl-c"># 创建符合类型的字典</span>
-<span class="pl-s1">user</span>: <span class="pl-v">UserDict</span> <span class="pl-c1">=</span> {
+<span class="pl-s1">user</span>: <span class="pl-smi">UserDict</span> <span class="pl-c1">=</span> {
     <span class="pl-s">"name"</span>: <span class="pl-s">"张三"</span>,
     <span class="pl-s">"age"</span>: <span class="pl-c1">25</span>,
     <span class="pl-s">"email"</span>: <span class="pl-s">"zhangsan@example.com"</span>
@@ -252,7 +252,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>3. Final（禁止重新赋值）</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Final</span>
 
-<span class="pl-v">MAX_CONNECTIONS</span>: <span class="pl-v">Final</span> <span class="pl-c1">=</span> <span class="pl-c1">100</span>
+<span class="pl-c1">MAX_CONNECTIONS</span>: <span class="pl-smi">Final</span> <span class="pl-c1">=</span> <span class="pl-c1">100</span>
 
 <span class="pl-c"># 这样会被类型检查器标记为错误</span>
 <span class="pl-c"># MAX_CONNECTIONS = 200</span></pre></div>
@@ -260,7 +260,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>1. 渐进式类型提示</h3>
 <p>在大型项目中逐步添加类型提示：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 第一阶段：关键函数和接口</span>
-<span class="pl-k">def</span> <span class="pl-en">critical_function</span>(<span class="pl-s1">data</span>: <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-v">Any</span>]) <span class="pl-c1">-&gt;</span> <span class="pl-s1">bool</span>:
+<span class="pl-k">def</span> <span class="pl-en">critical_function</span>(<span class="pl-s1">data</span>: <span class="pl-v">Dict</span>[<span class="pl-smi">str</span>, <span class="pl-smi">Any</span>]) <span class="pl-c1">-&gt;</span> <span class="pl-smi">bool</span>:
     <span class="pl-k">pass</span>
 
 <span class="pl-c"># 第二阶段：扩展到更多模块</span>
@@ -277,25 +277,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s1">strict_optional</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span></pre></div>
 <h3>3. 类型注释的例外情况</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 1. 运行时导入的类型</span>
-<span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TYPE_CHECKING</span>
+<span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-c1">TYPE_CHECKING</span>
 
-<span class="pl-k">if</span> <span class="pl-v">TYPE_CHECKING</span>:
+<span class="pl-k">if</span> <span class="pl-c1">TYPE_CHECKING</span>:
     <span class="pl-k">from</span> <span class="pl-s1">heavy_module</span> <span class="pl-k">import</span> <span class="pl-v">HeavyClass</span>
 
 <span class="pl-c"># 2. 动态生成的属性</span>
 <span class="pl-k">class</span> <span class="pl-v">Dynamic</span>:
     <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
-        <span class="pl-s1">self</span>.<span class="pl-s1">__dict__</span>[<span class="pl-s">'dynamic_attr'</span>] <span class="pl-c1">=</span> <span class="pl-c1">1</span>  <span class="pl-c"># type: ignore</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">__dict__</span>[<span class="pl-s">'dynamic_attr'</span>] <span class="pl-c1">=</span> <span class="pl-c1">1</span>  <span class="pl-c"># type: ignore</span>
 
 <span class="pl-c"># 3. 装饰器处理</span>
 <span class="pl-k">from</span> <span class="pl-s1">functools</span> <span class="pl-k">import</span> <span class="pl-s1">wraps</span>
 <span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TypeVar</span>, <span class="pl-v">Callable</span>, <span class="pl-v">Any</span>
 
-<span class="pl-v">F</span> <span class="pl-c1">=</span> <span class="pl-v">TypeVar</span>(<span class="pl-s">'F'</span>, <span class="pl-s1">bound</span><span class="pl-c1">=</span><span class="pl-v">Callable</span>[..., <span class="pl-v">Any</span>])
+<span class="pl-c1">F</span> <span class="pl-c1">=</span> <span class="pl-en">TypeVar</span>(<span class="pl-s">'F'</span>, <span class="pl-s1">bound</span><span class="pl-c1">=</span><span class="pl-v">Callable</span>[..., <span class="pl-v">Any</span>])
 
-<span class="pl-k">def</span> <span class="pl-en">my_decorator</span>(<span class="pl-s1">func</span>: <span class="pl-v">F</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">F</span>:
+<span class="pl-k">def</span> <span class="pl-en">my_decorator</span>(<span class="pl-s1">func</span>: <span class="pl-smi">F</span>) <span class="pl-c1">-&gt;</span> <span class="pl-smi">F</span>:
     <span class="pl-en">@<span class="pl-en">wraps</span>(<span class="pl-s1">func</span>)</span>
-    <span class="pl-k">def</span> <span class="pl-en">wrapper</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>: <span class="pl-v">Any</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>: <span class="pl-v">Any</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Any</span>:
+    <span class="pl-k">def</span> <span class="pl-en">wrapper</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>: <span class="pl-smi">Any</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>: <span class="pl-smi">Any</span>) <span class="pl-c1">-&gt;</span> <span class="pl-smi">Any</span>:
         <span class="pl-k">return</span> <span class="pl-en">func</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>)
     <span class="pl-k">return</span> <span class="pl-s1">wrapper</span>  <span class="pl-c"># type: ignore</span></pre></div>
 <h2>实际应用示例</h2>
@@ -303,18 +303,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">TypedDict</span>, <span class="pl-v">List</span>
 
 <span class="pl-k">class</span> <span class="pl-v">UserProfile</span>(<span class="pl-v">TypedDict</span>):
-    <span class="pl-s1">id</span>: <span class="pl-s1">int</span>
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">email</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-v">Optional</span>[<span class="pl-s1">int</span>]
+    <span class="pl-s1">id</span>: <span class="pl-smi">int</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">email</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-v">Optional</span>[<span class="pl-smi">int</span>]
 
 <span class="pl-k">class</span> <span class="pl-v">APIResponse</span>(<span class="pl-v">TypedDict</span>):
     <span class="pl-s1">status</span>: <span class="pl-v">Literal</span>[<span class="pl-s">'success'</span>, <span class="pl-s">'error'</span>]
-    <span class="pl-s1">data</span>: <span class="pl-v">Optional</span>[<span class="pl-v">List</span>[<span class="pl-v">UserProfile</span>]]
-    <span class="pl-s1">message</span>: <span class="pl-s1">str</span>
+    <span class="pl-s1">data</span>: <span class="pl-v">Optional</span>[<span class="pl-v">List</span>[<span class="pl-smi">UserProfile</span>]]
+    <span class="pl-s1">message</span>: <span class="pl-smi">str</span>
 
-<span class="pl-k">def</span> <span class="pl-en">get_users</span>() <span class="pl-c1">-&gt;</span> <span class="pl-v">APIResponse</span>:
-    <span class="pl-s1">users</span>: <span class="pl-v">List</span>[<span class="pl-v">UserProfile</span>] <span class="pl-c1">=</span> [
+<span class="pl-k">def</span> <span class="pl-en">get_users</span>() <span class="pl-c1">-&gt;</span> <span class="pl-smi">APIResponse</span>:
+    <span class="pl-s1">users</span>: <span class="pl-v">List</span>[<span class="pl-smi">UserProfile</span>] <span class="pl-c1">=</span> [
         {<span class="pl-s">"id"</span>: <span class="pl-c1">1</span>, <span class="pl-s">"name"</span>: <span class="pl-s">"张三"</span>, <span class="pl-s">"email"</span>: <span class="pl-s">"zhangsan@example.com"</span>, <span class="pl-s">"age"</span>: <span class="pl-c1">25</span>}
     ]
     <span class="pl-k">return</span> {
@@ -326,16 +326,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Protocol</span>, <span class="pl-v">List</span>, <span class="pl-v">Any</span>
 
 <span class="pl-k">class</span> <span class="pl-v">DataProcessor</span>(<span class="pl-v">Protocol</span>):
-    <span class="pl-k">def</span> <span class="pl-en">process</span>(<span class="pl-s1">self</span>, <span class="pl-s1">data</span>: <span class="pl-v">Any</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Any</span>: ...
+    <span class="pl-k">def</span> <span class="pl-en">process</span>(<span class="pl-s1">self</span>, <span class="pl-s1">data</span>: <span class="pl-smi">Any</span>) <span class="pl-c1">-&gt;</span> <span class="pl-smi">Any</span>: ...
 
 <span class="pl-k">class</span> <span class="pl-v">Pipeline</span>:
-    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">processors</span>: <span class="pl-v">List</span>[<span class="pl-v">DataProcessor</span>]) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
-        <span class="pl-s1">self</span>.<span class="pl-s1">processors</span> <span class="pl-c1">=</span> <span class="pl-s1">processors</span>
+    <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">processors</span>: <span class="pl-v">List</span>[<span class="pl-smi">DataProcessor</span>]) <span class="pl-c1">-&gt;</span> <span class="pl-c1">None</span>:
+        <span class="pl-s1">self</span>.<span class="pl-c1">processors</span> <span class="pl-c1">=</span> <span class="pl-s1">processors</span>
 
-    <span class="pl-k">def</span> <span class="pl-en">execute</span>(<span class="pl-s1">self</span>, <span class="pl-s1">data</span>: <span class="pl-v">Any</span>) <span class="pl-c1">-&gt;</span> <span class="pl-v">Any</span>:
+    <span class="pl-k">def</span> <span class="pl-en">execute</span>(<span class="pl-s1">self</span>, <span class="pl-s1">data</span>: <span class="pl-smi">Any</span>) <span class="pl-c1">-&gt;</span> <span class="pl-smi">Any</span>:
         <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">data</span>
-        <span class="pl-k">for</span> <span class="pl-s1">processor</span> <span class="pl-c1">in</span> <span class="pl-s1">self</span>.<span class="pl-s1">processors</span>:
-            <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">processor</span>.<span class="pl-en">process</span>(<span class="pl-s1">result</span>)
+        <span class="pl-k">for</span> <span class="pl-s1">processor</span> <span class="pl-c1">in</span> <span class="pl-s1">self</span>.<span class="pl-c1">processors</span>:
+            <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">processor</span>.<span class="pl-c1">process</span>(<span class="pl-s1">result</span>)
         <span class="pl-k">return</span> <span class="pl-s1">result</span></pre></div>
 <h2>结论</h2>
 <p>类型提示是Python代码质量提升的重要工具。合理使用类型提示可以：</p>

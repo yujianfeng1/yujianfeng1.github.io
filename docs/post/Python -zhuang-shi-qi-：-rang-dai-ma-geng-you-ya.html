@@ -152,7 +152,7 @@ Hello, world!
 <p>一个常见的应用场景是对函数调用进行日志记录。通过装饰器，我们可以轻松地为每个函数调用添加日志功能。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">log</span>(<span class="pl-s1">func</span>):
     <span class="pl-k">def</span> <span class="pl-en">wrapper</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>):
-        <span class="pl-en">print</span>(<span class="pl-s">f"调用函数: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">func</span>.<span class="pl-s1">__name__</span><span class="pl-kos">}</span></span>"</span>)
+        <span class="pl-en">print</span>(<span class="pl-s">f"调用函数: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">func</span>.<span class="pl-c1">__name__</span><span class="pl-kos">}</span></span>"</span>)
         <span class="pl-k">return</span> <span class="pl-en">func</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>)
     <span class="pl-k">return</span> <span class="pl-s1">wrapper</span>
 
@@ -175,16 +175,16 @@ Hello, world!
 
 <span class="pl-k">def</span> <span class="pl-en">timer</span>(<span class="pl-s1">func</span>):
     <span class="pl-k">def</span> <span class="pl-en">wrapper</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>):
-        <span class="pl-s1">start_time</span> <span class="pl-c1">=</span> <span class="pl-s1">time</span>.<span class="pl-en">time</span>()  <span class="pl-c"># 记录开始时间</span>
+        <span class="pl-s1">start_time</span> <span class="pl-c1">=</span> <span class="pl-s1">time</span>.<span class="pl-c1">time</span>()  <span class="pl-c"># 记录开始时间</span>
         <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-en">func</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>)
-        <span class="pl-s1">end_time</span> <span class="pl-c1">=</span> <span class="pl-s1">time</span>.<span class="pl-en">time</span>()    <span class="pl-c"># 记录结束时间</span>
-        <span class="pl-en">print</span>(<span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">func</span>.<span class="pl-s1">__name__</span><span class="pl-kos">}</span></span> 执行时间: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">end_time</span> <span class="pl-c1">-</span> <span class="pl-s1">start_time</span>:.4f<span class="pl-kos">}</span></span>秒"</span>)
+        <span class="pl-s1">end_time</span> <span class="pl-c1">=</span> <span class="pl-s1">time</span>.<span class="pl-c1">time</span>()    <span class="pl-c"># 记录结束时间</span>
+        <span class="pl-en">print</span>(<span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">func</span>.<span class="pl-c1">__name__</span><span class="pl-kos">}</span></span> 执行时间: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">end_time</span> <span class="pl-c1">-</span> <span class="pl-s1">start_time</span>:.4f<span class="pl-kos">}</span></span>秒"</span>)
         <span class="pl-k">return</span> <span class="pl-s1">result</span>
     <span class="pl-k">return</span> <span class="pl-s1">wrapper</span>
 
 <span class="pl-en">@<span class="pl-s1">timer</span></span>
 <span class="pl-k">def</span> <span class="pl-en">slow_function</span>():
-    <span class="pl-s1">time</span>.<span class="pl-en">sleep</span>(<span class="pl-c1">2</span>)
+    <span class="pl-s1">time</span>.<span class="pl-c1">sleep</span>(<span class="pl-c1">2</span>)
 
 <span class="pl-en">slow_function</span>()</pre></div>
 <h3>解释</h3>
@@ -200,8 +200,8 @@ Hello, world!
     <span class="pl-k">def</span> <span class="pl-en">decorator</span>(<span class="pl-s1">func</span>):
         <span class="pl-k">def</span> <span class="pl-en">wrapper</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>):
             <span class="pl-s1">user_permissions</span> <span class="pl-c1">=</span> [<span class="pl-s">'read'</span>, <span class="pl-s">'write'</span>]  <span class="pl-c"># 模拟当前用户的权限</span>
-            <span class="pl-k">if</span> <span class="pl-s1">permission</span> <span class="pl-c1">not</span> <span class="pl-c1">in</span> <span class="pl-s1">user_permissions</span>:
-                <span class="pl-k">raise</span> <span class="pl-v">PermissionError</span>(<span class="pl-s">"权限不足"</span>)
+            <span class="pl-k">if</span> <span class="pl-s1">permission</span> <span class="pl-c1"><span class="pl-c1">not</span> <span class="pl-c1">in</span></span> <span class="pl-s1">user_permissions</span>:
+                <span class="pl-k">raise</span> <span class="pl-en">PermissionError</span>(<span class="pl-s">"权限不足"</span>)
             <span class="pl-k">return</span> <span class="pl-en">func</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>, <span class="pl-c1">**</span><span class="pl-s1">kwargs</span>)
         <span class="pl-k">return</span> <span class="pl-s1">wrapper</span>
     <span class="pl-k">return</span> <span class="pl-s1">decorator</span>

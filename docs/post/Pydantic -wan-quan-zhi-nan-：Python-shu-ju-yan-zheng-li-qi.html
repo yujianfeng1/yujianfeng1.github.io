@@ -109,22 +109,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">from</span> <span class="pl-s1">pydantic</span> <span class="pl-k">import</span> <span class="pl-v">BaseModel</span>
 
 <span class="pl-k">class</span> <span class="pl-v">User</span>(<span class="pl-v">BaseModel</span>):
-    <span class="pl-s1">id</span>: <span class="pl-s1">int</span>
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">email</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-v">Optional</span>[<span class="pl-s1">int</span>] <span class="pl-c1">=</span> <span class="pl-c1">None</span>
-    <span class="pl-s1">created_at</span>: <span class="pl-s1">datetime</span>
-    <span class="pl-s1">tags</span>: <span class="pl-v">List</span>[<span class="pl-s1">str</span>] <span class="pl-c1">=</span> []
+    <span class="pl-s1">id</span>: <span class="pl-smi">int</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">email</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-v">Optional</span>[<span class="pl-smi">int</span>] <span class="pl-c1">=</span> <span class="pl-c1">None</span>
+    <span class="pl-s1">created_at</span>: <span class="pl-smi">datetime</span>
+    <span class="pl-s1">tags</span>: <span class="pl-v">List</span>[<span class="pl-smi">str</span>] <span class="pl-c1">=</span> []
 
 <span class="pl-c"># 创建用户实例</span>
-<span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-v">User</span>(
+<span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">User</span>(
     <span class="pl-s1">id</span><span class="pl-c1">=</span><span class="pl-c1">1</span>,
     <span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"张三"</span>,
     <span class="pl-s1">email</span><span class="pl-c1">=</span><span class="pl-s">"zhangsan@example.com"</span>,
     <span class="pl-s1">created_at</span><span class="pl-c1">=</span><span class="pl-s">"2024-01-01T00:00:00"</span>
 )
 
-<span class="pl-en">print</span>(<span class="pl-s1">user</span>.<span class="pl-en">model_dump</span>())  <span class="pl-c"># 将模型转换为字典</span></pre></div>
+<span class="pl-en">print</span>(<span class="pl-s1">user</span>.<span class="pl-c1">model_dump</span>())  <span class="pl-c"># 将模型转换为字典</span></pre></div>
 <h3>2. 数据验证</h3>
 <p>Pydantic会自动进行类型检查和数据验证：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">pydantic</span> <span class="pl-k">import</span> <span class="pl-v">BaseModel</span>, <span class="pl-v">EmailStr</span>, <span class="pl-s1">conint</span>, <span class="pl-s1">constr</span>
@@ -132,10 +132,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">class</span> <span class="pl-v">UserProfile</span>(<span class="pl-v">BaseModel</span>):
     <span class="pl-s1">username</span>: <span class="pl-en">constr</span>(<span class="pl-s1">min_length</span><span class="pl-c1">=</span><span class="pl-c1">3</span>, <span class="pl-s1">max_length</span><span class="pl-c1">=</span><span class="pl-c1">50</span>)  <span class="pl-c"># 用户名长度限制</span>
     <span class="pl-s1">age</span>: <span class="pl-en">conint</span>(<span class="pl-s1">ge</span><span class="pl-c1">=</span><span class="pl-c1">0</span>, <span class="pl-s1">le</span><span class="pl-c1">=</span><span class="pl-c1">150</span>)  <span class="pl-c"># 年龄范围限制</span>
-    <span class="pl-s1">email</span>: <span class="pl-v">EmailStr</span>  <span class="pl-c"># 邮箱格式验证</span>
+    <span class="pl-s1">email</span>: <span class="pl-smi">EmailStr</span>  <span class="pl-c"># 邮箱格式验证</span>
     
 <span class="pl-k">try</span>:
-    <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-v">UserProfile</span>(
+    <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">UserProfile</span>(
         <span class="pl-s1">username</span><span class="pl-c1">=</span><span class="pl-s">"a"</span>,  <span class="pl-c"># 会触发验证错误</span>
         <span class="pl-s1">age</span><span class="pl-c1">=</span><span class="pl-c1">200</span>,      <span class="pl-c"># 会触发验证错误</span>
         <span class="pl-s1">email</span><span class="pl-c1">=</span><span class="pl-s">"invalid-email"</span>  <span class="pl-c"># 会触发验证错误</span>
@@ -150,16 +150,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 
 <span class="pl-k">class</span> <span class="pl-v">Address</span>(<span class="pl-v">BaseModel</span>):
-    <span class="pl-s1">street</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">city</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">country</span>: <span class="pl-s1">str</span>
+    <span class="pl-s1">street</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">city</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">country</span>: <span class="pl-smi">str</span>
 
 <span class="pl-k">class</span> <span class="pl-v">User</span>(<span class="pl-v">BaseModel</span>):
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">addresses</span>: <span class="pl-v">List</span>[<span class="pl-v">Address</span>]
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">addresses</span>: <span class="pl-v">List</span>[<span class="pl-smi">Address</span>]
 
 <span class="pl-c"># 使用嵌套模型</span>
-<span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-v">User</span>(
+<span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">User</span>(
     <span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"李四"</span>,
     <span class="pl-s1">addresses</span><span class="pl-c1">=</span>[
         {<span class="pl-s">"street"</span>: <span class="pl-s">"中关村大街"</span>, <span class="pl-s">"city"</span>: <span class="pl-s">"北京"</span>, <span class="pl-s">"country"</span>: <span class="pl-s">"中国"</span>},
@@ -172,34 +172,34 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 
 <span class="pl-k">class</span> <span class="pl-v">Product</span>(<span class="pl-v">BaseModel</span>):
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">price</span>: <span class="pl-s1">float</span>
-    <span class="pl-s1">quantity</span>: <span class="pl-s1">int</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">price</span>: <span class="pl-smi">float</span>
+    <span class="pl-s1">quantity</span>: <span class="pl-smi">int</span>
 
     <span class="pl-en">@<span class="pl-en">field_validator</span>(<span class="pl-s">'price'</span>)</span>
     <span class="pl-k">def</span> <span class="pl-en">validate_price</span>(<span class="pl-s1">cls</span>, <span class="pl-s1">v</span>):
         <span class="pl-k">if</span> <span class="pl-s1">v</span> <span class="pl-c1">&lt;</span> <span class="pl-c1">0</span>:
-            <span class="pl-k">raise</span> <span class="pl-v">ValueError</span>(<span class="pl-s">'价格不能为负数'</span>)
+            <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">'价格不能为负数'</span>)
         <span class="pl-k">return</span> <span class="pl-s1">v</span>
 
     <span class="pl-en">@<span class="pl-en">field_validator</span>(<span class="pl-s">'quantity'</span>)</span>
     <span class="pl-k">def</span> <span class="pl-en">validate_quantity</span>(<span class="pl-s1">cls</span>, <span class="pl-s1">v</span>):
         <span class="pl-k">if</span> <span class="pl-s1">v</span> <span class="pl-c1">&lt;</span> <span class="pl-c1">0</span>:
-            <span class="pl-k">raise</span> <span class="pl-v">ValueError</span>(<span class="pl-s">'数量不能为负数'</span>)
+            <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">'数量不能为负数'</span>)
         <span class="pl-k">return</span> <span class="pl-s1">v</span></pre></div>
 <h3>2. 配置选项</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">pydantic</span> <span class="pl-k">import</span> <span class="pl-v">BaseModel</span>
 
 <span class="pl-k">class</span> <span class="pl-v">User</span>(<span class="pl-v">BaseModel</span>):
-    <span class="pl-s1">username</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">password</span>: <span class="pl-s1">str</span>
+    <span class="pl-s1">username</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">password</span>: <span class="pl-smi">str</span>
 
     <span class="pl-k">class</span> <span class="pl-v">Config</span>:
         <span class="pl-c"># 允许额外字段</span>
         <span class="pl-s1">extra</span> <span class="pl-c1">=</span> <span class="pl-s">"allow"</span>
         <span class="pl-c"># 在模型转储时排除某些字段</span>
         <span class="pl-s1">json_encoders</span> <span class="pl-c1">=</span> {
-            <span class="pl-s1">datetime</span>: <span class="pl-k">lambda</span> <span class="pl-s1">v</span>: <span class="pl-s1">v</span>.<span class="pl-en">strftime</span>(<span class="pl-s">"%Y-%m-%d"</span>)
+            <span class="pl-s1">datetime</span>: <span class="pl-k">lambda</span> <span class="pl-s1">v</span>: <span class="pl-s1">v</span>.<span class="pl-c1">strftime</span>(<span class="pl-s">"%Y-%m-%d"</span>)
         }</pre></div>
 <h3>3. 类型别名</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Dict</span>
@@ -208,9 +208,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-v">JsonDict</span> <span class="pl-c1">=</span> <span class="pl-v">Dict</span>[<span class="pl-s1">str</span>, <span class="pl-s1">any</span>]
 
 <span class="pl-k">class</span> <span class="pl-v">APIResponse</span>(<span class="pl-v">BaseModel</span>):
-    <span class="pl-s1">status</span>: <span class="pl-s1">int</span>
-    <span class="pl-s1">data</span>: <span class="pl-v">JsonDict</span>
-    <span class="pl-s1">message</span>: <span class="pl-s1">str</span></pre></div>
+    <span class="pl-s1">status</span>: <span class="pl-smi">int</span>
+    <span class="pl-s1">data</span>: <span class="pl-smi">JsonDict</span>
+    <span class="pl-s1">message</span>: <span class="pl-smi">str</span></pre></div>
 <h2>最佳实践</h2>
 <ol>
 <li>
@@ -221,24 +221,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </li>
 </ol>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">User</span>(<span class="pl-v">BaseModel</span>):
-    <span class="pl-s1">password</span>: <span class="pl-s1">str</span>
+    <span class="pl-s1">password</span>: <span class="pl-smi">str</span>
 
     <span class="pl-en">@<span class="pl-en">validator</span>(<span class="pl-s">'password'</span>)</span>
     <span class="pl-k">def</span> <span class="pl-en">password_min_length</span>(<span class="pl-s1">cls</span>, <span class="pl-s1">v</span>):
         <span class="pl-k">if</span> <span class="pl-en">len</span>(<span class="pl-s1">v</span>) <span class="pl-c1">&lt;</span> <span class="pl-c1">8</span>:
-            <span class="pl-k">raise</span> <span class="pl-v">ValueError</span>(<span class="pl-s">'密码长度至少为8位'</span>)
+            <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">'密码长度至少为8位'</span>)
         <span class="pl-k">return</span> <span class="pl-s1">v</span>
 
     <span class="pl-en">@<span class="pl-en">validator</span>(<span class="pl-s">'password'</span>)</span>
     <span class="pl-k">def</span> <span class="pl-en">password_contain_number</span>(<span class="pl-s1">cls</span>, <span class="pl-s1">v</span>):
-        <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-en">any</span>(<span class="pl-s1">c</span>.<span class="pl-en">isdigit</span>() <span class="pl-k">for</span> <span class="pl-s1">c</span> <span class="pl-c1">in</span> <span class="pl-s1">v</span>):
-            <span class="pl-k">raise</span> <span class="pl-v">ValueError</span>(<span class="pl-s">'密码必须包含数字'</span>)
+        <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-en">any</span>(<span class="pl-s1">c</span>.<span class="pl-c1">isdigit</span>() <span class="pl-k">for</span> <span class="pl-s1">c</span> <span class="pl-c1">in</span> <span class="pl-s1">v</span>):
+            <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">'密码必须包含数字'</span>)
         <span class="pl-k">return</span> <span class="pl-s1">v</span></pre></div>
 <ol start="3">
 <li><strong>错误处理</strong>：使用try-except优雅地处理验证错误：</li>
 </ol>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">try</span>:
-    <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-v">User</span>(<span class="pl-s1">password</span><span class="pl-c1">=</span><span class="pl-s">"weak"</span>)
+    <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">User</span>(<span class="pl-s1">password</span><span class="pl-c1">=</span><span class="pl-s">"weak"</span>)
 <span class="pl-k">except</span> <span class="pl-v">ValueError</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
     <span class="pl-en">print</span>(<span class="pl-s">f"验证错误: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">e</span><span class="pl-kos">}</span></span>"</span>)</pre></div>
 <h2>性能优化</h2>
@@ -258,15 +258,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">fastapi</span> <span class="pl-k">import</span> <span class="pl-v">FastAPI</span>
 <span class="pl-k">from</span> <span class="pl-s1">pydantic</span> <span class="pl-k">import</span> <span class="pl-v">BaseModel</span>
 
-<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-v">FastAPI</span>()
+<span class="pl-s1">app</span> <span class="pl-c1">=</span> <span class="pl-en">FastAPI</span>()
 
 <span class="pl-k">class</span> <span class="pl-v">Item</span>(<span class="pl-v">BaseModel</span>):
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">price</span>: <span class="pl-s1">float</span>
-    <span class="pl-s1">is_offer</span>: <span class="pl-s1">bool</span> <span class="pl-c1">=</span> <span class="pl-c1">None</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">price</span>: <span class="pl-smi">float</span>
+    <span class="pl-s1">is_offer</span>: <span class="pl-smi">bool</span> <span class="pl-c1">=</span> <span class="pl-c1">None</span>
 
-<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-en">post</span>(<span class="pl-s">"/items/"</span>)</span>
-<span class="pl-k">async</span> <span class="pl-k">def</span> <span class="pl-en">create_item</span>(<span class="pl-s1">item</span>: <span class="pl-v">Item</span>):
+<span class="pl-en">@<span class="pl-s1">app</span>.<span class="pl-c1">post</span>(<span class="pl-s">"/items/"</span>)</span>
+<span class="pl-k">async</span> <span class="pl-k">def</span> <span class="pl-en">create_item</span>(<span class="pl-s1">item</span>: <span class="pl-smi">Item</span>):
     <span class="pl-k">return</span> <span class="pl-s1">item</span></pre></div>
 <h2>结论</h2>
 <p>Pydantic是一个强大的数据验证工具，它不仅能够帮助我们保证数据的正确性，还能提供良好的开发体验。通过本文的介绍，我们了解了Pydantic的基本用法和高级特性，掌握这些知识将帮助我们在实际开发中更好地处理数据验证的需求。</p></div>

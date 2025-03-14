@@ -123,12 +123,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">class</span> <span class="pl-v">User</span>(<span class="pl-v">Base</span>):
     <span class="pl-s1">__tablename__</span> <span class="pl-c1">=</span> <span class="pl-s">'users'</span>
 
-    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
-    <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">String</span>)
-    <span class="pl-s1">age</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">Integer</span>)
+    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">String</span>)
+    <span class="pl-s1">age</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">Integer</span>)
 
     <span class="pl-k">def</span> <span class="pl-en">__repr__</span>(<span class="pl-s1">self</span>):
-        <span class="pl-k">return</span> <span class="pl-s">f"&lt;User(name=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">self</span>.<span class="pl-s1">name</span><span class="pl-kos">}</span></span>, age=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">self</span>.<span class="pl-s1">age</span><span class="pl-kos">}</span></span>)&gt;"</span></pre></div>
+        <span class="pl-k">return</span> <span class="pl-s">f"&lt;User(name=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">self</span>.<span class="pl-c1">name</span><span class="pl-kos">}</span></span>, age=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">self</span>.<span class="pl-c1">age</span><span class="pl-kos">}</span></span>)&gt;"</span></pre></div>
 <p>在上面的代码中：</p>
 <ul>
 <li><code class="notranslate">Base</code> 是所有模型类的基类，所有模型类都应该继承它。</li>
@@ -138,7 +138,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>3. 创建数据库表</h3>
 <p>定义完模型后，可以通过 SQLAlchemy 创建数据库表。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 创建所有的表</span>
-<span class="pl-v">Base</span>.<span class="pl-s1">metadata</span>.<span class="pl-en">create_all</span>(<span class="pl-s1">engine</span>)</pre></div>
+<span class="pl-v">Base</span>.<span class="pl-c1">metadata</span>.<span class="pl-c1">create_all</span>(<span class="pl-s1">engine</span>)</pre></div>
 <p>这行代码会根据定义的模型类自动生成相应的数据库表。</p>
 <h3>4. 创建数据库会话（Session）</h3>
 <p>SQLAlchemy 使用会话（Session）来执行数据库操作。会话是操作数据库的接口，我们可以通过会话来添加、查询、更新或删除数据。</p>
@@ -148,40 +148,40 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-v">Session</span> <span class="pl-c1">=</span> <span class="pl-en">sessionmaker</span>(<span class="pl-s1">bind</span><span class="pl-c1">=</span><span class="pl-s1">engine</span>)
 
 <span class="pl-c"># 创建会话对象</span>
-<span class="pl-s1">session</span> <span class="pl-c1">=</span> <span class="pl-v">Session</span>()</pre></div>
+<span class="pl-s1">session</span> <span class="pl-c1">=</span> <span class="pl-en">Session</span>()</pre></div>
 <h3>5. 插入数据</h3>
 <p>通过会话，我们可以向数据库中插入数据。下面是如何插入一条新记录的示例：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 创建 User 实例</span>
-<span class="pl-s1">new_user</span> <span class="pl-c1">=</span> <span class="pl-v">User</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>, <span class="pl-s1">age</span><span class="pl-c1">=</span><span class="pl-c1">30</span>)
+<span class="pl-s1">new_user</span> <span class="pl-c1">=</span> <span class="pl-en">User</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>, <span class="pl-s1">age</span><span class="pl-c1">=</span><span class="pl-c1">30</span>)
 
 <span class="pl-c"># 将新用户添加到会话</span>
-<span class="pl-s1">session</span>.<span class="pl-en">add</span>(<span class="pl-s1">new_user</span>)
+<span class="pl-s1">session</span>.<span class="pl-c1">add</span>(<span class="pl-s1">new_user</span>)
 
 <span class="pl-c"># 提交事务到数据库</span>
-<span class="pl-s1">session</span>.<span class="pl-en">commit</span>()</pre></div>
+<span class="pl-s1">session</span>.<span class="pl-c1">commit</span>()</pre></div>
 <h3>6. 查询数据</h3>
 <p>SQLAlchemy 提供了强大的查询接口。你可以使用 <code class="notranslate">session.query</code> 来查询数据库。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 查询所有用户</span>
-<span class="pl-s1">all_users</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-en">query</span>(<span class="pl-v">User</span>).<span class="pl-en">all</span>()
+<span class="pl-s1">all_users</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-c1">query</span>(<span class="pl-v">User</span>).<span class="pl-c1">all</span>()
 <span class="pl-k">for</span> <span class="pl-s1">user</span> <span class="pl-c1">in</span> <span class="pl-s1">all_users</span>:
     <span class="pl-en">print</span>(<span class="pl-s1">user</span>)
 
 <span class="pl-c"># 查询特定用户</span>
-<span class="pl-s1">alice</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-en">query</span>(<span class="pl-v">User</span>).<span class="pl-en">filter_by</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>).<span class="pl-en">first</span>()
+<span class="pl-s1">alice</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-c1">query</span>(<span class="pl-v">User</span>).<span class="pl-c1">filter_by</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>).<span class="pl-c1">first</span>()
 <span class="pl-en">print</span>(<span class="pl-s1">alice</span>)</pre></div>
 <p><code class="notranslate">filter_by</code> 是一个常用的过滤方法，它相当于 SQL 中的 <code class="notranslate">WHERE</code> 子句。</p>
 <h3>7. 更新数据</h3>
 <p>如果你想更新某个对象的数据，可以直接修改对象的属性，然后提交会话。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 查询并更新 Alice 的年龄</span>
-<span class="pl-s1">alice</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-en">query</span>(<span class="pl-v">User</span>).<span class="pl-en">filter_by</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>).<span class="pl-en">first</span>()
-<span class="pl-s1">alice</span>.<span class="pl-s1">age</span> <span class="pl-c1">=</span> <span class="pl-c1">31</span>
-<span class="pl-s1">session</span>.<span class="pl-en">commit</span>()</pre></div>
+<span class="pl-s1">alice</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-c1">query</span>(<span class="pl-v">User</span>).<span class="pl-c1">filter_by</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>).<span class="pl-c1">first</span>()
+<span class="pl-s1">alice</span>.<span class="pl-c1">age</span> <span class="pl-c1">=</span> <span class="pl-c1">31</span>
+<span class="pl-s1">session</span>.<span class="pl-c1">commit</span>()</pre></div>
 <h3>8. 删除数据</h3>
 <p>删除数据非常简单，你只需要从会话中删除对象，然后提交事务。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 查询并删除 Alice</span>
-<span class="pl-s1">alice</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-en">query</span>(<span class="pl-v">User</span>).<span class="pl-en">filter_by</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>).<span class="pl-en">first</span>()
-<span class="pl-s1">session</span>.<span class="pl-en">delete</span>(<span class="pl-s1">alice</span>)
-<span class="pl-s1">session</span>.<span class="pl-en">commit</span>()</pre></div>
+<span class="pl-s1">alice</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-c1">query</span>(<span class="pl-v">User</span>).<span class="pl-c1">filter_by</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>).<span class="pl-c1">first</span>()
+<span class="pl-s1">session</span>.<span class="pl-c1">delete</span>(<span class="pl-s1">alice</span>)
+<span class="pl-s1">session</span>.<span class="pl-c1">commit</span>()</pre></div>
 <h2>SQLAlchemy 的高级功能</h2>
 <p>SQLAlchemy 提供了许多高级功能，帮助你管理复杂的数据库结构和查询。例如：</p>
 <h3>1. 关系映射（Relationships）</h3>
@@ -192,18 +192,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">class</span> <span class="pl-v">Address</span>(<span class="pl-v">Base</span>):
     <span class="pl-s1">__tablename__</span> <span class="pl-c1">=</span> <span class="pl-s">'addresses'</span>
 
-    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
-    <span class="pl-s1">email</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">String</span>, <span class="pl-s1">unique</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
-    <span class="pl-s1">user_id</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-v">ForeignKey</span>(<span class="pl-s">'users.id'</span>))
+    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">email</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">String</span>, <span class="pl-s1">unique</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">user_id</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-en">ForeignKey</span>(<span class="pl-s">'users.id'</span>))
 
     <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-en">relationship</span>(<span class="pl-s">"User"</span>, <span class="pl-s1">back_populates</span><span class="pl-c1">=</span><span class="pl-s">"addresses"</span>)
 
 <span class="pl-k">class</span> <span class="pl-v">User</span>(<span class="pl-v">Base</span>):
     <span class="pl-s1">__tablename__</span> <span class="pl-c1">=</span> <span class="pl-s">'users'</span>
 
-    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
-    <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">String</span>)
-    <span class="pl-s1">age</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">Integer</span>)
+    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">String</span>)
+    <span class="pl-s1">age</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">Integer</span>)
     <span class="pl-s1">addresses</span> <span class="pl-c1">=</span> <span class="pl-en">relationship</span>(<span class="pl-s">"Address"</span>, <span class="pl-s1">back_populates</span><span class="pl-c1">=</span><span class="pl-s">"user"</span>)</pre></div>
 <p>在这个例子中，<code class="notranslate">User</code> 和 <code class="notranslate">Address</code> 之间建立了外键关系。通过 <code class="notranslate">relationship</code>，SQLAlchemy 会自动处理关联对象的加载和保存。</p>
 <h3>2. 数据库迁移（Alembic）</h3>
@@ -214,7 +214,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>3. 执行原生 SQL</h3>
 <p>如果需要执行一些复杂的 SQL 查询或数据库操作，SQLAlchemy 允许你直接执行原生 SQL。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 执行原生 SQL 查询</span>
-<span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-en">execute</span>(<span class="pl-en">text</span>(<span class="pl-s">"SELECT * FROM users WHERE age &gt; :age"</span>, {<span class="pl-s">'age'</span>: <span class="pl-c1">25</span>}))
+<span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-c1">execute</span>(<span class="pl-en">text</span>(<span class="pl-s">"SELECT * FROM users WHERE age &gt; :age"</span>, {<span class="pl-s">'age'</span>: <span class="pl-c1">25</span>}))
 <span class="pl-k">for</span> <span class="pl-s1">row</span> <span class="pl-c1">in</span> <span class="pl-s1">result</span>:
     <span class="pl-en">print</span>(<span class="pl-s1">row</span>)</pre></div>
 <h2>实践案例</h2>
@@ -232,8 +232,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c"># 定义 Author 表</span>
 <span class="pl-k">class</span> <span class="pl-v">Author</span>(<span class="pl-v">Base</span>):
     <span class="pl-s1">__tablename__</span> <span class="pl-c1">=</span> <span class="pl-s">'authors'</span>
-    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">autoincrement</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
-    <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">String</span>, <span class="pl-s1">nullable</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
+    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">autoincrement</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">String</span>, <span class="pl-s1">nullable</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
 
     <span class="pl-c"># 定义关系</span>
     <span class="pl-s1">books</span> <span class="pl-c1">=</span> <span class="pl-en">relationship</span>(<span class="pl-s">'Book'</span>, <span class="pl-s1">back_populates</span><span class="pl-c1">=</span><span class="pl-s">'author'</span>)
@@ -242,53 +242,53 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c"># 定义 Book 表</span>
 <span class="pl-k">class</span> <span class="pl-v">Book</span>(<span class="pl-v">Base</span>):
     <span class="pl-s1">__tablename__</span> <span class="pl-c1">=</span> <span class="pl-s">'books'</span>
-    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">autoincrement</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
-    <span class="pl-s1">title</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">String</span>, <span class="pl-s1">nullable</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
-    <span class="pl-s1">author_id</span> <span class="pl-c1">=</span> <span class="pl-v">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-v">ForeignKey</span>(<span class="pl-s">'authors.id'</span>))
+    <span class="pl-s1">id</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-s1">primary_key</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, <span class="pl-s1">autoincrement</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">title</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">String</span>, <span class="pl-s1">nullable</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
+    <span class="pl-s1">author_id</span> <span class="pl-c1">=</span> <span class="pl-en">Column</span>(<span class="pl-v">Integer</span>, <span class="pl-en">ForeignKey</span>(<span class="pl-s">'authors.id'</span>))
 
     <span class="pl-c"># 定义关系</span>
     <span class="pl-s1">author</span> <span class="pl-c1">=</span> <span class="pl-en">relationship</span>(<span class="pl-s">'Author'</span>, <span class="pl-s1">back_populates</span><span class="pl-c1">=</span><span class="pl-s">'books'</span>)
 
 
 <span class="pl-c"># 创建数据库表</span>
-<span class="pl-v">Base</span>.<span class="pl-s1">metadata</span>.<span class="pl-en">create_all</span>(<span class="pl-s1">engine</span>)
+<span class="pl-v">Base</span>.<span class="pl-c1">metadata</span>.<span class="pl-c1">create_all</span>(<span class="pl-s1">engine</span>)
 
 <span class="pl-c"># 创建会话工厂</span>
 <span class="pl-v">Session</span> <span class="pl-c1">=</span> <span class="pl-en">sessionmaker</span>(<span class="pl-s1">bind</span><span class="pl-c1">=</span><span class="pl-s1">engine</span>)
-<span class="pl-s1">session</span> <span class="pl-c1">=</span> <span class="pl-v">Session</span>()
+<span class="pl-s1">session</span> <span class="pl-c1">=</span> <span class="pl-en">Session</span>()
 
 
 <span class="pl-c"># 添加一些示例数据</span>
 <span class="pl-k">def</span> <span class="pl-en">add_sample_data</span>():
     <span class="pl-c"># 检查数据库是否为空</span>
-    <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">session</span>.<span class="pl-en">query</span>(<span class="pl-v">Author</span>).<span class="pl-en">first</span>():
-        <span class="pl-s1">author1</span> <span class="pl-c1">=</span> <span class="pl-v">Author</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">'J.K. Rowling'</span>)
-        <span class="pl-s1">author2</span> <span class="pl-c1">=</span> <span class="pl-v">Author</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">'J.R.R. Tolkien'</span>)
+    <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">session</span>.<span class="pl-c1">query</span>(<span class="pl-v">Author</span>).<span class="pl-c1">first</span>():
+        <span class="pl-s1">author1</span> <span class="pl-c1">=</span> <span class="pl-en">Author</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">'J.K. Rowling'</span>)
+        <span class="pl-s1">author2</span> <span class="pl-c1">=</span> <span class="pl-en">Author</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">'J.R.R. Tolkien'</span>)
 
-        <span class="pl-s1">book1</span> <span class="pl-c1">=</span> <span class="pl-v">Book</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s">'Harry Potter and the Philosopher<span class="pl-cce">\'</span>s Stone'</span>, <span class="pl-s1">author</span><span class="pl-c1">=</span><span class="pl-s1">author1</span>)
-        <span class="pl-s1">book2</span> <span class="pl-c1">=</span> <span class="pl-v">Book</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s">'Harry Potter and the Chamber of Secrets'</span>, <span class="pl-s1">author</span><span class="pl-c1">=</span><span class="pl-s1">author1</span>)
-        <span class="pl-s1">book3</span> <span class="pl-c1">=</span> <span class="pl-v">Book</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s">'The Hobbit'</span>, <span class="pl-s1">author</span><span class="pl-c1">=</span><span class="pl-s1">author2</span>)
-        <span class="pl-s1">book4</span> <span class="pl-c1">=</span> <span class="pl-v">Book</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s">'The Lord of the Rings'</span>, <span class="pl-s1">author</span><span class="pl-c1">=</span><span class="pl-s1">author2</span>)
+        <span class="pl-s1">book1</span> <span class="pl-c1">=</span> <span class="pl-en">Book</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s">'Harry Potter and the Philosopher<span class="pl-cce">\'</span>s Stone'</span>, <span class="pl-s1">author</span><span class="pl-c1">=</span><span class="pl-s1">author1</span>)
+        <span class="pl-s1">book2</span> <span class="pl-c1">=</span> <span class="pl-en">Book</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s">'Harry Potter and the Chamber of Secrets'</span>, <span class="pl-s1">author</span><span class="pl-c1">=</span><span class="pl-s1">author1</span>)
+        <span class="pl-s1">book3</span> <span class="pl-c1">=</span> <span class="pl-en">Book</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s">'The Hobbit'</span>, <span class="pl-s1">author</span><span class="pl-c1">=</span><span class="pl-s1">author2</span>)
+        <span class="pl-s1">book4</span> <span class="pl-c1">=</span> <span class="pl-en">Book</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s">'The Lord of the Rings'</span>, <span class="pl-s1">author</span><span class="pl-c1">=</span><span class="pl-s1">author2</span>)
 
-        <span class="pl-s1">session</span>.<span class="pl-en">add_all</span>([<span class="pl-s1">author1</span>, <span class="pl-s1">author2</span>, <span class="pl-s1">book1</span>, <span class="pl-s1">book2</span>, <span class="pl-s1">book3</span>, <span class="pl-s1">book4</span>])
-        <span class="pl-s1">session</span>.<span class="pl-en">commit</span>()
+        <span class="pl-s1">session</span>.<span class="pl-c1">add_all</span>([<span class="pl-s1">author1</span>, <span class="pl-s1">author2</span>, <span class="pl-s1">book1</span>, <span class="pl-s1">book2</span>, <span class="pl-s1">book3</span>, <span class="pl-s1">book4</span>])
+        <span class="pl-s1">session</span>.<span class="pl-c1">commit</span>()
 
 
 <span class="pl-c"># 查询并打印数据</span>
 <span class="pl-k">def</span> <span class="pl-en">print_data</span>():
-    <span class="pl-s1">authors</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-en">query</span>(<span class="pl-v">Author</span>).<span class="pl-en">all</span>()
+    <span class="pl-s1">authors</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-c1">query</span>(<span class="pl-v">Author</span>).<span class="pl-c1">all</span>()
     <span class="pl-k">for</span> <span class="pl-s1">author</span> <span class="pl-c1">in</span> <span class="pl-s1">authors</span>:
-        <span class="pl-en">print</span>(<span class="pl-s">f'Author: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">author</span>.<span class="pl-s1">name</span><span class="pl-kos">}</span></span>'</span>)
-        <span class="pl-k">for</span> <span class="pl-s1">book</span> <span class="pl-c1">in</span> <span class="pl-s1">author</span>.<span class="pl-s1">books</span>:
-            <span class="pl-en">print</span>(<span class="pl-s">f'  - Book: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">book</span>.<span class="pl-s1">title</span><span class="pl-kos">}</span></span>'</span>)
+        <span class="pl-en">print</span>(<span class="pl-s">f'Author: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">author</span>.<span class="pl-c1">name</span><span class="pl-kos">}</span></span>'</span>)
+        <span class="pl-k">for</span> <span class="pl-s1">book</span> <span class="pl-c1">in</span> <span class="pl-s1">author</span>.<span class="pl-c1">books</span>:
+            <span class="pl-en">print</span>(<span class="pl-s">f'  - Book: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">book</span>.<span class="pl-c1">title</span><span class="pl-kos">}</span></span>'</span>)
 
 
 <span class="pl-c"># 更新数据示例</span>
 <span class="pl-k">def</span> <span class="pl-en">update_book_title</span>(<span class="pl-s1">old_title</span>, <span class="pl-s1">new_title</span>):
-    <span class="pl-s1">book</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-en">query</span>(<span class="pl-v">Book</span>).<span class="pl-en">filter_by</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s1">old_title</span>).<span class="pl-en">first</span>()
+    <span class="pl-s1">book</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-c1">query</span>(<span class="pl-v">Book</span>).<span class="pl-c1">filter_by</span>(<span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s1">old_title</span>).<span class="pl-c1">first</span>()
     <span class="pl-k">if</span> <span class="pl-s1">book</span>:
-        <span class="pl-s1">book</span>.<span class="pl-s1">title</span> <span class="pl-c1">=</span> <span class="pl-s1">new_title</span>
-        <span class="pl-s1">session</span>.<span class="pl-en">commit</span>()
+        <span class="pl-s1">book</span>.<span class="pl-c1">title</span> <span class="pl-c1">=</span> <span class="pl-s1">new_title</span>
+        <span class="pl-s1">session</span>.<span class="pl-c1">commit</span>()
         <span class="pl-en">print</span>(<span class="pl-s">f'Updated book title to: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">new_title</span><span class="pl-kos">}</span></span>'</span>)
     <span class="pl-k">else</span>:
         <span class="pl-en">print</span>(<span class="pl-s">'Book not found.'</span>)
@@ -296,10 +296,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-c"># 删除数据示例</span>
 <span class="pl-k">def</span> <span class="pl-en">delete_author</span>(<span class="pl-s1">name</span>):
-    <span class="pl-s1">author</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-en">query</span>(<span class="pl-v">Author</span>).<span class="pl-en">filter_by</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s1">name</span>).<span class="pl-en">first</span>()
+    <span class="pl-s1">author</span> <span class="pl-c1">=</span> <span class="pl-s1">session</span>.<span class="pl-c1">query</span>(<span class="pl-v">Author</span>).<span class="pl-c1">filter_by</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s1">name</span>).<span class="pl-c1">first</span>()
     <span class="pl-k">if</span> <span class="pl-s1">author</span>:
-        <span class="pl-s1">session</span>.<span class="pl-en">delete</span>(<span class="pl-s1">author</span>)
-        <span class="pl-s1">session</span>.<span class="pl-en">commit</span>()
+        <span class="pl-s1">session</span>.<span class="pl-c1">delete</span>(<span class="pl-s1">author</span>)
+        <span class="pl-s1">session</span>.<span class="pl-c1">commit</span>()
         <span class="pl-en">print</span>(<span class="pl-s">f'Deleted author: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">name</span><span class="pl-kos">}</span></span>'</span>)
     <span class="pl-k">else</span>:
         <span class="pl-en">print</span>(<span class="pl-s">'Author not found.'</span>)

@@ -117,17 +117,17 @@ P     I<br>
  <span class="pl-s">"strings"</span>
 )
 
-<span class="pl-k">func</span> <span class="pl-en">convert</span>(<span class="pl-s1">s</span> <span class="pl-smi">string</span>, <span class="pl-s1">numRows</span> <span class="pl-smi">int</span>) <span class="pl-smi">string</span> {
- <span class="pl-k">if</span> <span class="pl-s1">numRows</span> <span class="pl-c1">==</span> <span class="pl-c1">1</span> <span class="pl-c1">||</span> <span class="pl-s1">numRows</span> <span class="pl-c1">&gt;=</span> <span class="pl-en">len</span>(<span class="pl-s1">s</span>) {
+<span class="pl-k">func</span> <span class="pl-s1">convert</span>(<span class="pl-s1">s</span> <span class="pl-smi">string</span>, <span class="pl-s1">numRows</span> <span class="pl-smi">int</span>) <span class="pl-smi">string</span> {
+ <span class="pl-k">if</span> <span class="pl-s1">numRows</span> <span class="pl-c1">==</span> <span class="pl-c1">1</span> <span class="pl-c1">||</span> <span class="pl-s1">numRows</span> <span class="pl-c1">&gt;=</span> <span class="pl-s1">len</span>(<span class="pl-s1">s</span>) {
   <span class="pl-k">return</span> <span class="pl-s1">s</span>
  }
 
- <span class="pl-s1">rows</span> <span class="pl-c1">:=</span> <span class="pl-en">make</span>([]<span class="pl-smi">string</span>, <span class="pl-en">min</span>(<span class="pl-s1">numRows</span>, <span class="pl-en">len</span>(<span class="pl-s1">s</span>)))
+ <span class="pl-s1">rows</span> <span class="pl-c1">:=</span> <span class="pl-s1">make</span>([]<span class="pl-smi">string</span>, <span class="pl-s1">min</span>(<span class="pl-s1">numRows</span>, <span class="pl-s1">len</span>(<span class="pl-s1">s</span>)))
  <span class="pl-s1">currentRow</span> <span class="pl-c1">:=</span> <span class="pl-c1">0</span>
  <span class="pl-s1">goingDown</span> <span class="pl-c1">:=</span> <span class="pl-c1">false</span>
 
  <span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">char</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">s</span> {
-  <span class="pl-s1">rows</span>[<span class="pl-s1">currentRow</span>] <span class="pl-c1">+=</span> <span class="pl-en">string</span>(<span class="pl-s1">char</span>)
+  <span class="pl-s1">rows</span>[<span class="pl-s1">currentRow</span>] <span class="pl-c1">+=</span> <span class="pl-s1">string</span>(<span class="pl-s1">char</span>)
   <span class="pl-k">if</span> <span class="pl-s1">currentRow</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span> <span class="pl-c1">||</span> <span class="pl-s1">currentRow</span> <span class="pl-c1">==</span> <span class="pl-s1">numRows</span><span class="pl-c1">-</span><span class="pl-c1">1</span> {
    <span class="pl-s1">goingDown</span> <span class="pl-c1">=</span> <span class="pl-c1">!</span><span class="pl-s1">goingDown</span>
   }
@@ -138,28 +138,28 @@ P     I<br>
   }
  }
 
- <span class="pl-k">return</span> <span class="pl-s1">strings</span>.<span class="pl-en">Join</span>(<span class="pl-s1">rows</span>, <span class="pl-s">""</span>)
+ <span class="pl-k">return</span> <span class="pl-s1">strings</span>.<span class="pl-c1">Join</span>(<span class="pl-s1">rows</span>, <span class="pl-s">""</span>)
 }
 
-<span class="pl-k">func</span> <span class="pl-en">min</span>(<span class="pl-s1">a</span>, <span class="pl-s1">b</span> <span class="pl-smi">int</span>) <span class="pl-smi">int</span> {
+<span class="pl-k">func</span> <span class="pl-s1">min</span>(<span class="pl-s1">a</span>, <span class="pl-s1">b</span> <span class="pl-smi">int</span>) <span class="pl-smi">int</span> {
  <span class="pl-k">if</span> <span class="pl-s1">a</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">b</span> {
   <span class="pl-k">return</span> <span class="pl-s1">a</span>
  }
  <span class="pl-k">return</span> <span class="pl-s1">b</span>
 }
 
-<span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<span class="pl-k">func</span> <span class="pl-s1">main</span>() {
  <span class="pl-s1">s1</span> <span class="pl-c1">:=</span> <span class="pl-s">"PAYPALISHIRING"</span>
  <span class="pl-s1">numRows1</span> <span class="pl-c1">:=</span> <span class="pl-c1">3</span>
- <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-en">convert</span>(<span class="pl-s1">s1</span>, <span class="pl-s1">numRows1</span>)) <span class="pl-c">// 输出："PAHNAPLSIIGYIR"</span>
+ <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s1">convert</span>(<span class="pl-s1">s1</span>, <span class="pl-s1">numRows1</span>)) <span class="pl-c">// 输出："PAHNAPLSIIGYIR"</span>
 
  <span class="pl-s1">s2</span> <span class="pl-c1">:=</span> <span class="pl-s">"PAYPALISHIRING"</span>
  <span class="pl-s1">numRows2</span> <span class="pl-c1">:=</span> <span class="pl-c1">4</span>
- <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-en">convert</span>(<span class="pl-s1">s2</span>, <span class="pl-s1">numRows2</span>)) <span class="pl-c">// 输出："PINALSIGYAHRPI"</span>
+ <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s1">convert</span>(<span class="pl-s1">s2</span>, <span class="pl-s1">numRows2</span>)) <span class="pl-c">// 输出："PINALSIGYAHRPI"</span>
 
  <span class="pl-s1">s3</span> <span class="pl-c1">:=</span> <span class="pl-s">"A"</span>
  <span class="pl-s1">numRows3</span> <span class="pl-c1">:=</span> <span class="pl-c1">1</span>
- <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-en">convert</span>(<span class="pl-s1">s3</span>, <span class="pl-s1">numRows3</span>)) <span class="pl-c">// 输出："A"</span>
+ <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s1">convert</span>(<span class="pl-s1">s3</span>, <span class="pl-s1">numRows3</span>)) <span class="pl-c">// 输出："A"</span>
 }</pre></div>
 <h3>函数目的</h3>
 <p>函数 <code class="notranslate">convert</code> 的目的是将给定的字符串 <code class="notranslate">s</code> 按照 Z 字形排列，并按行读取以形成新的字符串。这个函数接收两个参数：一个字符串 <code class="notranslate">s</code> 和一个整数 <code class="notranslate">numRows</code> 表示行数。</p>

@@ -124,51 +124,51 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// 创建一个新的位图</span>
-<span class="pl-k">func</span> <span class="pl-en">NewBitMap</span>(<span class="pl-s1">size</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">BitMap</span> {
+<span class="pl-k">func</span> <span class="pl-s1">NewBitMap</span>(<span class="pl-s1">size</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">BitMap</span> {
 	<span class="pl-c">// 计算需要多少个 uint64 来存储所有位</span>
 	<span class="pl-s1">bitmap</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">BitMap</span>{
-		<span class="pl-s1">bits</span>: <span class="pl-en">make</span>([]<span class="pl-smi">uint64</span>, (<span class="pl-s1">size</span><span class="pl-c1">+</span><span class="pl-c1">63</span>)<span class="pl-c1">/</span><span class="pl-c1">64</span>), <span class="pl-c">// 向上取整，保证能存储全部位</span>
+		<span class="pl-s1">bits</span>: <span class="pl-s1">make</span>([]<span class="pl-smi">uint64</span>, (<span class="pl-s1">size</span><span class="pl-c1">+</span><span class="pl-c1">63</span>)<span class="pl-c1">/</span><span class="pl-c1">64</span>), <span class="pl-c">// 向上取整，保证能存储全部位</span>
 	}
 	<span class="pl-k">return</span> <span class="pl-s1">bitmap</span>
 }
 
 <span class="pl-c">// 设置位图中某个位置为1</span>
-<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-en">Set</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-c1">Set</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) {
 	<span class="pl-c">// 找到对应的 uint64 和位位置</span>
 	<span class="pl-s1">bm</span>.<span class="pl-c1">bits</span>[<span class="pl-s1">index</span><span class="pl-c1">/</span><span class="pl-c1">64</span>] <span class="pl-c1">|=</span> <span class="pl-c1">1</span> <span class="pl-c1">&lt;&lt;</span> (<span class="pl-s1">index</span> <span class="pl-c1">%</span> <span class="pl-c1">64</span>)
 }
 
 <span class="pl-c">// 检查位图中某个位置是否为1</span>
-<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-en">Get</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) <span class="pl-smi">bool</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-c1">Get</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) <span class="pl-smi">bool</span> {
 	<span class="pl-c">// 找到对应的 uint64 和位位置</span>
 	<span class="pl-k">return</span> <span class="pl-s1">bm</span>.<span class="pl-c1">bits</span>[<span class="pl-s1">index</span><span class="pl-c1">/</span><span class="pl-c1">64</span>]<span class="pl-c1">&amp;</span>(<span class="pl-c1">1</span><span class="pl-c1">&lt;&lt;</span>(<span class="pl-s1">index</span><span class="pl-c1">%</span><span class="pl-c1">64</span>)) <span class="pl-c1">!=</span> <span class="pl-c1">0</span>
 }
 
 <span class="pl-c">// 打印位图</span>
-<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-en">Print</span>() {
-	<span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">:=</span> <span class="pl-c1">0</span>; <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-en">len</span>(<span class="pl-s1">bm</span>.<span class="pl-c1">bits</span>); <span class="pl-s1">i</span><span class="pl-c1">++</span> {
-		<span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"%064b<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">bm</span>.<span class="pl-c1">bits</span>[<span class="pl-s1">i</span>]) <span class="pl-c">// 打印每个 uint64 的二进制表示</span>
+<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-c1">Print</span>() {
+	<span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">:=</span> <span class="pl-c1">0</span>; <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">len</span>(<span class="pl-s1">bm</span>.<span class="pl-c1">bits</span>); <span class="pl-s1">i</span><span class="pl-c1">++</span> {
+		<span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"%064b<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">bm</span>.<span class="pl-c1">bits</span>[<span class="pl-s1">i</span>]) <span class="pl-c">// 打印每个 uint64 的二进制表示</span>
 	}
 }
 
-<span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<span class="pl-k">func</span> <span class="pl-s1">main</span>() {
 	<span class="pl-c">// 创建一个大小为100的位图</span>
-	<span class="pl-s1">bm</span> <span class="pl-c1">:=</span> <span class="pl-en">NewBitMap</span>(<span class="pl-c1">100</span>)
+	<span class="pl-s1">bm</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewBitMap</span>(<span class="pl-c1">100</span>)
 
 	<span class="pl-c">// 设置一些值</span>
-	<span class="pl-s1">bm</span>.<span class="pl-en">Set</span>(<span class="pl-c1">3</span>)
-	<span class="pl-s1">bm</span>.<span class="pl-en">Set</span>(<span class="pl-c1">10</span>)
-	<span class="pl-s1">bm</span>.<span class="pl-en">Set</span>(<span class="pl-c1">65</span>)
+	<span class="pl-s1">bm</span>.<span class="pl-c1">Set</span>(<span class="pl-c1">3</span>)
+	<span class="pl-s1">bm</span>.<span class="pl-c1">Set</span>(<span class="pl-c1">10</span>)
+	<span class="pl-s1">bm</span>.<span class="pl-c1">Set</span>(<span class="pl-c1">65</span>)
 
 	<span class="pl-c">// 打印位图</span>
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"位图的二进制表示："</span>)
-	<span class="pl-s1">bm</span>.<span class="pl-en">Print</span>()
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"位图的二进制表示："</span>)
+	<span class="pl-s1">bm</span>.<span class="pl-c1">Print</span>()
 
 	<span class="pl-c">// 查询某些值</span>
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"索引 3 的位置是否被设置为1？"</span>, <span class="pl-s1">bm</span>.<span class="pl-en">Get</span>(<span class="pl-c1">3</span>)) <span class="pl-c">// true</span>
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"索引 10 的位置是否被设置为1？"</span>, <span class="pl-s1">bm</span>.<span class="pl-en">Get</span>(<span class="pl-c1">10</span>)) <span class="pl-c">// true</span>
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"索引 65 的位置是否被设置为1？"</span>, <span class="pl-s1">bm</span>.<span class="pl-en">Get</span>(<span class="pl-c1">65</span>)) <span class="pl-c">// true</span>
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"索引 5 的位置是否被设置为1？"</span>, <span class="pl-s1">bm</span>.<span class="pl-en">Get</span>(<span class="pl-c1">5</span>)) <span class="pl-c">// false</span>
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"索引 3 的位置是否被设置为1？"</span>, <span class="pl-s1">bm</span>.<span class="pl-c1">Get</span>(<span class="pl-c1">3</span>)) <span class="pl-c">// true</span>
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"索引 10 的位置是否被设置为1？"</span>, <span class="pl-s1">bm</span>.<span class="pl-c1">Get</span>(<span class="pl-c1">10</span>)) <span class="pl-c">// true</span>
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"索引 65 的位置是否被设置为1？"</span>, <span class="pl-s1">bm</span>.<span class="pl-c1">Get</span>(<span class="pl-c1">65</span>)) <span class="pl-c">// true</span>
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"索引 5 的位置是否被设置为1？"</span>, <span class="pl-s1">bm</span>.<span class="pl-c1">Get</span>(<span class="pl-c1">5</span>)) <span class="pl-c">// false</span>
 }</pre></div>
 <h3>代码解析</h3>
 <ol>
@@ -228,59 +228,59 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// 创建一个新的位图</span>
-<span class="pl-k">func</span> <span class="pl-en">NewBitMap</span>(<span class="pl-s1">size</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">BitMap</span> {
+<span class="pl-k">func</span> <span class="pl-s1">NewBitMap</span>(<span class="pl-s1">size</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">BitMap</span> {
 	<span class="pl-k">return</span> <span class="pl-c1">&amp;</span><span class="pl-smi">BitMap</span>{
-		<span class="pl-s1">bits</span>: <span class="pl-en">make</span>([]<span class="pl-smi">uint64</span>, (<span class="pl-s1">size</span><span class="pl-c1">+</span><span class="pl-c1">63</span>)<span class="pl-c1">/</span><span class="pl-c1">64</span>), <span class="pl-c">// 64位为一个单位，向上取整</span>
+		<span class="pl-s1">bits</span>: <span class="pl-s1">make</span>([]<span class="pl-smi">uint64</span>, (<span class="pl-s1">size</span><span class="pl-c1">+</span><span class="pl-c1">63</span>)<span class="pl-c1">/</span><span class="pl-c1">64</span>), <span class="pl-c">// 64位为一个单位，向上取整</span>
 	}
 }
 
 <span class="pl-c">// 设置位图中某个位置为1</span>
-<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-en">Set</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-c1">Set</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) {
 	<span class="pl-s1">bm</span>.<span class="pl-c1">bits</span>[<span class="pl-s1">index</span><span class="pl-c1">/</span><span class="pl-c1">64</span>] <span class="pl-c1">|=</span> <span class="pl-c1">1</span> <span class="pl-c1">&lt;&lt;</span> (<span class="pl-s1">index</span> <span class="pl-c1">%</span> <span class="pl-c1">64</span>)
 }
 
 <span class="pl-c">// 检查位图中某个位置是否为1</span>
-<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-en">Get</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) <span class="pl-smi">bool</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">bm</span> <span class="pl-c1">*</span><span class="pl-smi">BitMap</span>) <span class="pl-c1">Get</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) <span class="pl-smi">bool</span> {
 	<span class="pl-k">return</span> <span class="pl-s1">bm</span>.<span class="pl-c1">bits</span>[<span class="pl-s1">index</span><span class="pl-c1">/</span><span class="pl-c1">64</span>]<span class="pl-c1">&amp;</span>(<span class="pl-c1">1</span><span class="pl-c1">&lt;&lt;</span>(<span class="pl-s1">index</span><span class="pl-c1">%</span><span class="pl-c1">64</span>)) <span class="pl-c1">!=</span> <span class="pl-c1">0</span>
 }
 
 <span class="pl-c">// 生成模拟数据并使用位图查找重复项</span>
-<span class="pl-k">func</span> <span class="pl-en">findDuplicates</span>(<span class="pl-s1">data</span> []<span class="pl-smi">int</span>, <span class="pl-s1">bitMapSize</span> <span class="pl-smi">int</span>) []<span class="pl-smi">int</span> {
-	<span class="pl-s1">bm</span> <span class="pl-c1">:=</span> <span class="pl-en">NewBitMap</span>(<span class="pl-s1">bitMapSize</span>) <span class="pl-c">// 创建位图</span>
+<span class="pl-k">func</span> <span class="pl-s1">findDuplicates</span>(<span class="pl-s1">data</span> []<span class="pl-smi">int</span>, <span class="pl-s1">bitMapSize</span> <span class="pl-smi">int</span>) []<span class="pl-smi">int</span> {
+	<span class="pl-s1">bm</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewBitMap</span>(<span class="pl-s1">bitMapSize</span>) <span class="pl-c">// 创建位图</span>
 	<span class="pl-s1">duplicates</span> <span class="pl-c1">:=</span> []<span class="pl-smi">int</span>{}
 
 	<span class="pl-c">// 遍历数据，查找重复项</span>
 	<span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">num</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">data</span> {
-		<span class="pl-k">if</span> <span class="pl-s1">bm</span>.<span class="pl-en">Get</span>(<span class="pl-s1">num</span>) { <span class="pl-c">// 如果数据已经出现过</span>
-			<span class="pl-s1">duplicates</span> <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">duplicates</span>, <span class="pl-s1">num</span>)
+		<span class="pl-k">if</span> <span class="pl-s1">bm</span>.<span class="pl-c1">Get</span>(<span class="pl-s1">num</span>) { <span class="pl-c">// 如果数据已经出现过</span>
+			<span class="pl-s1">duplicates</span> <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">duplicates</span>, <span class="pl-s1">num</span>)
 		} <span class="pl-k">else</span> {
-			<span class="pl-s1">bm</span>.<span class="pl-en">Set</span>(<span class="pl-s1">num</span>) <span class="pl-c">// 否则，标记为已出现</span>
+			<span class="pl-s1">bm</span>.<span class="pl-c1">Set</span>(<span class="pl-s1">num</span>) <span class="pl-c">// 否则，标记为已出现</span>
 		}
 	}
 
 	<span class="pl-k">return</span> <span class="pl-s1">duplicates</span>
 }
 
-<span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<span class="pl-k">func</span> <span class="pl-s1">main</span>() {
 	<span class="pl-c">// 模拟数据：我们生成1亿个数字，部分数据会重复</span>
 	<span class="pl-s1">numElements</span> <span class="pl-c1">:=</span> <span class="pl-c1">100000000</span> <span class="pl-c">// 1亿个数据</span>
 	<span class="pl-s1">rangeLimit</span> <span class="pl-c1">:=</span> <span class="pl-c1">1000000</span>    <span class="pl-c">// 数据范围限制（例如1~100万）</span>
 
-	<span class="pl-s1">rand</span>.<span class="pl-en">Seed</span>(<span class="pl-s1">time</span>.<span class="pl-en">Now</span>().<span class="pl-en">UnixNano</span>())
-	<span class="pl-s1">data</span> <span class="pl-c1">:=</span> <span class="pl-en">make</span>([]<span class="pl-smi">int</span>, <span class="pl-s1">numElements</span>)
+	<span class="pl-s1">rand</span>.<span class="pl-c1">Seed</span>(<span class="pl-s1">time</span>.<span class="pl-c1">Now</span>().<span class="pl-c1">UnixNano</span>())
+	<span class="pl-s1">data</span> <span class="pl-c1">:=</span> <span class="pl-s1">make</span>([]<span class="pl-smi">int</span>, <span class="pl-s1">numElements</span>)
 
 	<span class="pl-c">// 生成模拟数据（可能重复）</span>
 	<span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">:=</span> <span class="pl-c1">0</span>; <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">numElements</span>; <span class="pl-s1">i</span><span class="pl-c1">++</span> {
-		<span class="pl-s1">data</span>[<span class="pl-s1">i</span>] <span class="pl-c1">=</span> <span class="pl-s1">rand</span>.<span class="pl-en">Intn</span>(<span class="pl-s1">rangeLimit</span>) <span class="pl-c">// 生成范围在0~100万之间的随机数</span>
+		<span class="pl-s1">data</span>[<span class="pl-s1">i</span>] <span class="pl-c1">=</span> <span class="pl-s1">rand</span>.<span class="pl-c1">Intn</span>(<span class="pl-s1">rangeLimit</span>) <span class="pl-c">// 生成范围在0~100万之间的随机数</span>
 	}
 
 	<span class="pl-c">// 查找重复项</span>
-	<span class="pl-s1">duplicates</span> <span class="pl-c1">:=</span> <span class="pl-en">findDuplicates</span>(<span class="pl-s1">data</span>, <span class="pl-s1">rangeLimit</span>)
+	<span class="pl-s1">duplicates</span> <span class="pl-c1">:=</span> <span class="pl-s1">findDuplicates</span>(<span class="pl-s1">data</span>, <span class="pl-s1">rangeLimit</span>)
 
 	<span class="pl-c">// 输出重复项的数量</span>
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"找到 %d 个重复项<span class="pl-cce">\n</span>"</span>, <span class="pl-en">len</span>(<span class="pl-s1">duplicates</span>))
-	<span class="pl-k">if</span> <span class="pl-en">len</span>(<span class="pl-s1">duplicates</span>) <span class="pl-c1">&gt;</span> <span class="pl-c1">0</span> {
-		<span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"一些重复项："</span>, <span class="pl-s1">duplicates</span>[:<span class="pl-c1">10</span>]) <span class="pl-c">// 打印前10个重复项</span>
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"找到 %d 个重复项<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">len</span>(<span class="pl-s1">duplicates</span>))
+	<span class="pl-k">if</span> <span class="pl-s1">len</span>(<span class="pl-s1">duplicates</span>) <span class="pl-c1">&gt;</span> <span class="pl-c1">0</span> {
+		<span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"一些重复项："</span>, <span class="pl-s1">duplicates</span>[:<span class="pl-c1">10</span>]) <span class="pl-c">// 打印前10个重复项</span>
 	}
 }</pre></div>
 <h4>5. 代码解析</h4>

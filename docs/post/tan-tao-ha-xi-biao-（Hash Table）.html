@@ -118,8 +118,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>乘法散列法</li>
 </ol>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">hash_mul</span>(<span class="pl-s1">key</span>, <span class="pl-s1">table_size</span>):
-    <span class="pl-v">A</span> <span class="pl-c1">=</span> <span class="pl-c1">0.6180339887</span> <span class="pl-c"># 黄金分割比</span>
-    <span class="pl-k">return</span> <span class="pl-en">int</span>(<span class="pl-s1">table_size</span> <span class="pl-c1">*</span> ((<span class="pl-s1">key</span> <span class="pl-c1">*</span> <span class="pl-v">A</span>) <span class="pl-c1">%</span> <span class="pl-c1">1</span>))</pre></div>
+    <span class="pl-c1">A</span> <span class="pl-c1">=</span> <span class="pl-c1">0.6180339887</span> <span class="pl-c"># 黄金分割比</span>
+    <span class="pl-k">return</span> <span class="pl-en">int</span>(<span class="pl-s1">table_size</span> <span class="pl-c1">*</span> ((<span class="pl-s1">key</span> <span class="pl-c1">*</span> <span class="pl-c1">A</span>) <span class="pl-c1">%</span> <span class="pl-c1">1</span>))</pre></div>
 <ol start="3">
 <li>通用字符串哈希</li>
 </ol>
@@ -157,36 +157,36 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>3.2 链地址法（拉链法）</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">Node</span>:
     <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">key</span>, <span class="pl-s1">value</span>):
-        <span class="pl-s1">self</span>.<span class="pl-s1">key</span> <span class="pl-c1">=</span> <span class="pl-s1">key</span>
-        <span class="pl-s1">self</span>.<span class="pl-s1">value</span> <span class="pl-c1">=</span> <span class="pl-s1">value</span>
-        <span class="pl-s1">self</span>.<span class="pl-s1">next</span> <span class="pl-c1">=</span> <span class="pl-c1">None</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">key</span> <span class="pl-c1">=</span> <span class="pl-s1">key</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">value</span> <span class="pl-c1">=</span> <span class="pl-s1">value</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">next</span> <span class="pl-c1">=</span> <span class="pl-c1">None</span>
 
 <span class="pl-k">class</span> <span class="pl-v">HashTable</span>:
     <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">size</span><span class="pl-c1">=</span><span class="pl-c1">997</span>):
-        <span class="pl-s1">self</span>.<span class="pl-s1">size</span> <span class="pl-c1">=</span> <span class="pl-s1">size</span>
-        <span class="pl-s1">self</span>.<span class="pl-s1">table</span> <span class="pl-c1">=</span> [<span class="pl-c1">None</span>] <span class="pl-c1">*</span> <span class="pl-s1">size</span>
-        <span class="pl-s1">self</span>.<span class="pl-s1">count</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">size</span> <span class="pl-c1">=</span> <span class="pl-s1">size</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">table</span> <span class="pl-c1">=</span> [<span class="pl-c1">None</span>] <span class="pl-c1">*</span> <span class="pl-s1">size</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">count</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>
     
     <span class="pl-k">def</span> <span class="pl-en">_hash</span>(<span class="pl-s1">self</span>, <span class="pl-s1">key</span>):
         <span class="pl-k">if</span> <span class="pl-en">isinstance</span>(<span class="pl-s1">key</span>, <span class="pl-s1">str</span>):
-            <span class="pl-k">return</span> <span class="pl-en">hash_string</span>(<span class="pl-s1">key</span>, <span class="pl-s1">self</span>.<span class="pl-s1">size</span>)
-        <span class="pl-k">return</span> <span class="pl-en">hash_div</span>(<span class="pl-s1">key</span>, <span class="pl-s1">self</span>.<span class="pl-s1">size</span>)
+            <span class="pl-k">return</span> <span class="pl-en">hash_string</span>(<span class="pl-s1">key</span>, <span class="pl-s1">self</span>.<span class="pl-c1">size</span>)
+        <span class="pl-k">return</span> <span class="pl-en">hash_div</span>(<span class="pl-s1">key</span>, <span class="pl-s1">self</span>.<span class="pl-c1">size</span>)
     
     <span class="pl-k">def</span> <span class="pl-en">put</span>(<span class="pl-s1">self</span>, <span class="pl-s1">key</span>, <span class="pl-s1">value</span>):
-        <span class="pl-s1">index</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-en">_hash</span>(<span class="pl-s1">key</span>)
-        <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">table</span>[<span class="pl-s1">index</span>] <span class="pl-c1">is</span> <span class="pl-c1">None</span>:
-            <span class="pl-s1">self</span>.<span class="pl-s1">table</span>[<span class="pl-s1">index</span>] <span class="pl-c1">=</span> <span class="pl-v">Node</span>(<span class="pl-s1">key</span>, <span class="pl-s1">value</span>)
+        <span class="pl-s1">index</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-c1">_hash</span>(<span class="pl-s1">key</span>)
+        <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-c1">table</span>[<span class="pl-s1">index</span>] <span class="pl-c1">is</span> <span class="pl-c1">None</span>:
+            <span class="pl-s1">self</span>.<span class="pl-c1">table</span>[<span class="pl-s1">index</span>] <span class="pl-c1">=</span> <span class="pl-en">Node</span>(<span class="pl-s1">key</span>, <span class="pl-s1">value</span>)
         <span class="pl-k">else</span>:
-            <span class="pl-s1">current</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">table</span>[<span class="pl-s1">index</span>]
+            <span class="pl-s1">current</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-c1">table</span>[<span class="pl-s1">index</span>]
             <span class="pl-k">while</span> <span class="pl-s1">current</span>:
-                <span class="pl-k">if</span> <span class="pl-s1">current</span>.<span class="pl-s1">key</span> <span class="pl-c1">==</span> <span class="pl-s1">key</span>:
-                    <span class="pl-s1">current</span>.<span class="pl-s1">value</span> <span class="pl-c1">=</span> <span class="pl-s1">value</span>
+                <span class="pl-k">if</span> <span class="pl-s1">current</span>.<span class="pl-c1">key</span> <span class="pl-c1">==</span> <span class="pl-s1">key</span>:
+                    <span class="pl-s1">current</span>.<span class="pl-c1">value</span> <span class="pl-c1">=</span> <span class="pl-s1">value</span>
                     <span class="pl-k">return</span>
-                <span class="pl-k">if</span> <span class="pl-s1">current</span>.<span class="pl-s1">next</span> <span class="pl-c1">is</span> <span class="pl-c1">None</span>:
+                <span class="pl-k">if</span> <span class="pl-s1">current</span>.<span class="pl-c1">next</span> <span class="pl-c1">is</span> <span class="pl-c1">None</span>:
                     <span class="pl-k">break</span>
-                <span class="pl-s1">current</span> <span class="pl-c1">=</span> <span class="pl-s1">current</span>.<span class="pl-s1">next</span>
-            <span class="pl-s1">current</span>.<span class="pl-s1">next</span> <span class="pl-c1">=</span> <span class="pl-v">Node</span>(<span class="pl-s1">key</span>, <span class="pl-s1">value</span>)
-        <span class="pl-s1">self</span>.<span class="pl-s1">count</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span></pre></div>
+                <span class="pl-s1">current</span> <span class="pl-c1">=</span> <span class="pl-s1">current</span>.<span class="pl-c1">next</span>
+            <span class="pl-s1">current</span>.<span class="pl-c1">next</span> <span class="pl-c1">=</span> <span class="pl-en">Node</span>(<span class="pl-s1">key</span>, <span class="pl-s1">value</span>)
+        <span class="pl-s1">self</span>.<span class="pl-c1">count</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span></pre></div>
 <h2>4. 动态扩容</h2>
 <h3>4.1 负载因子</h3>
 <p>负载因子 = 元素个数 / 表大小</p>
@@ -195,19 +195,19 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>扩容一般将表大小扩大为原来的 2 倍</li>
 </ul>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">resize</span>(<span class="pl-s1">self</span>):
-    <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">count</span> <span class="pl-c1">/</span> <span class="pl-s1">self</span>.<span class="pl-s1">size</span> <span class="pl-c1">&lt;</span> <span class="pl-c1">0.75</span>:
+    <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-c1">count</span> <span class="pl-c1">/</span> <span class="pl-s1">self</span>.<span class="pl-c1">size</span> <span class="pl-c1">&lt;</span> <span class="pl-c1">0.75</span>:
         <span class="pl-k">return</span>
     
-    <span class="pl-s1">old_table</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-s1">table</span>
-    <span class="pl-s1">self</span>.<span class="pl-s1">size</span> <span class="pl-c1">*=</span> <span class="pl-c1">2</span>
-    <span class="pl-s1">self</span>.<span class="pl-s1">table</span> <span class="pl-c1">=</span> [<span class="pl-c1">None</span>] <span class="pl-c1">*</span> <span class="pl-s1">self</span>.<span class="pl-s1">size</span>
-    <span class="pl-s1">self</span>.<span class="pl-s1">count</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>
+    <span class="pl-s1">old_table</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-c1">table</span>
+    <span class="pl-s1">self</span>.<span class="pl-c1">size</span> <span class="pl-c1">*=</span> <span class="pl-c1">2</span>
+    <span class="pl-s1">self</span>.<span class="pl-c1">table</span> <span class="pl-c1">=</span> [<span class="pl-c1">None</span>] <span class="pl-c1">*</span> <span class="pl-s1">self</span>.<span class="pl-c1">size</span>
+    <span class="pl-s1">self</span>.<span class="pl-c1">count</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>
     
     <span class="pl-k">for</span> <span class="pl-s1">node</span> <span class="pl-c1">in</span> <span class="pl-s1">old_table</span>:
         <span class="pl-s1">current</span> <span class="pl-c1">=</span> <span class="pl-s1">node</span>
         <span class="pl-k">while</span> <span class="pl-s1">current</span>:
-            <span class="pl-s1">self</span>.<span class="pl-en">put</span>(<span class="pl-s1">current</span>.<span class="pl-s1">key</span>, <span class="pl-s1">current</span>.<span class="pl-s1">value</span>)
-            <span class="pl-s1">current</span> <span class="pl-c1">=</span> <span class="pl-s1">current</span>.<span class="pl-s1">next</span></pre></div>
+            <span class="pl-s1">self</span>.<span class="pl-c1">put</span>(<span class="pl-s1">current</span>.<span class="pl-c1">key</span>, <span class="pl-s1">current</span>.<span class="pl-c1">value</span>)
+            <span class="pl-s1">current</span> <span class="pl-c1">=</span> <span class="pl-s1">current</span>.<span class="pl-c1">next</span></pre></div>
 <h2>5. 实际应用</h2>
 <h3>5.1 常见应用场景</h3>
 <ol>

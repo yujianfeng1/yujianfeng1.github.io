@@ -496,9 +496,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c"># 试试这样抽象</span>
 <span class="pl-k">class</span> <span class="pl-s1">游戏物体</span>:
     <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">位置</span>, <span class="pl-s1">速度</span>, <span class="pl-s1">外观</span>):
-        <span class="pl-s1">self</span>.<span class="pl-s1">位置</span> <span class="pl-c1">=</span> <span class="pl-s1">位置</span>
-        <span class="pl-s1">self</span>.<span class="pl-s1">速度</span> <span class="pl-c1">=</span> <span class="pl-s1">速度</span>
-        <span class="pl-s1">self</span>.<span class="pl-s1">外观</span> <span class="pl-c1">=</span> <span class="pl-s1">外观</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">位置</span> <span class="pl-c1">=</span> <span class="pl-s1">位置</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">速度</span> <span class="pl-c1">=</span> <span class="pl-s1">速度</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">外观</span> <span class="pl-c1">=</span> <span class="pl-s1">外观</span>
 
 <span class="pl-c"># 现在弹球只是游戏物体的一种！</span>
 <span class="pl-s1">弹球</span> <span class="pl-c1">=</span> <span class="pl-en">游戏物体</span>(<span class="pl-s1">位置</span><span class="pl-c1">=</span>(<span class="pl-c1">100</span>,<span class="pl-c1">200</span>), <span class="pl-s1">速度</span><span class="pl-c1">=</span>(<span class="pl-c1">5</span>,<span class="pl-c1">3</span>), <span class="pl-s1">外观</span><span class="pl-c1">=</span>{<span class="pl-s">"颜色"</span>:<span class="pl-s">"红色"</span>, <span class="pl-s">"大小"</span>:<span class="pl-c1">10</span>})</pre></div>
@@ -514,8 +514,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-c"># 而是抽象出共同的行为</span>
 <span class="pl-k">def</span> <span class="pl-en">移动</span>(<span class="pl-s1">物体</span>):
-    <span class="pl-s1">物体</span>.<span class="pl-s1">位置</span>.<span class="pl-s1">x</span> <span class="pl-c1">+=</span> <span class="pl-s1">物体</span>.<span class="pl-s1">速度</span>.<span class="pl-s1">x</span>
-    <span class="pl-s1">物体</span>.<span class="pl-s1">位置</span>.<span class="pl-s1">y</span> <span class="pl-c1">+=</span> <span class="pl-s1">物体</span>.<span class="pl-s1">速度</span>.<span class="pl-s1">y</span></pre></div>
+    <span class="pl-s1">物体</span>.<span class="pl-c1">位置</span>.<span class="pl-c1">x</span> <span class="pl-c1">+=</span> <span class="pl-s1">物体</span>.<span class="pl-c1">速度</span>.<span class="pl-c1">x</span>
+    <span class="pl-s1">物体</span>.<span class="pl-c1">位置</span>.<span class="pl-c1">y</span> <span class="pl-c1">+=</span> <span class="pl-s1">物体</span>.<span class="pl-c1">速度</span>.<span class="pl-c1">y</span></pre></div>
 </li>
 </ol>
 <h3>🎯 生活中的"函数"</h3>

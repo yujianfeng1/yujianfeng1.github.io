@@ -124,7 +124,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-c1">state</span> <span class="pl-smi">int</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">m</span> <span class="pl-c1">*</span><span class="pl-smi">Memento</span>) <span class="pl-en">GetSavedState</span>() <span class="pl-smi">int</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">m</span> <span class="pl-c1">*</span><span class="pl-smi">Memento</span>) <span class="pl-c1">GetSavedState</span>() <span class="pl-smi">int</span> {
 	<span class="pl-k">return</span> <span class="pl-s1">m</span>.<span class="pl-c1">state</span>
 }</pre></div>
 <p>接着，我们定义发起人结构体 <code class="notranslate">Originator</code>，它将使用 <code class="notranslate">Memento</code> 来保存和恢复状态：</p>
@@ -133,19 +133,19 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-c1">state</span> <span class="pl-smi">int</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">o</span> <span class="pl-c1">*</span><span class="pl-smi">Originator</span>) <span class="pl-en">SetState</span>(<span class="pl-s1">state</span> <span class="pl-smi">int</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">o</span> <span class="pl-c1">*</span><span class="pl-smi">Originator</span>) <span class="pl-c1">SetState</span>(<span class="pl-s1">state</span> <span class="pl-smi">int</span>) {
 	<span class="pl-s1">o</span>.<span class="pl-c1">state</span> <span class="pl-c1">=</span> <span class="pl-s1">state</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">o</span> <span class="pl-c1">*</span><span class="pl-smi">Originator</span>) <span class="pl-en">SaveStateToMemento</span>() <span class="pl-c1">*</span><span class="pl-smi">Memento</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">o</span> <span class="pl-c1">*</span><span class="pl-smi">Originator</span>) <span class="pl-c1">SaveStateToMemento</span>() <span class="pl-c1">*</span><span class="pl-smi">Memento</span> {
 	<span class="pl-k">return</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Memento</span>{<span class="pl-s1">state</span>: <span class="pl-s1">o</span>.<span class="pl-c1">state</span>}
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">o</span> <span class="pl-c1">*</span><span class="pl-smi">Originator</span>) <span class="pl-en">GetStateFromMemento</span>(<span class="pl-s1">memento</span> <span class="pl-c1">*</span><span class="pl-smi">Memento</span>) {
-	<span class="pl-s1">o</span>.<span class="pl-c1">state</span> <span class="pl-c1">=</span> <span class="pl-s1">memento</span>.<span class="pl-en">GetSavedState</span>()
+<span class="pl-k">func</span> (<span class="pl-s1">o</span> <span class="pl-c1">*</span><span class="pl-smi">Originator</span>) <span class="pl-c1">GetStateFromMemento</span>(<span class="pl-s1">memento</span> <span class="pl-c1">*</span><span class="pl-smi">Memento</span>) {
+	<span class="pl-s1">o</span>.<span class="pl-c1">state</span> <span class="pl-c1">=</span> <span class="pl-s1">memento</span>.<span class="pl-c1">GetSavedState</span>()
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">o</span> <span class="pl-c1">*</span><span class="pl-smi">Originator</span>) <span class="pl-en">GetState</span>() <span class="pl-smi">int</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">o</span> <span class="pl-c1">*</span><span class="pl-smi">Originator</span>) <span class="pl-c1">GetState</span>() <span class="pl-smi">int</span> {
 	<span class="pl-k">return</span> <span class="pl-s1">o</span>.<span class="pl-c1">state</span>
 }</pre></div>
 <p>然后，定义管理者 <code class="notranslate">Caretaker</code>，它负责保存和获取备忘录对象：</p>
@@ -154,34 +154,34 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-c1">mementoList</span> []<span class="pl-c1">*</span><span class="pl-smi">Memento</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">Caretaker</span>) <span class="pl-en">Add</span>(<span class="pl-s1">memento</span> <span class="pl-c1">*</span><span class="pl-smi">Memento</span>) {
-	<span class="pl-s1">c</span>.<span class="pl-c1">mementoList</span> <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">c</span>.<span class="pl-c1">mementoList</span>, <span class="pl-s1">memento</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">Caretaker</span>) <span class="pl-c1">Add</span>(<span class="pl-s1">memento</span> <span class="pl-c1">*</span><span class="pl-smi">Memento</span>) {
+	<span class="pl-s1">c</span>.<span class="pl-c1">mementoList</span> <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">c</span>.<span class="pl-c1">mementoList</span>, <span class="pl-s1">memento</span>)
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">Caretaker</span>) <span class="pl-en">Get</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">Memento</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">Caretaker</span>) <span class="pl-c1">Get</span>(<span class="pl-s1">index</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">Memento</span> {
 	<span class="pl-k">return</span> <span class="pl-s1">c</span>.<span class="pl-c1">mementoList</span>[<span class="pl-s1">index</span>]
 }</pre></div>
 <p>最后，我们可以在 <code class="notranslate">main</code> 函数中使用这些结构体来模拟保存和恢复状态的操作：</p>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-s1">main</span>() {
 	<span class="pl-s1">originator</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Originator</span>{}
 	<span class="pl-s1">caretaker</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Caretaker</span>{}
 
-	<span class="pl-s1">originator</span>.<span class="pl-en">SetState</span>(<span class="pl-c1">100</span>)
-	<span class="pl-s1">caretaker</span>.<span class="pl-en">Add</span>(<span class="pl-s1">originator</span>.<span class="pl-en">SaveStateToMemento</span>())
+	<span class="pl-s1">originator</span>.<span class="pl-c1">SetState</span>(<span class="pl-c1">100</span>)
+	<span class="pl-s1">caretaker</span>.<span class="pl-c1">Add</span>(<span class="pl-s1">originator</span>.<span class="pl-c1">SaveStateToMemento</span>())
 
-	<span class="pl-s1">originator</span>.<span class="pl-en">SetState</span>(<span class="pl-c1">200</span>)
-	<span class="pl-s1">caretaker</span>.<span class="pl-en">Add</span>(<span class="pl-s1">originator</span>.<span class="pl-en">SaveStateToMemento</span>())
+	<span class="pl-s1">originator</span>.<span class="pl-c1">SetState</span>(<span class="pl-c1">200</span>)
+	<span class="pl-s1">caretaker</span>.<span class="pl-c1">Add</span>(<span class="pl-s1">originator</span>.<span class="pl-c1">SaveStateToMemento</span>())
 
-	<span class="pl-s1">originator</span>.<span class="pl-en">SetState</span>(<span class="pl-c1">300</span>)
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"Current State: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">originator</span>.<span class="pl-en">GetState</span>())
+	<span class="pl-s1">originator</span>.<span class="pl-c1">SetState</span>(<span class="pl-c1">300</span>)
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"Current State: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">originator</span>.<span class="pl-c1">GetState</span>())
 
 	<span class="pl-c">// Restoring to the first saved state</span>
-	<span class="pl-s1">originator</span>.<span class="pl-en">GetStateFromMemento</span>(<span class="pl-s1">caretaker</span>.<span class="pl-en">Get</span>(<span class="pl-c1">0</span>))
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"First saved State: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">originator</span>.<span class="pl-en">GetState</span>())
+	<span class="pl-s1">originator</span>.<span class="pl-c1">GetStateFromMemento</span>(<span class="pl-s1">caretaker</span>.<span class="pl-c1">Get</span>(<span class="pl-c1">0</span>))
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"First saved State: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">originator</span>.<span class="pl-c1">GetState</span>())
 
 	<span class="pl-c">// Restoring to the second saved state</span>
-	<span class="pl-s1">originator</span>.<span class="pl-en">GetStateFromMemento</span>(<span class="pl-s1">caretaker</span>.<span class="pl-en">Get</span>(<span class="pl-c1">1</span>))
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"Second saved State: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">originator</span>.<span class="pl-en">GetState</span>())
+	<span class="pl-s1">originator</span>.<span class="pl-c1">GetStateFromMemento</span>(<span class="pl-s1">caretaker</span>.<span class="pl-c1">Get</span>(<span class="pl-c1">1</span>))
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"Second saved State: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">originator</span>.<span class="pl-c1">GetState</span>())
 }</pre></div>
 <p>在这个例子中，<code class="notranslate">Originator</code> 类用于表示一个简单的状态（这里是一个整数）。我们可以设置这个状态，保存到备忘录，或者从备忘录中恢复。<code class="notranslate">Caretaker</code> 管理这些备忘录，允许我们保存多个状态并在需要时恢复它们。在 <code class="notranslate">main</code> 函数中，我们演示了如何保存状态并在之后恢复到这些状态。</p>
 <h3>总结</h3>

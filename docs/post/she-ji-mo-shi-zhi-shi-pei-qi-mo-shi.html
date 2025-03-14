@@ -134,7 +134,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">type</span> <span class="pl-smi">Adaptee</span> <span class="pl-k">struct</span>{}
 
 <span class="pl-c">// SpecificRequest 是Adaptee的一个方法，它与Target接口不兼容</span>
-<span class="pl-k">func</span> (<span class="pl-s1">a</span> <span class="pl-c1">*</span><span class="pl-smi">Adaptee</span>) <span class="pl-en">SpecificRequest</span>() <span class="pl-smi">string</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">a</span> <span class="pl-c1">*</span><span class="pl-smi">Adaptee</span>) <span class="pl-c1">SpecificRequest</span>() <span class="pl-smi">string</span> {
 	<span class="pl-k">return</span> <span class="pl-s">"Specific request."</span>
 }</pre></div>
 <h4>实现适配器</h4>
@@ -145,21 +145,21 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// NewAdapter 是Adapter的构造函数</span>
-<span class="pl-k">func</span> <span class="pl-en">NewAdapter</span>(<span class="pl-s1">adaptee</span> <span class="pl-c1">*</span><span class="pl-smi">Adaptee</span>) <span class="pl-c1">*</span><span class="pl-smi">Adapter</span> {
+<span class="pl-k">func</span> <span class="pl-s1">NewAdapter</span>(<span class="pl-s1">adaptee</span> <span class="pl-c1">*</span><span class="pl-smi">Adaptee</span>) <span class="pl-c1">*</span><span class="pl-smi">Adapter</span> {
 	<span class="pl-k">return</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Adapter</span>{<span class="pl-s1">adaptee</span>: <span class="pl-s1">adaptee</span>}
 }
 
 <span class="pl-c">// Request 实现了Target接口</span>
-<span class="pl-k">func</span> (<span class="pl-s1">a</span> <span class="pl-c1">*</span><span class="pl-smi">Adapter</span>) <span class="pl-en">Request</span>() <span class="pl-smi">string</span> {
-	<span class="pl-k">return</span> <span class="pl-s1">a</span>.<span class="pl-c1">adaptee</span>.<span class="pl-en">SpecificRequest</span>()
+<span class="pl-k">func</span> (<span class="pl-s1">a</span> <span class="pl-c1">*</span><span class="pl-smi">Adapter</span>) <span class="pl-c1">Request</span>() <span class="pl-smi">string</span> {
+	<span class="pl-k">return</span> <span class="pl-s1">a</span>.<span class="pl-c1">adaptee</span>.<span class="pl-c1">SpecificRequest</span>()
 }</pre></div>
 <h4>客户端代码</h4>
 <p>最后，我们编写客户端代码，使用<code class="notranslate">Adapter</code>来调用<code class="notranslate">Target</code>接口的方法，从而通过适配器使用<code class="notranslate">Adaptee</code>的功能。</p>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-s1">main</span>() {
 	<span class="pl-s1">adaptee</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Adaptee</span>{}
-	<span class="pl-s1">adapter</span> <span class="pl-c1">:=</span> <span class="pl-en">NewAdapter</span>(<span class="pl-s1">adaptee</span>)
-	<span class="pl-s1">result</span> <span class="pl-c1">:=</span> <span class="pl-s1">adapter</span>.<span class="pl-en">Request</span>()
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s1">result</span>)  <span class="pl-c">// 输出: Specific request.</span>
+	<span class="pl-s1">adapter</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewAdapter</span>(<span class="pl-s1">adaptee</span>)
+	<span class="pl-s1">result</span> <span class="pl-c1">:=</span> <span class="pl-s1">adapter</span>.<span class="pl-c1">Request</span>()
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s1">result</span>)  <span class="pl-c">// 输出: Specific request.</span>
 }</pre></div>
 <p>这个例子展示了如何在Go中使用对象适配器模式，通过一个适配器来解决接口不兼容的问题，使得原本不兼容的接口能够在客户端代码中被透明地使用。</p>
 <h3>总结</h3>

@@ -132,12 +132,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c">// Receiver 接口，声明电视可以执行的操作</span>
 <span class="pl-k">type</span> <span class="pl-smi">Television</span> <span class="pl-k">struct</span>{}
 
-<span class="pl-k">func</span> (<span class="pl-s1">tv</span> <span class="pl-c1">*</span><span class="pl-smi">Television</span>) <span class="pl-en">On</span>() {
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Television is on"</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">tv</span> <span class="pl-c1">*</span><span class="pl-smi">Television</span>) <span class="pl-c1">On</span>() {
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Television is on"</span>)
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">tv</span> <span class="pl-c1">*</span><span class="pl-smi">Television</span>) <span class="pl-en">Off</span>() {
-	<span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Television is off"</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">tv</span> <span class="pl-c1">*</span><span class="pl-smi">Television</span>) <span class="pl-c1">Off</span>() {
+	<span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Television is off"</span>)
 }</pre></div>
 <p>接下来，创建具体命令类（ConcreteCommand）：</p>
 <div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-c">// TurnOnCommand 是一个打开电视的命令</span>
@@ -145,8 +145,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-c1">television</span> <span class="pl-c1">*</span><span class="pl-smi">Television</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">TurnOnCommand</span>) <span class="pl-en">Execute</span>() {
-	<span class="pl-s1">c</span>.<span class="pl-c1">television</span>.<span class="pl-en">On</span>()
+<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">TurnOnCommand</span>) <span class="pl-c1">Execute</span>() {
+	<span class="pl-s1">c</span>.<span class="pl-c1">television</span>.<span class="pl-c1">On</span>()
 }
 
 <span class="pl-c">// TurnOffCommand 是一个关闭电视的命令</span>
@@ -154,8 +154,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-c1">television</span> <span class="pl-c1">*</span><span class="pl-smi">Television</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">TurnOffCommand</span>) <span class="pl-en">Execute</span>() {
-	<span class="pl-s1">c</span>.<span class="pl-c1">television</span>.<span class="pl-en">Off</span>()
+<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">TurnOffCommand</span>) <span class="pl-c1">Execute</span>() {
+	<span class="pl-s1">c</span>.<span class="pl-c1">television</span>.<span class="pl-c1">Off</span>()
 }</pre></div>
 <p>然后，创建调用者（Invoker），即遥控器：</p>
 <div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-c">// RemoteControl 是遥控器，可以设置命令并执行它们</span>
@@ -163,26 +163,26 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-c1">command</span> <span class="pl-smi">Command</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">rc</span> <span class="pl-c1">*</span><span class="pl-smi">RemoteControl</span>) <span class="pl-en">SetCommand</span>(<span class="pl-s1">command</span> <span class="pl-smi">Command</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">rc</span> <span class="pl-c1">*</span><span class="pl-smi">RemoteControl</span>) <span class="pl-c1">SetCommand</span>(<span class="pl-s1">command</span> <span class="pl-smi">Command</span>) {
 	<span class="pl-s1">rc</span>.<span class="pl-c1">command</span> <span class="pl-c1">=</span> <span class="pl-s1">command</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">rc</span> <span class="pl-c1">*</span><span class="pl-smi">RemoteControl</span>) <span class="pl-en">PressButton</span>() {
-	<span class="pl-s1">rc</span>.<span class="pl-c1">command</span>.<span class="pl-en">Execute</span>()
+<span class="pl-k">func</span> (<span class="pl-s1">rc</span> <span class="pl-c1">*</span><span class="pl-smi">RemoteControl</span>) <span class="pl-c1">PressButton</span>() {
+	<span class="pl-s1">rc</span>.<span class="pl-c1">command</span>.<span class="pl-c1">Execute</span>()
 }</pre></div>
 <p>最后，在客户端代码中使用：</p>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-s1">main</span>() {
 	<span class="pl-s1">tv</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Television</span>{}
 
 	<span class="pl-s1">onCommand</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">TurnOnCommand</span>{<span class="pl-s1">television</span>: <span class="pl-s1">tv</span>}
 	<span class="pl-s1">offCommand</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">TurnOffCommand</span>{<span class="pl-s1">television</span>: <span class="pl-s1">tv</span>}
 
 	<span class="pl-s1">remote</span> <span class="pl-c1">:=</span> <span class="pl-smi">RemoteControl</span>{}
-	<span class="pl-s1">remote</span>.<span class="pl-en">SetCommand</span>(<span class="pl-s1">onCommand</span>)
-	<span class="pl-s1">remote</span>.<span class="pl-en">PressButton</span>() <span class="pl-c">// 输出: Television is on</span>
+	<span class="pl-s1">remote</span>.<span class="pl-c1">SetCommand</span>(<span class="pl-s1">onCommand</span>)
+	<span class="pl-s1">remote</span>.<span class="pl-c1">PressButton</span>() <span class="pl-c">// 输出: Television is on</span>
 
-	<span class="pl-s1">remote</span>.<span class="pl-en">SetCommand</span>(<span class="pl-s1">offCommand</span>)
-	<span class="pl-s1">remote</span>.<span class="pl-en">PressButton</span>() <span class="pl-c">// 输出: Television is off</span>
+	<span class="pl-s1">remote</span>.<span class="pl-c1">SetCommand</span>(<span class="pl-s1">offCommand</span>)
+	<span class="pl-s1">remote</span>.<span class="pl-c1">PressButton</span>() <span class="pl-c">// 输出: Television is off</span>
 }</pre></div>
 <h3>命令模式与观察者模式的区别</h3>
 <p>命令模式和观察者模式都是行为型设计模式，它们在某些情况下可能看起来相似，但它们的用途和实现方式有明显的区别。以下是两者的主要区别：</p>

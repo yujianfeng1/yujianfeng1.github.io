@@ -137,23 +137,23 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// 创建新的字典树</span>
-<span class="pl-k">func</span> <span class="pl-en">NewTrie</span>() <span class="pl-c1">*</span><span class="pl-smi">Trie</span> {
+<span class="pl-k">func</span> <span class="pl-s1">NewTrie</span>() <span class="pl-c1">*</span><span class="pl-smi">Trie</span> {
     <span class="pl-k">return</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Trie</span>{
         <span class="pl-s1">root</span>: <span class="pl-c1">&amp;</span><span class="pl-smi">TrieNode</span>{
-            <span class="pl-s1">children</span>: <span class="pl-en">make</span>(<span class="pl-k">map</span>[<span class="pl-smi">rune</span>]<span class="pl-c1">*</span><span class="pl-smi">TrieNode</span>),
+            <span class="pl-s1">children</span>: <span class="pl-s1">make</span>(<span class="pl-k">map</span>[<span class="pl-smi">rune</span>]<span class="pl-c1">*</span><span class="pl-smi">TrieNode</span>),
         },
     }
 }
 
 <span class="pl-c">// 往字典树中添加一个词</span>
-<span class="pl-k">func</span> (<span class="pl-s1">t</span> <span class="pl-c1">*</span><span class="pl-smi">Trie</span>) <span class="pl-en">AddWord</span>(<span class="pl-s1">word</span> <span class="pl-smi">string</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">t</span> <span class="pl-c1">*</span><span class="pl-smi">Trie</span>) <span class="pl-c1">AddWord</span>(<span class="pl-s1">word</span> <span class="pl-smi">string</span>) {
     <span class="pl-s1">node</span> <span class="pl-c1">:=</span> <span class="pl-s1">t</span>.<span class="pl-c1">root</span>
     <span class="pl-c">// 遍历单词的每个字母</span>
     <span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">char</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">word</span> {
         <span class="pl-c">// 如果这个字母不存在，就创建新节点</span>
         <span class="pl-k">if</span> <span class="pl-s1">node</span>.<span class="pl-c1">children</span>[<span class="pl-s1">char</span>] <span class="pl-c1">==</span> <span class="pl-c1">nil</span> {
             <span class="pl-s1">node</span>.<span class="pl-c1">children</span>[<span class="pl-s1">char</span>] <span class="pl-c1">=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">TrieNode</span>{
-                <span class="pl-s1">children</span>: <span class="pl-en">make</span>(<span class="pl-k">map</span>[<span class="pl-smi">rune</span>]<span class="pl-c1">*</span><span class="pl-smi">TrieNode</span>),
+                <span class="pl-s1">children</span>: <span class="pl-s1">make</span>(<span class="pl-k">map</span>[<span class="pl-smi">rune</span>]<span class="pl-c1">*</span><span class="pl-smi">TrieNode</span>),
             }
         }
         <span class="pl-c">// 移动到子节点</span>
@@ -164,7 +164,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// 查找一个词是否在字典树中</span>
-<span class="pl-k">func</span> (<span class="pl-s1">t</span> <span class="pl-c1">*</span><span class="pl-smi">Trie</span>) <span class="pl-en">SearchWord</span>(<span class="pl-s1">word</span> <span class="pl-smi">string</span>) <span class="pl-smi">bool</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">t</span> <span class="pl-c1">*</span><span class="pl-smi">Trie</span>) <span class="pl-c1">SearchWord</span>(<span class="pl-s1">word</span> <span class="pl-smi">string</span>) <span class="pl-smi">bool</span> {
     <span class="pl-s1">node</span> <span class="pl-c1">:=</span> <span class="pl-s1">t</span>.<span class="pl-c1">root</span>
     <span class="pl-c">// 顺着路径走</span>
     <span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">char</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">word</span> {
@@ -177,7 +177,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// 查找有哪些词是以prefix开头的</span>
-<span class="pl-k">func</span> (<span class="pl-s1">t</span> <span class="pl-c1">*</span><span class="pl-smi">Trie</span>) <span class="pl-en">GetWordsWithPrefix</span>(<span class="pl-s1">prefix</span> <span class="pl-smi">string</span>) []<span class="pl-smi">string</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">t</span> <span class="pl-c1">*</span><span class="pl-smi">Trie</span>) <span class="pl-c1">GetWordsWithPrefix</span>(<span class="pl-s1">prefix</span> <span class="pl-smi">string</span>) []<span class="pl-smi">string</span> {
     <span class="pl-s1">result</span> <span class="pl-c1">:=</span> []<span class="pl-smi">string</span>{}
     <span class="pl-s1">node</span> <span class="pl-c1">:=</span> <span class="pl-s1">t</span>.<span class="pl-c1">root</span>
     
@@ -193,33 +193,33 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-k">var</span> <span class="pl-s1">collect</span> <span class="pl-k">func</span>(<span class="pl-s1">node</span> <span class="pl-c1">*</span><span class="pl-smi">TrieNode</span>, <span class="pl-s1">word</span> <span class="pl-smi">string</span>)
     <span class="pl-s1">collect</span> <span class="pl-c1">=</span> <span class="pl-k">func</span>(<span class="pl-s1">node</span> <span class="pl-c1">*</span><span class="pl-smi">TrieNode</span>, <span class="pl-s1">word</span> <span class="pl-smi">string</span>) {
         <span class="pl-k">if</span> <span class="pl-s1">node</span>.<span class="pl-c1">isWord</span> {
-            <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">result</span>, <span class="pl-s1">word</span>)
+            <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">result</span>, <span class="pl-s1">word</span>)
         }
         <span class="pl-k">for</span> <span class="pl-s1">char</span>, <span class="pl-s1">child</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">node</span>.<span class="pl-c1">children</span> {
-            <span class="pl-en">collect</span>(<span class="pl-s1">child</span>, <span class="pl-s1">word</span> <span class="pl-c1">+</span> <span class="pl-en">string</span>(<span class="pl-s1">char</span>))
+            <span class="pl-s1">collect</span>(<span class="pl-s1">child</span>, <span class="pl-s1">word</span> <span class="pl-c1">+</span> <span class="pl-s1">string</span>(<span class="pl-s1">char</span>))
         }
     }
     
-    <span class="pl-en">collect</span>(<span class="pl-s1">node</span>, <span class="pl-s1">prefix</span>)
+    <span class="pl-s1">collect</span>(<span class="pl-s1">node</span>, <span class="pl-s1">prefix</span>)
     <span class="pl-k">return</span> <span class="pl-s1">result</span>
 }</pre></div>
 <h2>5. 实际使用例子</h2>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-s1">main</span>() {
     <span class="pl-c">// 创建一个新的字典树</span>
-    <span class="pl-s1">trie</span> <span class="pl-c1">:=</span> <span class="pl-en">NewTrie</span>()
+    <span class="pl-s1">trie</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewTrie</span>()
     
     <span class="pl-c">// 添加一些词</span>
     <span class="pl-s1">words</span> <span class="pl-c1">:=</span> []<span class="pl-smi">string</span>{<span class="pl-s">"hello"</span>, <span class="pl-s">"hi"</span>, <span class="pl-s">"hey"</span>, <span class="pl-s">"world"</span>}
     <span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">word</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">words</span> {
-        <span class="pl-s1">trie</span>.<span class="pl-en">AddWord</span>(<span class="pl-s1">word</span>)
+        <span class="pl-s1">trie</span>.<span class="pl-c1">AddWord</span>(<span class="pl-s1">word</span>)
     }
     
     <span class="pl-c">// 查找单词</span>
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s1">trie</span>.<span class="pl-en">SearchWord</span>(<span class="pl-s">"hello"</span>))  <span class="pl-c">// true</span>
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s1">trie</span>.<span class="pl-en">SearchWord</span>(<span class="pl-s">"hel"</span>))    <span class="pl-c">// false</span>
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s1">trie</span>.<span class="pl-c1">SearchWord</span>(<span class="pl-s">"hello"</span>))  <span class="pl-c">// true</span>
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s1">trie</span>.<span class="pl-c1">SearchWord</span>(<span class="pl-s">"hel"</span>))    <span class="pl-c">// false</span>
     
     <span class="pl-c">// 查找前缀为"he"的所有词</span>
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s1">trie</span>.<span class="pl-en">GetWordsWithPrefix</span>(<span class="pl-s">"he"</span>))  <span class="pl-c">// [hello hey]</span>
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s1">trie</span>.<span class="pl-c1">GetWordsWithPrefix</span>(<span class="pl-s">"he"</span>))  <span class="pl-c">// [hello hey]</span>
 }</pre></div>
 <h2>6. 字典树的优缺点</h2>
 <h3>优点：</h3>

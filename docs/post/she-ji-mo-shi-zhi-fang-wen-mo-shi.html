@@ -151,22 +151,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c">// Keyboard 键盘</span>
 <span class="pl-k">type</span> <span class="pl-smi">Keyboard</span> <span class="pl-k">struct</span>{}
 
-<span class="pl-k">func</span> (<span class="pl-s1">k</span> <span class="pl-c1">*</span><span class="pl-smi">Keyboard</span>) <span class="pl-en">Accept</span>(<span class="pl-s1">visitor</span> <span class="pl-smi">Visitor</span>) {
-    <span class="pl-s1">visitor</span>.<span class="pl-en">VisitKeyboard</span>(<span class="pl-s1">k</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">k</span> <span class="pl-c1">*</span><span class="pl-smi">Keyboard</span>) <span class="pl-c1">Accept</span>(<span class="pl-s1">visitor</span> <span class="pl-smi">Visitor</span>) {
+    <span class="pl-s1">visitor</span>.<span class="pl-c1">VisitKeyboard</span>(<span class="pl-s1">k</span>)
 }
 
 <span class="pl-c">// Mouse 鼠标</span>
 <span class="pl-k">type</span> <span class="pl-smi">Mouse</span> <span class="pl-k">struct</span>{}
 
-<span class="pl-k">func</span> (<span class="pl-s1">m</span> <span class="pl-c1">*</span><span class="pl-smi">Mouse</span>) <span class="pl-en">Accept</span>(<span class="pl-s1">visitor</span> <span class="pl-smi">Visitor</span>) {
-    <span class="pl-s1">visitor</span>.<span class="pl-en">VisitMouse</span>(<span class="pl-s1">m</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">m</span> <span class="pl-c1">*</span><span class="pl-smi">Mouse</span>) <span class="pl-c1">Accept</span>(<span class="pl-s1">visitor</span> <span class="pl-smi">Visitor</span>) {
+    <span class="pl-s1">visitor</span>.<span class="pl-c1">VisitMouse</span>(<span class="pl-s1">m</span>)
 }
 
 <span class="pl-c">// Monitor 显示器</span>
 <span class="pl-k">type</span> <span class="pl-smi">Monitor</span> <span class="pl-k">struct</span>{}
 
-<span class="pl-k">func</span> (<span class="pl-s1">mo</span> <span class="pl-c1">*</span><span class="pl-smi">Monitor</span>) <span class="pl-en">Accept</span>(<span class="pl-s1">visitor</span> <span class="pl-smi">Visitor</span>) {
-    <span class="pl-s1">visitor</span>.<span class="pl-en">VisitMonitor</span>(<span class="pl-s1">mo</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">mo</span> <span class="pl-c1">*</span><span class="pl-smi">Monitor</span>) <span class="pl-c1">Accept</span>(<span class="pl-s1">visitor</span> <span class="pl-smi">Visitor</span>) {
+    <span class="pl-s1">visitor</span>.<span class="pl-c1">VisitMonitor</span>(<span class="pl-s1">mo</span>)
 }</pre></div>
 <p>接下来，定义访问者接口和一个具体的访问者实现：</p>
 <div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-c">// Visitor 访问者接口</span>
@@ -179,16 +179,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-c">// ComputerPartDisplayVisitor 具体访问者，显示部件名称</span>
 <span class="pl-k">type</span> <span class="pl-smi">ComputerPartDisplayVisitor</span> <span class="pl-k">struct</span>{}
 
-<span class="pl-k">func</span> (<span class="pl-s1">cpdv</span> <span class="pl-c1">*</span><span class="pl-smi">ComputerPartDisplayVisitor</span>) <span class="pl-en">VisitKeyboard</span>(<span class="pl-s1">k</span> <span class="pl-c1">*</span><span class="pl-smi">Keyboard</span>) {
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Visiting Keyboard"</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">cpdv</span> <span class="pl-c1">*</span><span class="pl-smi">ComputerPartDisplayVisitor</span>) <span class="pl-c1">VisitKeyboard</span>(<span class="pl-s1">k</span> <span class="pl-c1">*</span><span class="pl-smi">Keyboard</span>) {
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Visiting Keyboard"</span>)
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">cpdv</span> <span class="pl-c1">*</span><span class="pl-smi">ComputerPartDisplayVisitor</span>) <span class="pl-en">VisitMouse</span>(<span class="pl-s1">m</span> <span class="pl-c1">*</span><span class="pl-smi">Mouse</span>) {
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Visiting Mouse"</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">cpdv</span> <span class="pl-c1">*</span><span class="pl-smi">ComputerPartDisplayVisitor</span>) <span class="pl-c1">VisitMouse</span>(<span class="pl-s1">m</span> <span class="pl-c1">*</span><span class="pl-smi">Mouse</span>) {
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Visiting Mouse"</span>)
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">cpdv</span> <span class="pl-c1">*</span><span class="pl-smi">ComputerPartDisplayVisitor</span>) <span class="pl-en">VisitMonitor</span>(<span class="pl-s1">mo</span> <span class="pl-c1">*</span><span class="pl-smi">Monitor</span>) {
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Visiting Monitor"</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">cpdv</span> <span class="pl-c1">*</span><span class="pl-smi">ComputerPartDisplayVisitor</span>) <span class="pl-c1">VisitMonitor</span>(<span class="pl-s1">mo</span> <span class="pl-c1">*</span><span class="pl-smi">Monitor</span>) {
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Visiting Monitor"</span>)
 }</pre></div>
 <p>最后，我们创建一个对象结构，它包含了电脑的全部组件，并实现一个方法来接受访问者：</p>
 <div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-c">// Computer 电脑，包含多个部件</span>
@@ -196,13 +196,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-c1">components</span> []<span class="pl-smi">Component</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">Computer</span>) <span class="pl-en">Accept</span>(<span class="pl-s1">visitor</span> <span class="pl-smi">Visitor</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">c</span> <span class="pl-c1">*</span><span class="pl-smi">Computer</span>) <span class="pl-c1">Accept</span>(<span class="pl-s1">visitor</span> <span class="pl-smi">Visitor</span>) {
     <span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">component</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">c</span>.<span class="pl-c1">components</span> {
-        <span class="pl-s1">component</span>.<span class="pl-en">Accept</span>(<span class="pl-s1">visitor</span>)
+        <span class="pl-s1">component</span>.<span class="pl-c1">Accept</span>(<span class="pl-s1">visitor</span>)
     }
 }
 
-<span class="pl-k">func</span> <span class="pl-en">NewComputer</span>() <span class="pl-c1">*</span><span class="pl-smi">Computer</span> {
+<span class="pl-k">func</span> <span class="pl-s1">NewComputer</span>() <span class="pl-c1">*</span><span class="pl-smi">Computer</span> {
     <span class="pl-k">return</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Computer</span>{
         <span class="pl-s1">components</span>: []<span class="pl-smi">Component</span>{
             <span class="pl-c1">&amp;</span><span class="pl-smi">Keyboard</span>{},
@@ -212,10 +212,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     }
 }</pre></div>
 <p>现在，我们可以在 <code class="notranslate">main</code> 函数中使用这些结构：</p>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-en">main</span>() {
-    <span class="pl-s1">computer</span> <span class="pl-c1">:=</span> <span class="pl-en">NewComputer</span>()
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-s1">main</span>() {
+    <span class="pl-s1">computer</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewComputer</span>()
     <span class="pl-s1">visitor</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">ComputerPartDisplayVisitor</span>{}
-    <span class="pl-s1">computer</span>.<span class="pl-en">Accept</span>(<span class="pl-s1">visitor</span>)
+    <span class="pl-s1">computer</span>.<span class="pl-c1">Accept</span>(<span class="pl-s1">visitor</span>)
 }</pre></div>
 <p>这个例子展示了如何在Go中实现访问者模式。通过这种方式，我们可以轻松地添加新的操作（即访问者）来处理不同的部件，而不需要修改部件本身的代码。这使得系统更加灵活和可扩展。</p>
 <h3>总结</h3>

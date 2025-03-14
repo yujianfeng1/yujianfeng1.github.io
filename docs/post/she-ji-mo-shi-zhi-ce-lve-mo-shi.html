@@ -132,8 +132,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>然后，实现两种具体的排序策略，例如冒泡排序和选择排序：</p>
 <div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">type</span> <span class="pl-smi">BubbleSortStrategy</span> <span class="pl-k">struct</span>{}
 
-<span class="pl-k">func</span> (<span class="pl-s1">b</span> <span class="pl-c1">*</span><span class="pl-smi">BubbleSortStrategy</span>) <span class="pl-en">Sort</span>(<span class="pl-s1">data</span> []<span class="pl-smi">int</span>) []<span class="pl-smi">int</span> {
-    <span class="pl-s1">n</span> <span class="pl-c1">:=</span> <span class="pl-en">len</span>(<span class="pl-s1">data</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">b</span> <span class="pl-c1">*</span><span class="pl-smi">BubbleSortStrategy</span>) <span class="pl-c1">Sort</span>(<span class="pl-s1">data</span> []<span class="pl-smi">int</span>) []<span class="pl-smi">int</span> {
+    <span class="pl-s1">n</span> <span class="pl-c1">:=</span> <span class="pl-s1">len</span>(<span class="pl-s1">data</span>)
     <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">:=</span> <span class="pl-c1">0</span>; <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">n</span>; <span class="pl-s1">i</span><span class="pl-c1">++</span> {
         <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">:=</span> <span class="pl-c1">0</span>; <span class="pl-s1">j</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">n</span><span class="pl-c1">-</span><span class="pl-s1">i</span><span class="pl-c1">-</span><span class="pl-c1">1</span>; <span class="pl-s1">j</span><span class="pl-c1">++</span> {
             <span class="pl-k">if</span> <span class="pl-s1">data</span>[<span class="pl-s1">j</span>] <span class="pl-c1">&gt;</span> <span class="pl-s1">data</span>[<span class="pl-s1">j</span><span class="pl-c1">+</span><span class="pl-c1">1</span>] {
@@ -146,8 +146,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-k">type</span> <span class="pl-smi">SelectionSortStrategy</span> <span class="pl-k">struct</span>{}
 
-<span class="pl-k">func</span> (<span class="pl-s1">s</span> <span class="pl-c1">*</span><span class="pl-smi">SelectionSortStrategy</span>) <span class="pl-en">Sort</span>(<span class="pl-s1">data</span> []<span class="pl-smi">int</span>) []<span class="pl-smi">int</span> {
-    <span class="pl-s1">n</span> <span class="pl-c1">:=</span> <span class="pl-en">len</span>(<span class="pl-s1">data</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">s</span> <span class="pl-c1">*</span><span class="pl-smi">SelectionSortStrategy</span>) <span class="pl-c1">Sort</span>(<span class="pl-s1">data</span> []<span class="pl-smi">int</span>) []<span class="pl-smi">int</span> {
+    <span class="pl-s1">n</span> <span class="pl-c1">:=</span> <span class="pl-s1">len</span>(<span class="pl-s1">data</span>)
     <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">:=</span> <span class="pl-c1">0</span>; <span class="pl-s1">i</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">n</span>; <span class="pl-s1">i</span><span class="pl-c1">++</span> {
         <span class="pl-s1">minIndex</span> <span class="pl-c1">:=</span> <span class="pl-s1">i</span>
         <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">:=</span> <span class="pl-s1">i</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>; <span class="pl-s1">j</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">n</span>; <span class="pl-s1">j</span><span class="pl-c1">++</span> {
@@ -164,31 +164,31 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-c1">strategy</span> <span class="pl-smi">SortStrategy</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">s</span> <span class="pl-c1">*</span><span class="pl-smi">SortedArray</span>) <span class="pl-en">SetStrategy</span>(<span class="pl-s1">strategy</span> <span class="pl-smi">SortStrategy</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">s</span> <span class="pl-c1">*</span><span class="pl-smi">SortedArray</span>) <span class="pl-c1">SetStrategy</span>(<span class="pl-s1">strategy</span> <span class="pl-smi">SortStrategy</span>) {
     <span class="pl-s1">s</span>.<span class="pl-c1">strategy</span> <span class="pl-c1">=</span> <span class="pl-s1">strategy</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">s</span> <span class="pl-c1">*</span><span class="pl-smi">SortedArray</span>) <span class="pl-en">Sort</span>(<span class="pl-s1">data</span> []<span class="pl-smi">int</span>) []<span class="pl-smi">int</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">s</span> <span class="pl-c1">*</span><span class="pl-smi">SortedArray</span>) <span class="pl-c1">Sort</span>(<span class="pl-s1">data</span> []<span class="pl-smi">int</span>) []<span class="pl-smi">int</span> {
     <span class="pl-k">if</span> <span class="pl-s1">s</span>.<span class="pl-c1">strategy</span> <span class="pl-c1">==</span> <span class="pl-c1">nil</span> {
         <span class="pl-k">return</span> <span class="pl-s1">data</span>
     }
-    <span class="pl-k">return</span> <span class="pl-s1">s</span>.<span class="pl-c1">strategy</span>.<span class="pl-en">Sort</span>(<span class="pl-s1">data</span>)
+    <span class="pl-k">return</span> <span class="pl-s1">s</span>.<span class="pl-c1">strategy</span>.<span class="pl-c1">Sort</span>(<span class="pl-s1">data</span>)
 }</pre></div>
 <p>最后，我们可以在客户端代码中使用这些类：</p>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> <span class="pl-s1">main</span>() {
     <span class="pl-s1">data</span> <span class="pl-c1">:=</span> []<span class="pl-smi">int</span>{<span class="pl-c1">9</span>, <span class="pl-c1">7</span>, <span class="pl-c1">5</span>, <span class="pl-c1">3</span>, <span class="pl-c1">1</span>}
     
     <span class="pl-s1">sortedArray</span> <span class="pl-c1">:=</span> <span class="pl-smi">SortedArray</span>{}
 
     <span class="pl-c">// 使用冒泡排序策略</span>
-    <span class="pl-s1">sortedArray</span>.<span class="pl-en">SetStrategy</span>(<span class="pl-c1">&amp;</span><span class="pl-smi">BubbleSortStrategy</span>{})
-    <span class="pl-s1">result</span> <span class="pl-c1">:=</span> <span class="pl-s1">sortedArray</span>.<span class="pl-en">Sort</span>(<span class="pl-s1">data</span>)
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Bubble Sorted:"</span>, <span class="pl-s1">result</span>)
+    <span class="pl-s1">sortedArray</span>.<span class="pl-c1">SetStrategy</span>(<span class="pl-c1">&amp;</span><span class="pl-smi">BubbleSortStrategy</span>{})
+    <span class="pl-s1">result</span> <span class="pl-c1">:=</span> <span class="pl-s1">sortedArray</span>.<span class="pl-c1">Sort</span>(<span class="pl-s1">data</span>)
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Bubble Sorted:"</span>, <span class="pl-s1">result</span>)
 
     <span class="pl-c">// 更换为选择排序策略</span>
-    <span class="pl-s1">sortedArray</span>.<span class="pl-en">SetStrategy</span>(<span class="pl-c1">&amp;</span><span class="pl-smi">SelectionSortStrategy</span>{})
-    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">sortedArray</span>.<span class="pl-en">Sort</span>(<span class="pl-s1">data</span>)
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Selection Sorted:"</span>, <span class="pl-s1">result</span>)
+    <span class="pl-s1">sortedArray</span>.<span class="pl-c1">SetStrategy</span>(<span class="pl-c1">&amp;</span><span class="pl-smi">SelectionSortStrategy</span>{})
+    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">sortedArray</span>.<span class="pl-c1">Sort</span>(<span class="pl-s1">data</span>)
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Selection Sorted:"</span>, <span class="pl-s1">result</span>)
 }</pre></div>
 <p>这个例子展示了如何在Go中使用策略模式来封装不同的算法，并在运行时根据需要选择使用哪种算法。</p>
 <h3>总结</h3>

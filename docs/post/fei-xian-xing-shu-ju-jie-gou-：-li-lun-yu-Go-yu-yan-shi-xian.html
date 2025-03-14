@@ -120,7 +120,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-c1">Right</span> <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span>
 }
 
-<span class="pl-k">func</span> <span class="pl-en">createBinaryTree</span>() <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span> {
+<span class="pl-k">func</span> <span class="pl-s1">createBinaryTree</span>() <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span> {
     <span class="pl-s1">root</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">BinaryNode</span>{<span class="pl-s1">Value</span>: <span class="pl-c1">1</span>}
     <span class="pl-s1">root</span>.<span class="pl-c1">Left</span> <span class="pl-c1">=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">BinaryNode</span>{<span class="pl-s1">Value</span>: <span class="pl-c1">2</span>}
     <span class="pl-s1">root</span>.<span class="pl-c1">Right</span> <span class="pl-c1">=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">BinaryNode</span>{<span class="pl-s1">Value</span>: <span class="pl-c1">3</span>}
@@ -143,26 +143,26 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ul>
 <p>然而，在最坏情况下（树退化为链表），这些操作的时间复杂度可能达到O(n)。</p>
 <p>Go语言实现：</p>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> (<span class="pl-s1">n</span> <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span>) <span class="pl-en">Insert</span>(<span class="pl-s1">value</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span> {
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">func</span> (<span class="pl-s1">n</span> <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span>) <span class="pl-c1">Insert</span>(<span class="pl-s1">value</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span> {
     <span class="pl-k">if</span> <span class="pl-s1">n</span> <span class="pl-c1">==</span> <span class="pl-c1">nil</span> {
         <span class="pl-k">return</span> <span class="pl-c1">&amp;</span><span class="pl-smi">BinaryNode</span>{<span class="pl-s1">Value</span>: <span class="pl-s1">value</span>}
     }
     <span class="pl-k">if</span> <span class="pl-s1">value</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">n</span>.<span class="pl-c1">Value</span> {
-        <span class="pl-s1">n</span>.<span class="pl-c1">Left</span> <span class="pl-c1">=</span> <span class="pl-s1">n</span>.<span class="pl-c1">Left</span>.<span class="pl-en">Insert</span>(<span class="pl-s1">value</span>)
+        <span class="pl-s1">n</span>.<span class="pl-c1">Left</span> <span class="pl-c1">=</span> <span class="pl-s1">n</span>.<span class="pl-c1">Left</span>.<span class="pl-c1">Insert</span>(<span class="pl-s1">value</span>)
     } <span class="pl-k">else</span> <span class="pl-k">if</span> <span class="pl-s1">value</span> <span class="pl-c1">&gt;</span> <span class="pl-s1">n</span>.<span class="pl-c1">Value</span> {
-        <span class="pl-s1">n</span>.<span class="pl-c1">Right</span> <span class="pl-c1">=</span> <span class="pl-s1">n</span>.<span class="pl-c1">Right</span>.<span class="pl-en">Insert</span>(<span class="pl-s1">value</span>)
+        <span class="pl-s1">n</span>.<span class="pl-c1">Right</span> <span class="pl-c1">=</span> <span class="pl-s1">n</span>.<span class="pl-c1">Right</span>.<span class="pl-c1">Insert</span>(<span class="pl-s1">value</span>)
     }
     <span class="pl-k">return</span> <span class="pl-s1">n</span>
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">n</span> <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span>) <span class="pl-en">Search</span>(<span class="pl-s1">value</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span> {
+<span class="pl-k">func</span> (<span class="pl-s1">n</span> <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span>) <span class="pl-c1">Search</span>(<span class="pl-s1">value</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">BinaryNode</span> {
     <span class="pl-k">if</span> <span class="pl-s1">n</span> <span class="pl-c1">==</span> <span class="pl-c1">nil</span> <span class="pl-c1">||</span> <span class="pl-s1">n</span>.<span class="pl-c1">Value</span> <span class="pl-c1">==</span> <span class="pl-s1">value</span> {
         <span class="pl-k">return</span> <span class="pl-s1">n</span>
     }
     <span class="pl-k">if</span> <span class="pl-s1">value</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">n</span>.<span class="pl-c1">Value</span> {
-        <span class="pl-k">return</span> <span class="pl-s1">n</span>.<span class="pl-c1">Left</span>.<span class="pl-en">Search</span>(<span class="pl-s1">value</span>)
+        <span class="pl-k">return</span> <span class="pl-s1">n</span>.<span class="pl-c1">Left</span>.<span class="pl-c1">Search</span>(<span class="pl-s1">value</span>)
     }
-    <span class="pl-k">return</span> <span class="pl-s1">n</span>.<span class="pl-c1">Right</span>.<span class="pl-en">Search</span>(<span class="pl-s1">value</span>)
+    <span class="pl-k">return</span> <span class="pl-s1">n</span>.<span class="pl-c1">Right</span>.<span class="pl-c1">Search</span>(<span class="pl-s1">value</span>)
 }</pre></div>
 <h2>2. 图结构</h2>
 <h3>2.1 图的理论基础</h3>
@@ -191,25 +191,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-c1">vertices</span> <span class="pl-k">map</span>[<span class="pl-smi">int</span>][]<span class="pl-smi">int</span>
 }
 
-<span class="pl-k">func</span> <span class="pl-en">NewGraph</span>() <span class="pl-c1">*</span><span class="pl-smi">Graph</span> {
-    <span class="pl-k">return</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Graph</span>{<span class="pl-s1">vertices</span>: <span class="pl-en">make</span>(<span class="pl-k">map</span>[<span class="pl-smi">int</span>][]<span class="pl-smi">int</span>)}
+<span class="pl-k">func</span> <span class="pl-s1">NewGraph</span>() <span class="pl-c1">*</span><span class="pl-smi">Graph</span> {
+    <span class="pl-k">return</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Graph</span>{<span class="pl-s1">vertices</span>: <span class="pl-s1">make</span>(<span class="pl-k">map</span>[<span class="pl-smi">int</span>][]<span class="pl-smi">int</span>)}
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">g</span> <span class="pl-c1">*</span><span class="pl-smi">Graph</span>) <span class="pl-en">AddEdge</span>(<span class="pl-s1">from</span>, <span class="pl-s1">to</span> <span class="pl-smi">int</span>) {
-    <span class="pl-s1">g</span>.<span class="pl-c1">vertices</span>[<span class="pl-s1">from</span>] <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">g</span>.<span class="pl-c1">vertices</span>[<span class="pl-s1">from</span>], <span class="pl-s1">to</span>)
-    <span class="pl-s1">g</span>.<span class="pl-c1">vertices</span>[<span class="pl-s1">to</span>] <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">g</span>.<span class="pl-c1">vertices</span>[<span class="pl-s1">to</span>], <span class="pl-s1">from</span>) <span class="pl-c">// 对于无向图</span>
+<span class="pl-k">func</span> (<span class="pl-s1">g</span> <span class="pl-c1">*</span><span class="pl-smi">Graph</span>) <span class="pl-c1">AddEdge</span>(<span class="pl-s1">from</span>, <span class="pl-s1">to</span> <span class="pl-smi">int</span>) {
+    <span class="pl-s1">g</span>.<span class="pl-c1">vertices</span>[<span class="pl-s1">from</span>] <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">g</span>.<span class="pl-c1">vertices</span>[<span class="pl-s1">from</span>], <span class="pl-s1">to</span>)
+    <span class="pl-s1">g</span>.<span class="pl-c1">vertices</span>[<span class="pl-s1">to</span>] <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">g</span>.<span class="pl-c1">vertices</span>[<span class="pl-s1">to</span>], <span class="pl-s1">from</span>) <span class="pl-c">// 对于无向图</span>
 }
 
 <span class="pl-c">// 深度优先搜索</span>
-<span class="pl-k">func</span> (<span class="pl-s1">g</span> <span class="pl-c1">*</span><span class="pl-smi">Graph</span>) <span class="pl-en">DFS</span>(<span class="pl-s1">start</span> <span class="pl-smi">int</span>, <span class="pl-s1">visited</span> <span class="pl-k">map</span>[<span class="pl-smi">int</span>]<span class="pl-smi">bool</span>) {
+<span class="pl-k">func</span> (<span class="pl-s1">g</span> <span class="pl-c1">*</span><span class="pl-smi">Graph</span>) <span class="pl-c1">DFS</span>(<span class="pl-s1">start</span> <span class="pl-smi">int</span>, <span class="pl-s1">visited</span> <span class="pl-k">map</span>[<span class="pl-smi">int</span>]<span class="pl-smi">bool</span>) {
     <span class="pl-k">if</span> <span class="pl-s1">visited</span> <span class="pl-c1">==</span> <span class="pl-c1">nil</span> {
-        <span class="pl-s1">visited</span> <span class="pl-c1">=</span> <span class="pl-en">make</span>(<span class="pl-k">map</span>[<span class="pl-smi">int</span>]<span class="pl-smi">bool</span>)
+        <span class="pl-s1">visited</span> <span class="pl-c1">=</span> <span class="pl-s1">make</span>(<span class="pl-k">map</span>[<span class="pl-smi">int</span>]<span class="pl-smi">bool</span>)
     }
     <span class="pl-s1">visited</span>[<span class="pl-s1">start</span>] <span class="pl-c1">=</span> <span class="pl-c1">true</span>
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"%d "</span>, <span class="pl-s1">start</span>)
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"%d "</span>, <span class="pl-s1">start</span>)
     <span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">neighbor</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">g</span>.<span class="pl-c1">vertices</span>[<span class="pl-s1">start</span>] {
         <span class="pl-k">if</span> <span class="pl-c1">!</span><span class="pl-s1">visited</span>[<span class="pl-s1">neighbor</span>] {
-            <span class="pl-s1">g</span>.<span class="pl-en">DFS</span>(<span class="pl-s1">neighbor</span>, <span class="pl-s1">visited</span>)
+            <span class="pl-s1">g</span>.<span class="pl-c1">DFS</span>(<span class="pl-s1">neighbor</span>, <span class="pl-s1">visited</span>)
         }
     }
 }</pre></div>
@@ -245,30 +245,30 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-k">type</span> <span class="pl-smi">IntHeap</span> []<span class="pl-smi">int</span>
 
-<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-smi">IntHeap</span>) <span class="pl-en">Len</span>() <span class="pl-smi">int</span>           { <span class="pl-k">return</span> <span class="pl-en">len</span>(<span class="pl-s1">h</span>) }
-<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-smi">IntHeap</span>) <span class="pl-en">Less</span>(<span class="pl-s1">i</span>, <span class="pl-s1">j</span> <span class="pl-smi">int</span>) <span class="pl-smi">bool</span> { <span class="pl-k">return</span> <span class="pl-s1">h</span>[<span class="pl-s1">i</span>] <span class="pl-c1">&lt;</span> <span class="pl-s1">h</span>[<span class="pl-s1">j</span>] }
-<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-smi">IntHeap</span>) <span class="pl-en">Swap</span>(<span class="pl-s1">i</span>, <span class="pl-s1">j</span> <span class="pl-smi">int</span>)      { <span class="pl-s1">h</span>[<span class="pl-s1">i</span>], <span class="pl-s1">h</span>[<span class="pl-s1">j</span>] <span class="pl-c1">=</span> <span class="pl-s1">h</span>[<span class="pl-s1">j</span>], <span class="pl-s1">h</span>[<span class="pl-s1">i</span>] }
+<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-smi">IntHeap</span>) <span class="pl-c1">Len</span>() <span class="pl-smi">int</span>           { <span class="pl-k">return</span> <span class="pl-s1">len</span>(<span class="pl-s1">h</span>) }
+<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-smi">IntHeap</span>) <span class="pl-c1">Less</span>(<span class="pl-s1">i</span>, <span class="pl-s1">j</span> <span class="pl-smi">int</span>) <span class="pl-smi">bool</span> { <span class="pl-k">return</span> <span class="pl-s1">h</span>[<span class="pl-s1">i</span>] <span class="pl-c1">&lt;</span> <span class="pl-s1">h</span>[<span class="pl-s1">j</span>] }
+<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-smi">IntHeap</span>) <span class="pl-c1">Swap</span>(<span class="pl-s1">i</span>, <span class="pl-s1">j</span> <span class="pl-smi">int</span>)      { <span class="pl-s1">h</span>[<span class="pl-s1">i</span>], <span class="pl-s1">h</span>[<span class="pl-s1">j</span>] <span class="pl-c1">=</span> <span class="pl-s1">h</span>[<span class="pl-s1">j</span>], <span class="pl-s1">h</span>[<span class="pl-s1">i</span>] }
 
-<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-c1">*</span><span class="pl-smi">IntHeap</span>) <span class="pl-en">Push</span>(<span class="pl-s1">x</span> <span class="pl-k">interface</span>{}) {
-    <span class="pl-c1">*</span><span class="pl-s1">h</span> <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-c1">*</span><span class="pl-s1">h</span>, <span class="pl-s1">x</span>.(<span class="pl-smi">int</span>))
+<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-c1">*</span><span class="pl-smi">IntHeap</span>) <span class="pl-c1">Push</span>(<span class="pl-s1">x</span> <span class="pl-k">interface</span>{}) {
+    <span class="pl-c1">*</span><span class="pl-s1">h</span> <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-c1">*</span><span class="pl-s1">h</span>, <span class="pl-s1">x</span>.(<span class="pl-smi">int</span>))
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-c1">*</span><span class="pl-smi">IntHeap</span>) <span class="pl-en">Pop</span>() <span class="pl-k">interface</span>{} {
+<span class="pl-k">func</span> (<span class="pl-s1">h</span> <span class="pl-c1">*</span><span class="pl-smi">IntHeap</span>) <span class="pl-c1">Pop</span>() <span class="pl-k">interface</span>{} {
     <span class="pl-s1">old</span> <span class="pl-c1">:=</span> <span class="pl-c1">*</span><span class="pl-s1">h</span>
-    <span class="pl-s1">n</span> <span class="pl-c1">:=</span> <span class="pl-en">len</span>(<span class="pl-s1">old</span>)
+    <span class="pl-s1">n</span> <span class="pl-c1">:=</span> <span class="pl-s1">len</span>(<span class="pl-s1">old</span>)
     <span class="pl-s1">x</span> <span class="pl-c1">:=</span> <span class="pl-s1">old</span>[<span class="pl-s1">n</span><span class="pl-c1">-</span><span class="pl-c1">1</span>]
     <span class="pl-c1">*</span><span class="pl-s1">h</span> <span class="pl-c1">=</span> <span class="pl-s1">old</span>[<span class="pl-c1">0</span> : <span class="pl-s1">n</span><span class="pl-c1">-</span><span class="pl-c1">1</span>]
     <span class="pl-k">return</span> <span class="pl-s1">x</span>
 }
 
 <span class="pl-c">// 使用示例</span>
-<span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<span class="pl-k">func</span> <span class="pl-s1">main</span>() {
     <span class="pl-s1">h</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">IntHeap</span>{<span class="pl-c1">2</span>, <span class="pl-c1">1</span>, <span class="pl-c1">5</span>}
-    <span class="pl-s1">heap</span>.<span class="pl-en">Init</span>(<span class="pl-s1">h</span>)
-    <span class="pl-s1">heap</span>.<span class="pl-en">Push</span>(<span class="pl-s1">h</span>, <span class="pl-c1">3</span>)
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"minimum: %d<span class="pl-cce">\n</span>"</span>, (<span class="pl-c1">*</span><span class="pl-s1">h</span>)[<span class="pl-c1">0</span>])
-    <span class="pl-k">for</span> <span class="pl-s1">h</span>.<span class="pl-en">Len</span>() <span class="pl-c1">&gt;</span> <span class="pl-c1">0</span> {
-        <span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"%d "</span>, <span class="pl-s1">heap</span>.<span class="pl-en">Pop</span>(<span class="pl-s1">h</span>))
+    <span class="pl-s1">heap</span>.<span class="pl-c1">Init</span>(<span class="pl-s1">h</span>)
+    <span class="pl-s1">heap</span>.<span class="pl-c1">Push</span>(<span class="pl-s1">h</span>, <span class="pl-c1">3</span>)
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"minimum: %d<span class="pl-cce">\n</span>"</span>, (<span class="pl-c1">*</span><span class="pl-s1">h</span>)[<span class="pl-c1">0</span>])
+    <span class="pl-k">for</span> <span class="pl-s1">h</span>.<span class="pl-c1">Len</span>() <span class="pl-c1">&gt;</span> <span class="pl-c1">0</span> {
+        <span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"%d "</span>, <span class="pl-s1">heap</span>.<span class="pl-c1">Pop</span>(<span class="pl-s1">h</span>))
     }
 }</pre></div>
 <h2>结语</h2>

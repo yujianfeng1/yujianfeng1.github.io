@@ -121,12 +121,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-c"># 使用 subprocess 调用 ollama CLI</span>
 <span class="pl-k">def</span> <span class="pl-en">run_ollama</span>(<span class="pl-s1">prompt</span>):
-    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">subprocess</span>.<span class="pl-en">run</span>(
+    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">subprocess</span>.<span class="pl-c1">run</span>(
         [<span class="pl-s">"ollama"</span>, <span class="pl-s">"run"</span>, <span class="pl-s">"llama2"</span>, <span class="pl-s">"--prompt"</span>, <span class="pl-s1">prompt</span>], 
         <span class="pl-s1">capture_output</span><span class="pl-c1">=</span><span class="pl-c1">True</span>, 
         <span class="pl-s1">text</span><span class="pl-c1">=</span><span class="pl-c1">True</span>
     )
-    <span class="pl-k">return</span> <span class="pl-s1">result</span>.<span class="pl-s1">stdout</span>
+    <span class="pl-k">return</span> <span class="pl-s1">result</span>.<span class="pl-c1">stdout</span>
 
 <span class="pl-s1">prompt</span> <span class="pl-c1">=</span> <span class="pl-s">"What is the future of artificial intelligence?"</span>
 <span class="pl-s1">output</span> <span class="pl-c1">=</span> <span class="pl-en">run_ollama</span>(<span class="pl-s1">prompt</span>)

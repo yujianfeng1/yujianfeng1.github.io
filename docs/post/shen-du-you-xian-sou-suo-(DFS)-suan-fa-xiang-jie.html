@@ -113,38 +113,38 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// NewNode 创建新节点</span>
-<span class="pl-k">func</span> <span class="pl-en">NewNode</span>(<span class="pl-s1">value</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">Node</span> {
+<span class="pl-k">func</span> <span class="pl-s1">NewNode</span>(<span class="pl-s1">value</span> <span class="pl-smi">int</span>) <span class="pl-c1">*</span><span class="pl-smi">Node</span> {
     <span class="pl-k">return</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Node</span>{
         <span class="pl-s1">Value</span>:     <span class="pl-s1">value</span>,
-        <span class="pl-s1">Neighbors</span>: <span class="pl-en">make</span>([]<span class="pl-c1">*</span><span class="pl-smi">Node</span>, <span class="pl-c1">0</span>),
+        <span class="pl-s1">Neighbors</span>: <span class="pl-s1">make</span>([]<span class="pl-c1">*</span><span class="pl-smi">Node</span>, <span class="pl-c1">0</span>),
         <span class="pl-s1">Visited</span>:   <span class="pl-c1">false</span>,
     }
 }
 
 <span class="pl-c">// AddEdge 添加边（无向图）</span>
-<span class="pl-k">func</span> (<span class="pl-s1">n</span> <span class="pl-c1">*</span><span class="pl-smi">Node</span>) <span class="pl-en">AddEdge</span>(<span class="pl-s1">neighbor</span> <span class="pl-c1">*</span><span class="pl-smi">Node</span>) {
-    <span class="pl-s1">n</span>.<span class="pl-c1">Neighbors</span> <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">n</span>.<span class="pl-c1">Neighbors</span>, <span class="pl-s1">neighbor</span>)
-    <span class="pl-s1">neighbor</span>.<span class="pl-c1">Neighbors</span> <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">neighbor</span>.<span class="pl-c1">Neighbors</span>, <span class="pl-s1">n</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">n</span> <span class="pl-c1">*</span><span class="pl-smi">Node</span>) <span class="pl-c1">AddEdge</span>(<span class="pl-s1">neighbor</span> <span class="pl-c1">*</span><span class="pl-smi">Node</span>) {
+    <span class="pl-s1">n</span>.<span class="pl-c1">Neighbors</span> <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">n</span>.<span class="pl-c1">Neighbors</span>, <span class="pl-s1">neighbor</span>)
+    <span class="pl-s1">neighbor</span>.<span class="pl-c1">Neighbors</span> <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">neighbor</span>.<span class="pl-c1">Neighbors</span>, <span class="pl-s1">n</span>)
 }
 
 <span class="pl-c">// DFS 递归实现深度优先搜索</span>
-<span class="pl-k">func</span> <span class="pl-en">DFS</span>(<span class="pl-s1">node</span> <span class="pl-c1">*</span><span class="pl-smi">Node</span>) {
+<span class="pl-k">func</span> <span class="pl-s1">DFS</span>(<span class="pl-s1">node</span> <span class="pl-c1">*</span><span class="pl-smi">Node</span>) {
     <span class="pl-k">if</span> <span class="pl-s1">node</span> <span class="pl-c1">==</span> <span class="pl-c1">nil</span> <span class="pl-c1">||</span> <span class="pl-s1">node</span>.<span class="pl-c1">Visited</span> {
         <span class="pl-k">return</span>
     }
     
     <span class="pl-c">// 标记当前节点为已访问</span>
     <span class="pl-s1">node</span>.<span class="pl-c1">Visited</span> <span class="pl-c1">=</span> <span class="pl-c1">true</span>
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"访问节点: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">node</span>.<span class="pl-c1">Value</span>)
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"访问节点: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">node</span>.<span class="pl-c1">Value</span>)
     
     <span class="pl-c">// 递归访问所有相邻节点</span>
     <span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">neighbor</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">node</span>.<span class="pl-c1">Neighbors</span> {
-        <span class="pl-en">DFS</span>(<span class="pl-s1">neighbor</span>)
+        <span class="pl-s1">DFS</span>(<span class="pl-s1">neighbor</span>)
     }
 }
 
 <span class="pl-c">// DFSIterative 迭代实现深度优先搜索</span>
-<span class="pl-k">func</span> <span class="pl-en">DFSIterative</span>(<span class="pl-s1">start</span> <span class="pl-c1">*</span><span class="pl-smi">Node</span>) {
+<span class="pl-k">func</span> <span class="pl-s1">DFSIterative</span>(<span class="pl-s1">start</span> <span class="pl-c1">*</span><span class="pl-smi">Node</span>) {
     <span class="pl-k">if</span> <span class="pl-s1">start</span> <span class="pl-c1">==</span> <span class="pl-c1">nil</span> {
         <span class="pl-k">return</span>
     }
@@ -152,43 +152,43 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-c">// 使用切片作为栈</span>
     <span class="pl-s1">stack</span> <span class="pl-c1">:=</span> []<span class="pl-c1">*</span><span class="pl-smi">Node</span>{<span class="pl-s1">start</span>}
     
-    <span class="pl-k">for</span> <span class="pl-en">len</span>(<span class="pl-s1">stack</span>) <span class="pl-c1">&gt;</span> <span class="pl-c1">0</span> {
+    <span class="pl-k">for</span> <span class="pl-s1">len</span>(<span class="pl-s1">stack</span>) <span class="pl-c1">&gt;</span> <span class="pl-c1">0</span> {
         <span class="pl-c">// 弹出栈顶节点</span>
-        <span class="pl-s1">node</span> <span class="pl-c1">:=</span> <span class="pl-s1">stack</span>[<span class="pl-en">len</span>(<span class="pl-s1">stack</span>)<span class="pl-c1">-</span><span class="pl-c1">1</span>]
-        <span class="pl-s1">stack</span> <span class="pl-c1">=</span> <span class="pl-s1">stack</span>[:<span class="pl-en">len</span>(<span class="pl-s1">stack</span>)<span class="pl-c1">-</span><span class="pl-c1">1</span>]
+        <span class="pl-s1">node</span> <span class="pl-c1">:=</span> <span class="pl-s1">stack</span>[<span class="pl-s1">len</span>(<span class="pl-s1">stack</span>)<span class="pl-c1">-</span><span class="pl-c1">1</span>]
+        <span class="pl-s1">stack</span> <span class="pl-c1">=</span> <span class="pl-s1">stack</span>[:<span class="pl-s1">len</span>(<span class="pl-s1">stack</span>)<span class="pl-c1">-</span><span class="pl-c1">1</span>]
         
         <span class="pl-k">if</span> <span class="pl-c1">!</span><span class="pl-s1">node</span>.<span class="pl-c1">Visited</span> {
             <span class="pl-s1">node</span>.<span class="pl-c1">Visited</span> <span class="pl-c1">=</span> <span class="pl-c1">true</span>
-            <span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"访问节点: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">node</span>.<span class="pl-c1">Value</span>)
+            <span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"访问节点: %d<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">node</span>.<span class="pl-c1">Value</span>)
             
             <span class="pl-c">// 将未访问的相邻节点压入栈中</span>
-            <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">:=</span> <span class="pl-en">len</span>(<span class="pl-s1">node</span>.<span class="pl-c1">Neighbors</span>) <span class="pl-c1">-</span> <span class="pl-c1">1</span>; <span class="pl-s1">i</span> <span class="pl-c1">&gt;=</span> <span class="pl-c1">0</span>; <span class="pl-s1">i</span><span class="pl-c1">--</span> {
+            <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">:=</span> <span class="pl-s1">len</span>(<span class="pl-s1">node</span>.<span class="pl-c1">Neighbors</span>) <span class="pl-c1">-</span> <span class="pl-c1">1</span>; <span class="pl-s1">i</span> <span class="pl-c1">&gt;=</span> <span class="pl-c1">0</span>; <span class="pl-s1">i</span><span class="pl-c1">--</span> {
                 <span class="pl-s1">neighbor</span> <span class="pl-c1">:=</span> <span class="pl-s1">node</span>.<span class="pl-c1">Neighbors</span>[<span class="pl-s1">i</span>]
                 <span class="pl-k">if</span> <span class="pl-c1">!</span><span class="pl-s1">neighbor</span>.<span class="pl-c1">Visited</span> {
-                    <span class="pl-s1">stack</span> <span class="pl-c1">=</span> <span class="pl-en">append</span>(<span class="pl-s1">stack</span>, <span class="pl-s1">neighbor</span>)
+                    <span class="pl-s1">stack</span> <span class="pl-c1">=</span> <span class="pl-s1">append</span>(<span class="pl-s1">stack</span>, <span class="pl-s1">neighbor</span>)
                 }
             }
         }
     }
 }
 
-<span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<span class="pl-k">func</span> <span class="pl-s1">main</span>() {
     <span class="pl-c">// 创建一个示例图</span>
-    <span class="pl-s1">node1</span> <span class="pl-c1">:=</span> <span class="pl-en">NewNode</span>(<span class="pl-c1">1</span>)
-    <span class="pl-s1">node2</span> <span class="pl-c1">:=</span> <span class="pl-en">NewNode</span>(<span class="pl-c1">2</span>)
-    <span class="pl-s1">node3</span> <span class="pl-c1">:=</span> <span class="pl-en">NewNode</span>(<span class="pl-c1">3</span>)
-    <span class="pl-s1">node4</span> <span class="pl-c1">:=</span> <span class="pl-en">NewNode</span>(<span class="pl-c1">4</span>)
-    <span class="pl-s1">node5</span> <span class="pl-c1">:=</span> <span class="pl-en">NewNode</span>(<span class="pl-c1">5</span>)
+    <span class="pl-s1">node1</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewNode</span>(<span class="pl-c1">1</span>)
+    <span class="pl-s1">node2</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewNode</span>(<span class="pl-c1">2</span>)
+    <span class="pl-s1">node3</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewNode</span>(<span class="pl-c1">3</span>)
+    <span class="pl-s1">node4</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewNode</span>(<span class="pl-c1">4</span>)
+    <span class="pl-s1">node5</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewNode</span>(<span class="pl-c1">5</span>)
     
     <span class="pl-c">// 添加边</span>
-    <span class="pl-s1">node1</span>.<span class="pl-en">AddEdge</span>(<span class="pl-s1">node2</span>)
-    <span class="pl-s1">node1</span>.<span class="pl-en">AddEdge</span>(<span class="pl-s1">node3</span>)
-    <span class="pl-s1">node2</span>.<span class="pl-en">AddEdge</span>(<span class="pl-s1">node4</span>)
-    <span class="pl-s1">node3</span>.<span class="pl-en">AddEdge</span>(<span class="pl-s1">node4</span>)
-    <span class="pl-s1">node4</span>.<span class="pl-en">AddEdge</span>(<span class="pl-s1">node5</span>)
+    <span class="pl-s1">node1</span>.<span class="pl-c1">AddEdge</span>(<span class="pl-s1">node2</span>)
+    <span class="pl-s1">node1</span>.<span class="pl-c1">AddEdge</span>(<span class="pl-s1">node3</span>)
+    <span class="pl-s1">node2</span>.<span class="pl-c1">AddEdge</span>(<span class="pl-s1">node4</span>)
+    <span class="pl-s1">node3</span>.<span class="pl-c1">AddEdge</span>(<span class="pl-s1">node4</span>)
+    <span class="pl-s1">node4</span>.<span class="pl-c1">AddEdge</span>(<span class="pl-s1">node5</span>)
     
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"递归DFS遍历结果："</span>)
-    <span class="pl-en">DFS</span>(<span class="pl-s1">node1</span>)
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"递归DFS遍历结果："</span>)
+    <span class="pl-s1">DFS</span>(<span class="pl-s1">node1</span>)
     
     <span class="pl-c">// 重置visited标记</span>
     <span class="pl-s1">node1</span>.<span class="pl-c1">Visited</span> <span class="pl-c1">=</span> <span class="pl-c1">false</span>
@@ -197,8 +197,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-s1">node4</span>.<span class="pl-c1">Visited</span> <span class="pl-c1">=</span> <span class="pl-c1">false</span>
     <span class="pl-s1">node5</span>.<span class="pl-c1">Visited</span> <span class="pl-c1">=</span> <span class="pl-c1">false</span>
     
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"<span class="pl-cce">\n</span>迭代DFS遍历结果："</span>)
-    <span class="pl-en">DFSIterative</span>(<span class="pl-s1">node1</span>)
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"<span class="pl-cce">\n</span>迭代DFS遍历结果："</span>)
+    <span class="pl-s1">DFSIterative</span>(<span class="pl-s1">node1</span>)
 }</pre></div>
 <p>我实现了两种深度优先搜索的方式：</p>
 <ol>

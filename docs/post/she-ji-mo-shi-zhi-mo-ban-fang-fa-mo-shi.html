@@ -133,48 +133,48 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// Play 是模板方法，定义了游戏的基本结构</span>
-<span class="pl-k">func</span> <span class="pl-en">Play</span>(<span class="pl-s1">game</span> <span class="pl-smi">Game</span>) {
-    <span class="pl-s1">game</span>.<span class="pl-en">Initialize</span>()
-    <span class="pl-s1">game</span>.<span class="pl-en">StartPlay</span>()
-    <span class="pl-s1">game</span>.<span class="pl-en">EndPlay</span>()
+<span class="pl-k">func</span> <span class="pl-s1">Play</span>(<span class="pl-s1">game</span> <span class="pl-smi">Game</span>) {
+    <span class="pl-s1">game</span>.<span class="pl-c1">Initialize</span>()
+    <span class="pl-s1">game</span>.<span class="pl-c1">StartPlay</span>()
+    <span class="pl-s1">game</span>.<span class="pl-c1">EndPlay</span>()
 }
 
 <span class="pl-c">// 实现一个具体的游戏，例如足球游戏</span>
 <span class="pl-k">type</span> <span class="pl-smi">Football</span> <span class="pl-k">struct</span>{}
 
-<span class="pl-k">func</span> (<span class="pl-s1">f</span> <span class="pl-c1">*</span><span class="pl-smi">Football</span>) <span class="pl-en">Initialize</span>() {
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Football Game Initialized! Start playing."</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">f</span> <span class="pl-c1">*</span><span class="pl-smi">Football</span>) <span class="pl-c1">Initialize</span>() {
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Football Game Initialized! Start playing."</span>)
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">f</span> <span class="pl-c1">*</span><span class="pl-smi">Football</span>) <span class="pl-en">StartPlay</span>() {
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Football Game Started. Enjoy the game!"</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">f</span> <span class="pl-c1">*</span><span class="pl-smi">Football</span>) <span class="pl-c1">StartPlay</span>() {
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Football Game Started. Enjoy the game!"</span>)
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">f</span> <span class="pl-c1">*</span><span class="pl-smi">Football</span>) <span class="pl-en">EndPlay</span>() {
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Football Game Finished!"</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">f</span> <span class="pl-c1">*</span><span class="pl-smi">Football</span>) <span class="pl-c1">EndPlay</span>() {
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Football Game Finished!"</span>)
 }
 
 <span class="pl-c">// 实现另一个具体的游戏，例如篮球游戏</span>
 <span class="pl-k">type</span> <span class="pl-smi">Basketball</span> <span class="pl-k">struct</span>{}
 
-<span class="pl-k">func</span> (<span class="pl-s1">b</span> <span class="pl-c1">*</span><span class="pl-smi">Basketball</span>) <span class="pl-en">Initialize</span>() {
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Basketball Game Initialized! Start playing."</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">b</span> <span class="pl-c1">*</span><span class="pl-smi">Basketball</span>) <span class="pl-c1">Initialize</span>() {
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Basketball Game Initialized! Start playing."</span>)
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">b</span> <span class="pl-c1">*</span><span class="pl-smi">Basketball</span>) <span class="pl-en">StartPlay</span>() {
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Basketball Game Started. Enjoy the game!"</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">b</span> <span class="pl-c1">*</span><span class="pl-smi">Basketball</span>) <span class="pl-c1">StartPlay</span>() {
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Basketball Game Started. Enjoy the game!"</span>)
 }
 
-<span class="pl-k">func</span> (<span class="pl-s1">b</span> <span class="pl-c1">*</span><span class="pl-smi">Basketball</span>) <span class="pl-en">EndPlay</span>() {
-    <span class="pl-s1">fmt</span>.<span class="pl-en">Println</span>(<span class="pl-s">"Basketball Game Finished!"</span>)
+<span class="pl-k">func</span> (<span class="pl-s1">b</span> <span class="pl-c1">*</span><span class="pl-smi">Basketball</span>) <span class="pl-c1">EndPlay</span>() {
+    <span class="pl-s1">fmt</span>.<span class="pl-c1">Println</span>(<span class="pl-s">"Basketball Game Finished!"</span>)
 }
 
-<span class="pl-k">func</span> <span class="pl-en">main</span>() {
+<span class="pl-k">func</span> <span class="pl-s1">main</span>() {
     <span class="pl-s1">football</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Football</span>{}
-    <span class="pl-en">Play</span>(<span class="pl-s1">football</span>)
+    <span class="pl-s1">Play</span>(<span class="pl-s1">football</span>)
 
     <span class="pl-s1">basketball</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Basketball</span>{}
-    <span class="pl-en">Play</span>(<span class="pl-s1">basketball</span>)
+    <span class="pl-s1">Play</span>(<span class="pl-s1">basketball</span>)
 }</pre></div>
 <p>在这个例子中，<code class="notranslate">Game</code>接口定义了三个方法：<code class="notranslate">Initialize</code>、<code class="notranslate">StartPlay</code>和<code class="notranslate">EndPlay</code>，这些都是游戏的关键步骤。具体的游戏如<code class="notranslate">Football</code>和<code class="notranslate">Basketball</code>实现了这些方法，以提供特定于游戏的行为。</p>
 <p><code class="notranslate">Play</code>函数是模板方法。它接受一个<code class="notranslate">Game</code>类型的对象，并调用其方法来执行游戏的初始化、开始和结束步骤。这样，游戏的基本结构得以保持，而游戏的具体内容可以通过创建新的<code class="notranslate">Game</code>实现来灵活定义。</p>

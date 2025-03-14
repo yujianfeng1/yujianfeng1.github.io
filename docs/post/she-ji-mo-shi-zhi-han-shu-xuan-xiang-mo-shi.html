@@ -122,25 +122,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-k">type</span> <span class="pl-smi">ServerOption</span> <span class="pl-k">func</span>(<span class="pl-c1">*</span><span class="pl-smi">Server</span>)
 
-<span class="pl-k">func</span> <span class="pl-en">WithHost</span>(<span class="pl-s1">host</span> <span class="pl-smi">string</span>) <span class="pl-smi">ServerOption</span> {
+<span class="pl-k">func</span> <span class="pl-s1">WithHost</span>(<span class="pl-s1">host</span> <span class="pl-smi">string</span>) <span class="pl-smi">ServerOption</span> {
     <span class="pl-k">return</span> <span class="pl-k">func</span>(<span class="pl-s1">s</span> <span class="pl-c1">*</span><span class="pl-smi">Server</span>) {
         <span class="pl-s1">s</span>.<span class="pl-c1">Host</span> <span class="pl-c1">=</span> <span class="pl-s1">host</span>
     }
 }
 
-<span class="pl-k">func</span> <span class="pl-en">WithPort</span>(<span class="pl-s1">port</span> <span class="pl-smi">int</span>) <span class="pl-smi">ServerOption</span> {
+<span class="pl-k">func</span> <span class="pl-s1">WithPort</span>(<span class="pl-s1">port</span> <span class="pl-smi">int</span>) <span class="pl-smi">ServerOption</span> {
     <span class="pl-k">return</span> <span class="pl-k">func</span>(<span class="pl-s1">s</span> <span class="pl-c1">*</span><span class="pl-smi">Server</span>) {
         <span class="pl-s1">s</span>.<span class="pl-c1">Port</span> <span class="pl-c1">=</span> <span class="pl-s1">port</span>
     }
 }
 
-<span class="pl-k">func</span> <span class="pl-en">WithProtocol</span>(<span class="pl-s1">protocol</span> <span class="pl-smi">string</span>) <span class="pl-smi">ServerOption</span> {
+<span class="pl-k">func</span> <span class="pl-s1">WithProtocol</span>(<span class="pl-s1">protocol</span> <span class="pl-smi">string</span>) <span class="pl-smi">ServerOption</span> {
     <span class="pl-k">return</span> <span class="pl-k">func</span>(<span class="pl-s1">s</span> <span class="pl-c1">*</span><span class="pl-smi">Server</span>) {
         <span class="pl-s1">s</span>.<span class="pl-c1">Protocol</span> <span class="pl-c1">=</span> <span class="pl-s1">protocol</span>
     }
 }
 
-<span class="pl-k">func</span> <span class="pl-en">NewServer</span>(<span class="pl-s1">opts</span> <span class="pl-c1">...</span><span class="pl-smi">ServerOption</span>) <span class="pl-c1">*</span><span class="pl-smi">Server</span> {
+<span class="pl-k">func</span> <span class="pl-s1">NewServer</span>(<span class="pl-s1">opts</span> <span class="pl-c1">...</span><span class="pl-smi">ServerOption</span>) <span class="pl-c1">*</span><span class="pl-smi">Server</span> {
     <span class="pl-s1">server</span> <span class="pl-c1">:=</span> <span class="pl-c1">&amp;</span><span class="pl-smi">Server</span>{
         <span class="pl-s1">Host</span>: <span class="pl-s">"localhost"</span>,
         <span class="pl-s1">Port</span>: <span class="pl-c1">8080</span>,
@@ -148,19 +148,19 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     }
 
     <span class="pl-k">for</span> <span class="pl-s1">_</span>, <span class="pl-s1">opt</span> <span class="pl-c1">:=</span> <span class="pl-k">range</span> <span class="pl-s1">opts</span> {
-        <span class="pl-en">opt</span>(<span class="pl-s1">server</span>)
+        <span class="pl-s1">opt</span>(<span class="pl-s1">server</span>)
     }
 
     <span class="pl-k">return</span> <span class="pl-s1">server</span>
 }</pre></div>
 <p>这种方式不仅使得服务器的配置清晰明了，还允许未来的扩展，例如通过添加新的选项函数来支持更多的配置选项，而不需要修改<code class="notranslate">NewServer</code>函数或<code class="notranslate">Server</code>结构体的定义。</p>
 <p>现在，我们可以使用这些选项来创建一个Server实例：</p>
-<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-s1">s</span> <span class="pl-c1">:=</span> <span class="pl-en">NewServer</span>(
-    <span class="pl-en">WithHost</span>(<span class="pl-s">"example.com"</span>),
-    <span class="pl-en">WithPort</span>(<span class="pl-c1">443</span>),
-    <span class="pl-en">WithProtocol</span>(<span class="pl-s">"https"</span>),
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-s1">s</span> <span class="pl-c1">:=</span> <span class="pl-s1">NewServer</span>(
+    <span class="pl-s1">WithHost</span>(<span class="pl-s">"example.com"</span>),
+    <span class="pl-s1">WithPort</span>(<span class="pl-c1">443</span>),
+    <span class="pl-s1">WithProtocol</span>(<span class="pl-s">"https"</span>),
 )
-<span class="pl-s1">fmt</span>.<span class="pl-en">Printf</span>(<span class="pl-s">"Server: %+v<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">s</span>)</pre></div>
+<span class="pl-s1">fmt</span>.<span class="pl-c1">Printf</span>(<span class="pl-s">"Server: %+v<span class="pl-cce">\n</span>"</span>, <span class="pl-s1">s</span>)</pre></div>
 <p>这种方式使得创建配置灵活且易于扩展，也使得代码更加清晰和易于维护。</p>
 <h3>总结</h3>
 <p>函数选项模式是一种强大的设计模式，适用于需要高度可配置性的场景。它通过利用Go的高阶函数特性，提供了一种优雅的方式来构建灵活且易于扩展的API。然而，选择合适的设计模式应根据具体的应用场景和需求来决定</p></div>

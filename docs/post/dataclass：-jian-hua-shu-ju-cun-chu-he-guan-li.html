@@ -97,12 +97,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-en">@<span class="pl-s1">dataclass</span></span>
 <span class="pl-k">class</span> <span class="pl-v">Person</span>:
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-s1">int</span>
-    <span class="pl-s1">email</span>: <span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-c1">None</span>  <span class="pl-c"># 默认值</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-smi">int</span>
+    <span class="pl-s1">email</span>: <span class="pl-smi">str</span> <span class="pl-c1">=</span> <span class="pl-c1">None</span>  <span class="pl-c"># 默认值</span>
 
 <span class="pl-c"># 创建实例</span>
-<span class="pl-s1">p</span> <span class="pl-c1">=</span> <span class="pl-v">Person</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>, <span class="pl-s1">age</span><span class="pl-c1">=</span><span class="pl-c1">30</span>)
+<span class="pl-s1">p</span> <span class="pl-c1">=</span> <span class="pl-en">Person</span>(<span class="pl-s1">name</span><span class="pl-c1">=</span><span class="pl-s">"Alice"</span>, <span class="pl-s1">age</span><span class="pl-c1">=</span><span class="pl-c1">30</span>)
 
 <span class="pl-en">print</span>(<span class="pl-s1">p</span>)  <span class="pl-c"># 输出：Person(name='Alice', age=30, email=None)</span></pre></div>
 <p>在这个例子中，<code class="notranslate">Person</code>类有三个属性：<code class="notranslate">name</code>、<code class="notranslate">age</code>和<code class="notranslate">email</code>。通过<code class="notranslate">@dataclass</code>装饰器，Python会自动生成以下方法：</p>
@@ -115,12 +115,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>在<code class="notranslate">dataclass</code>中，可以为字段指定默认值。这不仅仅适用于可选字段，也适用于没有默认值的字段。例如，<code class="notranslate">email</code>字段的默认值是<code class="notranslate">None</code>。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-s1">dataclass</span></span>
 <span class="pl-k">class</span> <span class="pl-v">Person</span>:
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-s1">int</span>
-    <span class="pl-s1">email</span>: <span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-c1">None</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-smi">int</span>
+    <span class="pl-s1">email</span>: <span class="pl-smi">str</span> <span class="pl-c1">=</span> <span class="pl-c1">None</span>
 
-<span class="pl-s1">p1</span> <span class="pl-c1">=</span> <span class="pl-v">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">30</span>)
-<span class="pl-s1">p2</span> <span class="pl-c1">=</span> <span class="pl-v">Person</span>(<span class="pl-s">"Bob"</span>, <span class="pl-c1">25</span>, <span class="pl-s">"bob@example.com"</span>)
+<span class="pl-s1">p1</span> <span class="pl-c1">=</span> <span class="pl-en">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">30</span>)
+<span class="pl-s1">p2</span> <span class="pl-c1">=</span> <span class="pl-en">Person</span>(<span class="pl-s">"Bob"</span>, <span class="pl-c1">25</span>, <span class="pl-s">"bob@example.com"</span>)
 
 <span class="pl-en">print</span>(<span class="pl-s1">p1</span>)
 <span class="pl-en">print</span>(<span class="pl-s1">p2</span>)</pre></div>
@@ -132,10 +132,10 @@ Person(name='Bob', age=25, email='bob@example.com')
 <p>在某些情况下，我们希望数据类的实例是不可变的，这意味着一旦对象被创建，它的属性就不能被修改。通过设置<code class="notranslate">frozen=True</code>，可以让数据类变成“冻结”状态。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-en">dataclass</span>(<span class="pl-s1">frozen</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</span>
 <span class="pl-k">class</span> <span class="pl-v">Person</span>:
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-s1">int</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-smi">int</span>
 
-<span class="pl-s1">p</span> <span class="pl-c1">=</span> <span class="pl-v">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">30</span>)
+<span class="pl-s1">p</span> <span class="pl-c1">=</span> <span class="pl-en">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">30</span>)
 <span class="pl-c"># p.age = 31  # 会抛出FrozenInstanceError错误</span></pre></div>
 <p>一旦设置了<code class="notranslate">frozen=True</code>，尝试修改实例的任何字段都会抛出<code class="notranslate">FrozenInstanceError</code>错误。</p>
 <h3>3. <code class="notranslate">dataclass</code>的高级功能</h3>
@@ -144,37 +144,37 @@ Person(name='Bob', age=25, email='bob@example.com')
 <p><code class="notranslate">dataclass</code>允许在初始化后对实例进行额外的处理。你可以定义一个<code class="notranslate">__post_init__</code>方法，它会在<code class="notranslate">__init__</code>方法之后自动调用。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-s1">dataclass</span></span>
 <span class="pl-k">class</span> <span class="pl-v">Person</span>:
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-s1">int</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-smi">int</span>
 
     <span class="pl-k">def</span> <span class="pl-en">__post_init__</span>(<span class="pl-s1">self</span>):
-        <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">age</span> <span class="pl-c1">&lt;</span> <span class="pl-c1">0</span>:
-            <span class="pl-k">raise</span> <span class="pl-v">ValueError</span>(<span class="pl-s">"Age cannot be negative"</span>)
+        <span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-c1">age</span> <span class="pl-c1">&lt;</span> <span class="pl-c1">0</span>:
+            <span class="pl-k">raise</span> <span class="pl-en">ValueError</span>(<span class="pl-s">"Age cannot be negative"</span>)
 
-<span class="pl-s1">p</span> <span class="pl-c1">=</span> <span class="pl-v">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">-</span><span class="pl-c1">1</span>)  <span class="pl-c"># 会抛出ValueError</span></pre></div>
+<span class="pl-s1">p</span> <span class="pl-c1">=</span> <span class="pl-en">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">-</span><span class="pl-c1">1</span>)  <span class="pl-c"># 会抛出ValueError</span></pre></div>
 <h5>3.2 定制字段</h5>
 <p><code class="notranslate">dataclass</code>允许通过<code class="notranslate">field()</code>函数为每个字段定义更多属性，例如设置默认工厂方法、指定排序规则或排除字段等。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">dataclasses</span> <span class="pl-k">import</span> <span class="pl-s1">field</span>
 
 <span class="pl-en">@<span class="pl-s1">dataclass</span></span>
 <span class="pl-k">class</span> <span class="pl-v">Person</span>:
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-s1">int</span>
-    <span class="pl-s1">tags</span>: <span class="pl-s1">list</span> <span class="pl-c1">=</span> <span class="pl-en">field</span>(<span class="pl-s1">default_factory</span><span class="pl-c1">=</span><span class="pl-s1">list</span>)  <span class="pl-c"># 使用默认工厂生成列表</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-smi">int</span>
+    <span class="pl-s1">tags</span>: <span class="pl-smi">list</span> <span class="pl-c1">=</span> <span class="pl-en">field</span>(<span class="pl-s1">default_factory</span><span class="pl-c1">=</span><span class="pl-s1">list</span>)  <span class="pl-c"># 使用默认工厂生成列表</span>
 
-<span class="pl-s1">p</span> <span class="pl-c1">=</span> <span class="pl-v">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">30</span>)
-<span class="pl-s1">p</span>.<span class="pl-s1">tags</span>.<span class="pl-en">append</span>(<span class="pl-s">"friend"</span>)
-<span class="pl-en">print</span>(<span class="pl-s1">p</span>.<span class="pl-s1">tags</span>)  <span class="pl-c"># 输出：['friend']</span></pre></div>
+<span class="pl-s1">p</span> <span class="pl-c1">=</span> <span class="pl-en">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">30</span>)
+<span class="pl-s1">p</span>.<span class="pl-c1">tags</span>.<span class="pl-c1">append</span>(<span class="pl-s">"friend"</span>)
+<span class="pl-en">print</span>(<span class="pl-s1">p</span>.<span class="pl-c1">tags</span>)  <span class="pl-c"># 输出：['friend']</span></pre></div>
 <p>在这个例子中，<code class="notranslate">tags</code>字段使用<code class="notranslate">default_factory</code>设置了一个默认的空列表。每次创建<code class="notranslate">Person</code>实例时，<code class="notranslate">tags</code>都会被初始化为一个空列表。</p>
 <h4>3.3 比较和排序</h4>
 <p><code class="notranslate">dataclass</code>可以根据类中的字段自动实现比较操作。可以通过设置<code class="notranslate">order=True</code>来启用比较功能，并自动生成<code class="notranslate">__lt__</code>、<code class="notranslate">__le__</code>、<code class="notranslate">__gt__</code>和<code class="notranslate">__ge__</code>等方法，从而实现基于字段值的排序。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">@<span class="pl-en">dataclass</span>(<span class="pl-s1">order</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</span>
 <span class="pl-k">class</span> <span class="pl-v">Person</span>:
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-s1">int</span>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-smi">int</span>
 
-<span class="pl-s1">p1</span> <span class="pl-c1">=</span> <span class="pl-v">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">30</span>)
-<span class="pl-s1">p2</span> <span class="pl-c1">=</span> <span class="pl-v">Person</span>(<span class="pl-s">"Bob"</span>, <span class="pl-c1">25</span>)
+<span class="pl-s1">p1</span> <span class="pl-c1">=</span> <span class="pl-en">Person</span>(<span class="pl-s">"Alice"</span>, <span class="pl-c1">30</span>)
+<span class="pl-s1">p2</span> <span class="pl-c1">=</span> <span class="pl-en">Person</span>(<span class="pl-s">"Bob"</span>, <span class="pl-c1">25</span>)
 
 <span class="pl-en">print</span>(<span class="pl-s1">p1</span> <span class="pl-c1">&gt;</span> <span class="pl-s1">p2</span>)  <span class="pl-c"># 输出：False</span></pre></div>
 <p>当<code class="notranslate">order=True</code>时，<code class="notranslate">Person</code>类的实例可以进行比较，比较的依据是字段的顺序。</p>
@@ -190,24 +190,24 @@ Person(name='Bob', age=25, email='bob@example.com')
 <p>例如，传统方式中定义一个<code class="notranslate">Person</code>类可能需要如下代码：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-v">Person</span>:
     <span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">name</span>, <span class="pl-s1">age</span>):
-        <span class="pl-s1">self</span>.<span class="pl-s1">name</span> <span class="pl-c1">=</span> <span class="pl-s1">name</span>
-        <span class="pl-s1">self</span>.<span class="pl-s1">age</span> <span class="pl-c1">=</span> <span class="pl-s1">age</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">name</span> <span class="pl-c1">=</span> <span class="pl-s1">name</span>
+        <span class="pl-s1">self</span>.<span class="pl-c1">age</span> <span class="pl-c1">=</span> <span class="pl-s1">age</span>
 
     <span class="pl-k">def</span> <span class="pl-en">__repr__</span>(<span class="pl-s1">self</span>):
-        <span class="pl-k">return</span> <span class="pl-s">f"Person(name=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">self</span>.<span class="pl-s1">name</span><span class="pl-kos">}</span></span>, age=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">self</span>.<span class="pl-s1">age</span><span class="pl-kos">}</span></span>)"</span>
+        <span class="pl-k">return</span> <span class="pl-s">f"Person(name=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">self</span>.<span class="pl-c1">name</span><span class="pl-kos">}</span></span>, age=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">self</span>.<span class="pl-c1">age</span><span class="pl-kos">}</span></span>)"</span>
 
     <span class="pl-k">def</span> <span class="pl-en">__eq__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">other</span>):
-        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">name</span> <span class="pl-c1">==</span> <span class="pl-s1">other</span>.<span class="pl-s1">name</span> <span class="pl-c1">and</span> <span class="pl-s1">self</span>.<span class="pl-s1">age</span> <span class="pl-c1">==</span> <span class="pl-s1">other</span>.<span class="pl-s1">age</span>
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-c1">name</span> <span class="pl-c1">==</span> <span class="pl-s1">other</span>.<span class="pl-c1">name</span> <span class="pl-c1">and</span> <span class="pl-s1">self</span>.<span class="pl-c1">age</span> <span class="pl-c1">==</span> <span class="pl-s1">other</span>.<span class="pl-c1">age</span>
 
     <span class="pl-k">def</span> <span class="pl-en">__lt__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">other</span>):
-        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-s1">age</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">other</span>.<span class="pl-s1">age</span></pre></div>
+        <span class="pl-k">return</span> <span class="pl-s1">self</span>.<span class="pl-c1">age</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">other</span>.<span class="pl-c1">age</span></pre></div>
 <p>而通过<code class="notranslate">dataclass</code>，这段代码可以简化为：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">dataclasses</span> <span class="pl-k">import</span> <span class="pl-s1">dataclass</span>
 
 <span class="pl-en">@<span class="pl-s1">dataclass</span></span>
 <span class="pl-k">class</span> <span class="pl-v">Person</span>:
-    <span class="pl-s1">name</span>: <span class="pl-s1">str</span>
-    <span class="pl-s1">age</span>: <span class="pl-s1">int</span></pre></div>
+    <span class="pl-s1">name</span>: <span class="pl-smi">str</span>
+    <span class="pl-s1">age</span>: <span class="pl-smi">int</span></pre></div>
 <h3>5. 总结</h3>
 <p><code class="notranslate">dataclass</code>是一个非常强大的工具，可以显著减少Python类中冗余的样板代码，尤其是在处理数据容器时。通过<code class="notranslate">dataclass</code>，你可以专注于类的业务逻辑，而无需手动实现常见的方法。它非常适用于数据存储、DTO（数据传输对象）、配置管理等场景。</p>
 <p>无论是处理简单的字段，还是需要复杂的字段验证和比较，<code class="notranslate">dataclass</code>都能为你提供灵活而简洁的解决方案。通过学习和掌握<code class="notranslate">dataclass</code>，你可以大大提高代码的可读性和维护性。</p></div>
