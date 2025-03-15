@@ -1,17 +1,16 @@
 {
-    "title": "HubGPT",
-    "subTitle": "HubGPT",
-    "GMEEK_VERSION": "last",
-    "startSite": "06/09/2014",
-    "singlePage": [
-        "about"
-    ],
-    "yearColorList": [
-        "#bc4c00",
-        "#0969da",
-        "#1f883d",
-        "#A333D0"
-    ],
-    "onePageListNum": 15,
-    "needComment": 1
-}
+     "avatarUrl": "https://hacker4257.github.io/ava.jpeg",
+     "faviconUrl": "https://hacker4257.github.io/avat.jpg",
+     "title": "HubGPT",
+     "subTitle": "HubGPT",
+     "GMEEK_VERSION": "last",
+     "startSite": "06/09/2014",
+     "singlePage": [
+         "#A333D0"
+     ],
+     "onePageListNum": 15,
+     "needComment": 1,
+     "homeUrl": "https://hacker4257.github.io/",
+     "allHead": "<script src='https://hacker4257.github.io/assets/GmeekVercount.js'></script>"
+     "needComment": 1
+ }
